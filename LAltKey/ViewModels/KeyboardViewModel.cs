@@ -37,7 +37,7 @@ public record KeyColumnVm(double Gap, IReadOnlyList<KeyRowVm> Rows);
 /// <summary>
 /// [text] text.
 /// </summary>
-public class KeySlotVm(KeySlot slot, AutoCompleteService autoComplete) : ObservableObject
+public class KeySlotVm(KeySlot slot) : ObservableObject
 {
     public KeySlot Slot { get; } = slot;
     // text.
@@ -519,7 +519,7 @@ public partial class KeyboardViewModel : ObservableObject
                     col.Rows?.Select((r, rowIndex) => new KeyRowVm(
                         rowIndex,
                         sharedRowHeights.TryGetValue(rowIndex, out var rowHeight) ? rowHeight : 1.0,
-                        r.Keys.Select(k => new KeySlotVm(k, _autoComplete)).ToList()
+                        r.Keys.Select(k => new KeySlotVm(k)).ToList()
                     )).ToList() ?? []
                 ))
             );

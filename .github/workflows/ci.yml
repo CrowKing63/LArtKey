@@ -14,7 +14,9 @@ jobs:
         with:
           dotnet-version: '8.0.x'
       - name: Restore
-        run: dotnet restore LAltKey/LAltKey.csproj
+        run: |
+          dotnet restore LAltKey/LAltKey.csproj
+          dotnet restore LAltKey.Tools/LAltKey.Tools.csproj
       - name: Build
         run: dotnet build LAltKey.Tools/LAltKey.Tools.csproj -c Release --no-restore
       - name: Test
