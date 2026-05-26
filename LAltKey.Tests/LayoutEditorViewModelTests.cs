@@ -81,6 +81,32 @@ public class LayoutEditorViewModelTests
     }
 
     [Fact]
+    public void Save_auto_derives_english_label_from_letter_send_key()
+    {
+        RunSta(() =>
+        {
+            var repo = new FakeLayoutRepository();
+            repo.Seed("derived-english", new LayoutConfig("derived-english", null,
+            [
+                new KeyColumn(0,
+                [
+                    new KeyRow([
+                        new KeySlot("ㅁ", null, new SendKeyAction("VK_A"))
+                    ])
+                ])
+            ]));
+
+            var vm = new LayoutEditorViewModel(repo, new ConfigService());
+            vm.LoadLayout("derived-english");
+            vm.SaveCommand.Execute(null);
+
+            var savedKey = repo.LastSavedConfig!.Columns![0].Rows![0].Keys[0];
+            Assert.Equal("a", savedKey.EnglishLabel);
+            Assert.Null(savedKey.EnglishShiftLabel);
+        });
+    }
+
+    [Fact]
     public void Changing_key_to_function_toggle_clears_and_locks_function_overrides()
     {
         RunSta(() =>

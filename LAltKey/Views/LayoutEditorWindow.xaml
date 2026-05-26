@@ -347,12 +347,12 @@
                                                                                                TextTrimming="CharacterEllipsis"
                                                                                                Margin="1,0"/>
                                                                                     <!-- text) -->
-                                                                                    <TextBlock Text="{Binding EnglishLabel}"
+                                                                                    <TextBlock Text="{Binding PreviewEnglishLabel}"
                                                                                                Foreground="{DynamicResource SettingsFgHint}"
                                                                                                FontSize="8"
                                                                                                HorizontalAlignment="Center"
                                                                                                Margin="0,-1,0,0"
-                                                                                               Visibility="{Binding EnglishLabel,
+                                                                                               Visibility="{Binding PreviewEnglishLabel,
                                                                                                    Converter={StaticResource NullToCollapsed},
                                                                                                    FallbackValue=Collapsed}"/>
                                                                                     <TextBlock Text="{Binding FunctionPreviewLabel}"
@@ -428,15 +428,11 @@
                                          UpdateSourceTrigger=PropertyChanged}"
                                      Style="{StaticResource InputBox}"/>
 
-                            <TextBlock Text="English label" Style="{StaticResource LabelText}"/>
-                            <TextBox Text="{Binding SelectedKey.EnglishLabel,
-                                         UpdateSourceTrigger=PropertyChanged}"
-                                     Style="{StaticResource InputBox}"/>
-
-                            <TextBlock Text="English Shift label" Style="{StaticResource LabelText}"/>
-                            <TextBox Text="{Binding SelectedKey.EnglishShiftLabel,
-                                         UpdateSourceTrigger=PropertyChanged}"
-                                     Style="{StaticResource InputBox}"/>
+                            <TextBlock Text="English labels are inferred from VK-based SendKey actions when available."
+                                       Foreground="{DynamicResource SettingsFgHint}"
+                                       FontSize="10"
+                                       Margin="0,-2,0,8"
+                                       TextWrapping="Wrap"/>
 
                             <Separator Background="{DynamicResource SettingsHighlight}" Margin="0,0,0,10"/>
 
@@ -451,15 +447,11 @@
                                              UpdateSourceTrigger=PropertyChanged}"
                                          Style="{StaticResource InputBox}"/>
 
-                                <TextBlock Text="Fn English label (optional)" Style="{StaticResource LabelText}"/>
-                                <TextBox Text="{Binding SelectedKey.FunctionEnglishLabel,
-                                             UpdateSourceTrigger=PropertyChanged}"
-                                         Style="{StaticResource InputBox}"/>
-
-                                <TextBlock Text="Fn English Shift label (optional)" Style="{StaticResource LabelText}"/>
-                                <TextBox Text="{Binding SelectedKey.FunctionEnglishShiftLabel,
-                                             UpdateSourceTrigger=PropertyChanged}"
-                                         Style="{StaticResource InputBox}"/>
+                                <TextBlock Text="Fn English labels are inferred from the Fn SendKey action when available."
+                                           Foreground="{DynamicResource SettingsFgHint}"
+                                           FontSize="10"
+                                           Margin="0,-2,0,8"
+                                           TextWrapping="Wrap"/>
                             </StackPanel>
 
                             <TextBlock Text="Do not assign Fn-specific actions or labels to the Fn key itself."

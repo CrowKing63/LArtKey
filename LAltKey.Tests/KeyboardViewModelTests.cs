@@ -75,8 +75,7 @@ public class KeyboardViewModelTests
 
     private static KeySlotVm CreateSlotVm(KeySlot slot)
     {
-        var autoComplete = new AutoCompleteService(new FakeInputLanguageModule());
-        var vm = new KeySlotVm(slot, autoComplete);
+        var vm = new KeySlotVm(slot);
         vm.RefreshDisplay();
         return vm;
     }

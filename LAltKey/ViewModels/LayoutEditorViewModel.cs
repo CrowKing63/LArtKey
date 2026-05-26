@@ -21,19 +21,28 @@ public partial class EditableKeySlotVm : ObservableObject
     // text style_key text.
     public const string SoftAccentStyleKey = "soft_accent";
 
-    [ObservableProperty] private string  editLabel       = "";
-    [ObservableProperty] private string? editShiftLabel;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(PreviewEnglishLabel))]
+    private string  editLabel       = "";
+    [ObservableProperty]
+    private string? editShiftLabel;
     [ObservableProperty] private double  editWidth       = 1.0;
     [ObservableProperty] private double  editHeight      = DefaultHeightRatio;
     [ObservableProperty] private double  editGapBefore   = 0.0;
-    [ObservableProperty] private KeyAction? editAction;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(PreviewEnglishLabel))]
+    private KeyAction? editAction;
     [ObservableProperty] private string  editStyleKey    = "";
     [ObservableProperty] private bool    useSoftAccentStyle;
     [ObservableProperty] private bool    isSelected      = false;
 
-    [ObservableProperty] private string? englishLabel;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(PreviewEnglishLabel))]
+    private string? englishLabel;
     [ObservableProperty] private string? englishShiftLabel;
-    [ObservableProperty] private KeyAction? functionAction;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FunctionPreviewLabel))]
+    private KeyAction? functionAction;
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FunctionPreviewLabel))]
     private string? functionLabel;
@@ -56,10 +65,15 @@ public partial class EditableKeySlotVm : ObservableObject
     /// text
     public KeySlot ToKeySlot() =>
         new(EditLabel, EditShiftLabel, EditAction, EditWidth, EditHeight,
-            UseSoftAccentStyle ? SoftAccentStyleKey : "", EditGapBefore, EnglishLabel, EnglishShiftLabel,
-            FunctionAction, FunctionLabel, FunctionShiftLabel, FunctionEnglishLabel, FunctionEnglishShiftLabel);
+            UseSoftAccentStyle ? SoftAccentStyleKey : "", EditGapBefore,
+            GetEffectiveEnglishLabel(EditAction, EnglishLabel), GetEffectiveEnglishShiftLabel(EditAction, EnglishShiftLabel),
+            FunctionAction, FunctionLabel, FunctionShiftLabel,
+            GetEffectiveEnglishLabel(FunctionAction, FunctionEnglishLabel),
+            GetEffectiveEnglishShiftLabel(FunctionAction, FunctionEnglishShiftLabel));
 
-    public string? FunctionPreviewLabel => FunctionLabel ?? FunctionEnglishLabel;
+    public string? PreviewEnglishLabel => GetEffectiveEnglishLabel(EditAction, EnglishLabel);
+
+    public string? FunctionPreviewLabel => FunctionLabel ?? GetEffectiveEnglishLabel(FunctionAction, FunctionEnglishLabel);
 
     partial void OnEditActionChanged(KeyAction? value)
     {
@@ -89,6 +103,40 @@ public partial class EditableKeySlotVm : ObservableObject
         var next = value ? SoftAccentStyleKey : "";
         if (EditStyleKey != next)
             EditStyleKey = next;
+    }
+
+    private static string? GetEffectiveEnglishLabel(KeyAction? action, string? legacyLabel)
+    {
+        if (TryGetAutomaticEnglishLabel(action, out var automaticLabel))
+            return automaticLabel;
+
+        return string.IsNullOrWhiteSpace(legacyLabel) ? null : legacyLabel;
+    }
+
+    private static string? GetEffectiveEnglishShiftLabel(KeyAction? action, string? legacyShiftLabel)
+    {
+        if (TryGetAutomaticEnglishLabel(action, out _))
+            return null;
+
+        return string.IsNullOrWhiteSpace(legacyShiftLabel) ? null : legacyShiftLabel;
+    }
+
+    private static bool TryGetAutomaticEnglishLabel(KeyAction? action, out string? label)
+    {
+        label = null;
+
+        if (action is not SendKeyAction { Vk: var vk } || string.IsNullOrWhiteSpace(vk))
+            return false;
+
+        if (vk.Length == 4
+            && vk.StartsWith("VK_", StringComparison.OrdinalIgnoreCase)
+            && char.IsAsciiLetter(vk[3]))
+        {
+            label = char.ToLowerInvariant(vk[3]).ToString();
+            return true;
+        }
+
+        return false;
     }
 }
 
