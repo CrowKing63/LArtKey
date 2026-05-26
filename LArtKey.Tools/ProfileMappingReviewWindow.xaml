@@ -1,0 +1,136 @@
+<Window x:Class="LArtKey.Tools.ProfileMappingReviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="English text"
+        Width="860"
+        Height="640"
+        MinWidth="720"
+        MinHeight="520"
+        WindowStartupLocation="CenterOwner"
+        KeyboardNavigation.TabNavigation="Cycle"
+        AutomationProperties.Name="English text">
+    <Window.Resources>
+        <!-- English text. -->
+        <Style x:Key="ReviewSectionCardStyle" TargetType="Border" BasedOn="{StaticResource FluentCardBorderStyle}">
+            <Setter Property="Margin" Value="0,0,0,10" />
+        </Style>
+        <Style TargetType="DataGrid" BasedOn="{StaticResource FluentDataGridStyle}" />
+        <Style TargetType="Button" BasedOn="{StaticResource FluentButtonStyle}" />
+    </Window.Resources>
+
+    <Border Margin="14"
+            Padding="16"
+            Background="{DynamicResource SettingsBg}"
+            BorderBrush="{DynamicResource SettingsBorder}"
+            BorderThickness="1"
+            CornerRadius="12">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       FontSize="22"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,8"
+                       Text="English text"
+                       AutomationProperties.Name="English text"/>
+
+            <TextBlock Grid.Row="1"
+                       Margin="0,0,0,12"
+                       TextWrapping="Wrap"
+                       Text="English text."
+                       AutomationProperties.Name="English text"/>
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Style="{StaticResource ReviewSectionCardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="1. English text"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   AutomationProperties.Name="English text"/>
+                        <TextBlock Margin="0,6,0,2"
+                                   Text="{Binding SummaryText}"
+                                   TextWrapping="Wrap"
+                                   AutomationProperties.Name="English text"/>
+                        <TextBlock Text="{Binding RiskText}"
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource SettingsFgSub}"
+                                   AutomationProperties.Name="English text"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="1" Style="{StaticResource ReviewSectionCardStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Margin="0,0,0,8"
+                                   Text="2. English text"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   AutomationProperties.Name="English text"/>
+
+                        <DataGrid x:Name="ReviewGrid"
+                                  Grid.Row="1"
+                                  ItemsSource="{Binding Entries}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  HeadersVisibility="Column"
+                                  KeyboardNavigation.TabIndex="0"
+                                  AutomationProperties.Name="English text">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="English text" Binding="{Binding ProcessName}" Width="2*" />
+                                <DataGridTextColumn Header="English text" Binding="{Binding LayoutName}" Width="2*" />
+                                <DataGridTextColumn Header="English text" Binding="{Binding Status}" Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="2"
+                        Margin="0,0,0,0"
+                        Padding="12"
+                        BorderThickness="1"
+                        BorderBrush="{DynamicResource SettingsBorder}"
+                        Background="{DynamicResource SettingsHighlight}"
+                        CornerRadius="8">
+                    <StackPanel>
+                        <TextBlock Text="3. English text"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,4"
+                                   AutomationProperties.Name="English text"/>
+                        <TextBlock Text="{Binding DecisionText}"
+                                   TextWrapping="Wrap"
+                                   AutomationProperties.Name="2English text"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Button Grid.Row="3"
+                    Content="English text (Esc)"
+                    Width="140"
+                    HorizontalAlignment="Right"
+                    Margin="0,12,0,0"
+                    KeyboardNavigation.TabIndex="1"
+                    Click="OnClose"
+                    AutomationProperties.Name="English text"
+                    AutomationProperties.HelpText="English text."/>
+        </Grid>
+    </Border>
+</Window>

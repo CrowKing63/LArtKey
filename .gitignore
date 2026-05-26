@@ -1,0 +1,111 @@
+# Visual Studio user-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# WPF XAML 임시 csproj (dotnet build 부산물)
+*_wpftmp.csproj
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# .NET
+project.lock.json
+project.fragment.lock.json
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+TestResult.xml
+nunit-*.xml
+
+# Code coverage
+coverage*.json
+coverage*.xml
+coverage*.info
+*.coverage
+*.coveragexml
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Windows
+Thumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+
+# dotenv
+.env
+
+# AltKey: custom user layouts (keep default layouts)
+layouts/custom*.json
+
+# AltKey: build output / dist
+.bin/
+dist/
+
+# AltKey: agent working directories
+.agent/
+.claude/
+.gemini/
+.qwen/
+.kiro/
+
+# Testing notes
+TESTING.md
+TODO List.md
+WhatIHaveDone.md
+
+# Installer build output
+installer/Output/
+
+# AltKey: issue notes
+docs/Problems/
+
+# dotnet build log
+.dotnet
+.dotnet-cli/
+.nuget/
+
+# wiki
+Wiki/

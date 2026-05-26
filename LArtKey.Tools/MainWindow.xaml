@@ -1,0 +1,139 @@
+<Window x:Class="LArtKey.Tools.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="LArtKey English text"
+        Width="720"
+        Height="560"
+        MinWidth="620"
+        MinHeight="500"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- English text. -->
+        <Style TargetType="Button" BasedOn="{StaticResource FluentButtonStyle}">
+            <Setter Property="Padding" Value="16,12" />
+        </Style>
+    </Window.Resources>
+
+    <Border Margin="14"
+            Padding="20"
+            Background="{DynamicResource SettingsBg}"
+            BorderBrush="{DynamicResource SettingsBorder}"
+            BorderThickness="1"
+            CornerRadius="12">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Margin="0,0,0,8"
+                       FontSize="24"
+                       FontWeight="SemiBold"
+                       Text="LArtKey English text"
+                       AutomationProperties.Name="English text" />
+
+            <TextBlock Grid.Row="1"
+                       Margin="0,0,0,16"
+                       Text="English text."
+                       TextWrapping="Wrap"
+                       AutomationProperties.Name="English text" />
+
+            <Border Grid.Row="2"
+                    Style="{StaticResource FluentCardBorderStyle}"
+                    KeyboardNavigation.TabNavigation="Continue">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,10"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="English text"
+                               AutomationProperties.Name="English text" />
+
+                    <Button x:Name="LayoutEditorButton"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="0"
+                            Content="English text"
+                            Click="OnOpenLayoutEditor"
+                            AutomationProperties.Name="English text"
+                            AutomationProperties.HelpText="English text." />
+                    <TextBlock Margin="2,0,0,10"
+                               Foreground="{DynamicResource SettingsFgSub}"
+                               Text="English text."
+                               TextWrapping="Wrap"
+                               AutomationProperties.Name="English text" />
+
+                    <Button x:Name="UserDictionaryEditorButton"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="1"
+                            Content="English text"
+                            Click="OnOpenUserDictionaryEditor"
+                            AutomationProperties.Name="English text"
+                            AutomationProperties.HelpText="English text." />
+                    <TextBlock Margin="2,0,0,10"
+                               Foreground="{DynamicResource SettingsFgSub}"
+                               Text="English text."
+                               TextWrapping="Wrap"
+                               AutomationProperties.Name="English text" />
+
+                    <Button x:Name="ProfileMappingEditorButton"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="2"
+                            Content="English text"
+                            Click="OnOpenProfileMappingEditor"
+                            AutomationProperties.Name="English text"
+                            AutomationProperties.HelpText="English text." />
+                    <TextBlock Margin="2,0,0,10"
+                               Foreground="{DynamicResource SettingsFgSub}"
+                               Text="English text."
+                               TextWrapping="Wrap"
+                               AutomationProperties.Name="English text" />
+
+                    <Button x:Name="AiPromptEditorButton"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="3"
+                            Content="AI English text"
+                            Click="OnOpenAiPromptEditor"
+                            AutomationProperties.Name="AI English text"
+                            AutomationProperties.HelpText="English text." />
+                    <TextBlock Margin="2,0,0,0"
+                               Foreground="{DynamicResource SettingsFgSub}"
+                               Text="English text."
+                               TextWrapping="Wrap"
+                               AutomationProperties.Name="AI English text" />
+
+                    <Button x:Name="HeaderShortcutEditorButton"
+                            Margin="0,10,0,8"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="4"
+                            Content="English text"
+                            Click="OnOpenHeaderShortcutEditor"
+                            AutomationProperties.Name="English text"
+                            AutomationProperties.HelpText="English text." />
+                    <TextBlock Margin="2,0,0,0"
+                               Foreground="{DynamicResource SettingsFgSub}"
+                               Text="English text."
+                               TextWrapping="Wrap"
+                               AutomationProperties.Name="English text" />
+                </StackPanel>
+            </Border>
+
+            <Button Grid.Row="3"
+                    Margin="0,16,0,0"
+                    HorizontalAlignment="Right"
+                    TabIndex="5"
+                    Content="English text (Esc)"
+                    Click="OnClose"
+                    AutomationProperties.Name="English text"
+                    AutomationProperties.HelpText="LArtKey English text." />
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,585 @@
+<Window x:Class="LArtKey.Views.LayoutEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:LArtKey.ViewModels"
+        xmlns:views="clr-namespace:LArtKey.Views"
+        xmlns:conv="clr-namespace:LArtKey.Themes"
+        xmlns:ctrl="clr-namespace:LArtKey.Controls"
+        mc:Ignorable="d"
+        Title="English text"
+        Width="1200" Height="750"
+        MinWidth="700" MinHeight="450"
+        WindowStartupLocation="Manual"
+        Background="{DynamicResource SettingsBg}"
+        d:DataContext="{d:DesignInstance vm:LayoutEditorViewModel}">
+    <Window.InputBindings>
+        <!-- English text. -->
+        <KeyBinding Modifiers="Control"
+                    Key="Z"
+                    Command="{Binding UndoCommand}"/>
+    </Window.InputBindings>
+    <Window.Resources>
+        <!-- English text. -->
+        <Style TargetType="Button" BasedOn="{StaticResource FluentButtonStyle}"/>
+        <Style TargetType="TextBox" BasedOn="{StaticResource FluentTextBoxStyle}"/>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource FluentComboBoxStyle}"/>
+
+        <BooleanToVisibilityConverter     x:Key="BoolToVis"/>
+        <conv:InverseBoolToVisibilityConverter x:Key="InvBoolToVis"/>
+        <conv:WidthToPixelConverter       x:Key="WidthToPx"/>
+        <conv:NullToCollapsedConverter    x:Key="NullToCollapsed"/>
+
+        <!-- English text. -->
+        <Style x:Key="DarkBtn" TargetType="Button" BasedOn="{StaticResource FluentSecondaryButtonStyle}"/>
+        <Style x:Key="AccentBtn" TargetType="Button" BasedOn="{StaticResource FluentPrimaryButtonStyle}"/>
+        <Style x:Key="DangerBtn" TargetType="Button" BasedOn="{StaticResource FluentDangerButtonStyle}"/>
+        <Style x:Key="LabelText" TargetType="TextBlock" BasedOn="{StaticResource FluentLabelTextStyle}"/>
+        <Style x:Key="InputBox" TargetType="TextBox" BasedOn="{StaticResource FluentEditorInputBoxStyle}">
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+        <!-- English text. -->
+        <Style x:Key="KeyDeleteButtonStyle" TargetType="Button" BasedOn="{StaticResource FluentButtonStyle}">
+            <Setter Property="Width" Value="14"/>
+            <Setter Property="Height" Value="14"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource SettingsFg}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource ElevatedWarningBg}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource ElevatedWarningFg}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource ElevatedWarningBg}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type ctrl:NumericAdjuster}">
+            <Setter Property="ButtonBackground" Value="{DynamicResource SettingsHighlight}"/>
+            <Setter Property="ButtonForeground" Value="{DynamicResource SettingsFg}"/>
+            <Setter Property="TextBoxBackground" Value="{DynamicResource SettingsBg}"/>
+            <Setter Property="TextBoxForeground" Value="{DynamicResource SettingsFg}"/>
+            <Setter Property="TextBoxBorderBrush" Value="{DynamicResource SettingsBorder}"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ── English text ── -->
+        <Border Grid.Row="0" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- 1English text -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center"
+                            Margin="0,0,0,6">
+                    <TextBlock Text="English text:" Foreground="{DynamicResource SettingsFgSub}"
+                               VerticalAlignment="Center" Margin="0,0,6,0"/>
+                    <ComboBox ItemsSource="{Binding AvailableLayouts}"
+                              SelectedItem="{Binding SelectedLayoutToLoad}"
+                              Width="160" Height="26" Margin="0,0,4,0"/>
+                    <Button Content="English text"
+                            Command="{Binding LoadSelectedCommand}"
+                            Style="{StaticResource DarkBtn}"/>
+                    <Button Content="English text"
+                            Command="{Binding NewLayoutCommand}"
+                            Style="{StaticResource DarkBtn}"
+                            Margin="12,0,0,0"/>
+                </StackPanel>
+
+                <Border Grid.Row="0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Padding="8,4"
+                        CornerRadius="6"
+                        Background="{DynamicResource SettingsHighlight}"
+                        BorderBrush="{DynamicResource SettingsBorder}"
+                        BorderThickness="1">
+                    <TextBlock Foreground="{DynamicResource SettingsFgSub}"
+                               FontSize="11">
+                        <Run Text="English text: "/>
+                        <Run Text="{Binding CurrentActiveLayoutName, Mode=OneWay}" FontWeight="SemiBold"/>
+                    </TextBlock>
+                </Border>
+
+                <!-- 2English text -->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center"
+                                Margin="0,0,16,0">
+                        <TextBlock Text="English text:" Foreground="{DynamicResource SettingsFgSub}"
+                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBox Text="{Binding CurrentFileName, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="160" Height="26"
+                                 Style="{StaticResource InputBox}" Padding="6,2"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="English text:" Foreground="{DynamicResource SettingsFgSub}"
+                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBox Text="{Binding LayoutName, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="200" Height="26"
+                                 Style="{StaticResource InputBox}" Padding="6,2"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Margin="12,0,12,0">
+                        <TextBlock Foreground="{DynamicResource SettingsFgHint}"
+                                   TextTrimming="CharacterEllipsis">
+                            <Run Text="English text: "/>
+                            <Run Text="{Binding CurrentFileName, TargetNullValue=''}"/>
+                        </TextBlock>
+                        <TextBlock Text="English text."
+                                   Foreground="{DynamicResource AdminOkFg}"
+                                   FontSize="10"
+                                   Visibility="{Binding IsEditingCurrentLayout,
+                                       Converter={StaticResource BoolToVis}}"/>
+                        <TextBlock Foreground="{DynamicResource ElevatedWarningFg}"
+                                   FontSize="10"
+                                   Visibility="{Binding IsEditingCurrentLayout,
+                                       Converter={StaticResource InvBoolToVis}}">
+                            <Run Text="English text '"/>
+                            <Run Text="{Binding CurrentActiveLayoutName, Mode=OneWay}"/>
+                            <Run Text="' English text."/>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- English text -->
+                    <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Button Content="English text"
+                                Command="{Binding UndoCommand}"
+                                Style="{StaticResource DarkBtn}"
+                                Margin="0,0,6,0"/>
+                        <Button Content="English text"
+                                Command="{Binding CancelEditsCommand}"
+                                Style="{StaticResource DarkBtn}"
+                                Margin="0,0,8,0"/>
+                        <Button Content="English text"
+                                Command="{Binding SaveCommand}"
+                                Style="{StaticResource AccentBtn}"/>
+                        <Button Content="English text"
+                                Command="{Binding SaveAsCommand}"
+                                Style="{StaticResource DarkBtn}"
+                                Visibility="{Binding IsExistingLayout,
+                                    Converter={StaticResource BoolToVis}}"/>
+                        <Button Content="English text"
+                                Command="{Binding RequestDeleteLayoutCommand}"
+                                Style="{StaticResource DangerBtn}"
+                                Visibility="{Binding CanDeleteLayout,
+                                    Converter={StaticResource BoolToVis}}"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- ── English text ── -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="270"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- English text -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Style="{StaticResource FluentCardBorderStyle}" Margin="8,8,8,0" Padding="8,6">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}"
+                                   VerticalAlignment="Center" Margin="0,0,12,0"/>
+                        <Button Content="+ English text"
+                                Command="{Binding AddColumnCommand}"
+                                Style="{StaticResource DarkBtn}"/>
+                    </StackPanel>
+                </Border>
+
+                <ScrollViewer Grid.Row="1"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto"
+                              Padding="8">
+                    <ItemsControl ItemsSource="{Binding Columns}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type vm:EditableKeyColumnVm}">
+                                <Border Margin="0,0,4,0" Background="{DynamicResource SettingsHighlight}"
+                                        CornerRadius="4" Padding="6,4">
+                                    <StackPanel>
+                                        <!-- English text -->
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}"
+                                                       VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                            <TextBlock Text="English text:" Foreground="{DynamicResource SettingsFgHint}" FontSize="10"
+                                                       VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                            <ctrl:NumericAdjuster
+                                                Value="{Binding Gap}"
+                                                Minimum="0.0" Maximum="3.0" Step="0.1" DecimalPlaces="1"
+                                                Width="110" Height="22"/>
+                                            <Button Content="English text"
+                                                    Command="{Binding DataContext.AddRowCommand,
+                                                        RelativeSource={RelativeSource AncestorType=Window}}"
+                                                    CommandParameter="{Binding}"
+                                                    Style="{StaticResource DarkBtn}" FontSize="10"
+                                                    Margin="6,0,0,0"/>
+                                            <Button Content="English text"
+                                                    Command="{Binding DataContext.RequestRemoveColumnCommand,
+                                                        RelativeSource={RelativeSource AncestorType=Window}}"
+                                                    CommandParameter="{Binding}"
+                                                    Style="{StaticResource DangerBtn}" Padding="6,3"
+                                                    Margin="4,0" FontSize="10" Cursor="Hand"/>
+                                        </StackPanel>
+
+                                        <!-- English text -->
+                                        <ItemsControl ItemsSource="{Binding Rows}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type vm:EditableKeyRowVm}">
+                                                    <Border Margin="0,0,0,4" Background="{DynamicResource SettingsHighlight}"
+                                                            CornerRadius="3" Padding="4,3">
+                                                        <StackPanel>
+                                                            <!-- English text -->
+                                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
+                                                                <TextBlock Text="English text:" Foreground="{DynamicResource SettingsFgHint}"
+                                                                           FontSize="10" VerticalAlignment="Center"
+                                                                           Margin="0,0,4,0"/>
+                                                                <Button Content="English text"
+                                                                        Command="{Binding DataContext.SetRowDefaultHeightCommand,
+                                                                            RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                        CommandParameter="{Binding}"
+                                                                        Style="{StaticResource DarkBtn}" FontSize="9"
+                                                                        Padding="4,2"/>
+                                                                <Button Content="English text"
+                                                                        Command="{Binding DataContext.SetRowCompactHeightCommand,
+                                                                            RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                        CommandParameter="{Binding}"
+                                                                        Style="{StaticResource DarkBtn}" FontSize="9"
+                                                                        Padding="4,2" Margin="2,0,6,0"/>
+                                                                <TextBlock Text="{Binding HeightPresetLabel}"
+                                                                           Foreground="{DynamicResource SettingsFgSub}"
+                                                                           FontSize="10" VerticalAlignment="Center"
+                                                                           Margin="0,0,8,0"/>
+                                                                <Button Content="+ English text"
+                                                                        Command="{Binding DataContext.AddKeyToRowCommand,
+                                                                            RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                        CommandParameter="{Binding}"
+                                                                        Style="{StaticResource DarkBtn}" FontSize="9"/>
+                                                                <Button Content="English text"
+                                                                        Command="{Binding DataContext.RemoveRowCommand,
+                                                                            RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                        CommandParameter="{Binding}"
+                                                                        Style="{StaticResource DangerBtn}" Padding="4,2"
+                                                                        Margin="2,0" FontSize="9" Cursor="Hand"/>
+                                                            </StackPanel>
+
+                                                            <!-- English text -->
+                                                            <ItemsControl ItemsSource="{Binding Keys}">
+                                                                <ItemsControl.ItemsPanel>
+                                                                    <ItemsPanelTemplate>
+                                                                        <WrapPanel Orientation="Horizontal"/>
+                                                                    </ItemsPanelTemplate>
+                                                                </ItemsControl.ItemsPanel>
+                                                                <ItemsControl.ItemTemplate>
+                                                                    <DataTemplate DataType="{x:Type vm:EditableKeySlotVm}">
+                                                                        <Border Margin="1" MinWidth="30"
+                                                                                MinHeight="{Binding EditHeight, Converter={StaticResource WidthToPx}}"
+                                                                                Height="{Binding EditHeight, Converter={StaticResource WidthToPx}}"
+                                                                                Width="{Binding EditWidth, Converter={StaticResource WidthToPx}}"
+                                                                                CornerRadius="3" BorderThickness="1" Cursor="Hand">
+                                                                            <Border.Style>
+                                                                                <Style TargetType="Border">
+                                                                                    <Setter Property="Background"   Value="{DynamicResource SettingsHighlight}"/>
+                                                                                    <Setter Property="BorderBrush"  Value="{DynamicResource SettingsBorder}"/>
+                                                                                    <Setter Property="BorderThickness" Value="1"/>
+                                                                                    <Style.Triggers>
+                                                                                        <!-- English text. -->
+                                                                                        <DataTrigger Binding="{Binding EditStyleKey}" Value="soft_accent">
+                                                                                            <Setter Property="Background"  Value="{DynamicResource KeyBgAccent}"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource KeyBorderAccent}"/>
+                                                                                        </DataTrigger>
+                                                                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                                                            <Setter Property="Background"  Value="{DynamicResource AccentBrush}"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource SettingsFg}"/>
+                                                                                            <Setter Property="BorderThickness" Value="2"/>
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </Border.Style>
+                                                                            <Border.InputBindings>
+                                                                                <MouseBinding MouseAction="LeftClick"
+                                                                                    Command="{Binding DataContext.SelectKeyCommand,
+                                                                                        RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                                    CommandParameter="{Binding}"/>
+                                                                            </Border.InputBindings>
+                                                                            <Grid>
+                                                                                <StackPanel HorizontalAlignment="Center"
+                                                                                            VerticalAlignment="Center">
+                                                                                    <TextBlock Text="{Binding EditLabel}"
+                                                                                               Foreground="{DynamicResource SettingsFg}"
+                                                                                               FontSize="12"
+                                                                                               HorizontalAlignment="Center"
+                                                                                               TextTrimming="CharacterEllipsis"
+                                                                                               Margin="1,0"/>
+                                                                                    <!-- English text) -->
+                                                                                    <TextBlock Text="{Binding EnglishLabel}"
+                                                                                               Foreground="{DynamicResource SettingsFgHint}"
+                                                                                               FontSize="8"
+                                                                                               HorizontalAlignment="Center"
+                                                                                               Margin="0,-1,0,0"
+                                                                                               Visibility="{Binding EnglishLabel,
+                                                                                                   Converter={StaticResource NullToCollapsed},
+                                                                                                   FallbackValue=Collapsed}"/>
+                                                                                    <TextBlock Text="{Binding FunctionPreviewLabel}"
+                                                                                               Foreground="{DynamicResource SettingsFgHint}"
+                                                                                               FontSize="7"
+                                                                                               HorizontalAlignment="Center"
+                                                                                               Margin="0,-1,0,0"
+                                                                                               Visibility="{Binding FunctionPreviewLabel,
+                                                                                                   Converter={StaticResource NullToCollapsed},
+                                                                                                   FallbackValue=Collapsed}"/>
+                                                                                </StackPanel>
+                                                                                <Button Content="×"
+                                                                                        Margin="0,0,0,0"
+                                                                                        Style="{StaticResource KeyDeleteButtonStyle}"
+                                                                                        Command="{Binding DataContext.RemoveKeyCommand,
+                                                                                            RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                                        CommandParameter="{Binding}"/>
+                                                                            </Grid>
+                                                                        </Border>
+                                                                    </DataTemplate>
+                                                                </ItemsControl.ItemTemplate>
+                                                            </ItemsControl>
+                                                        </StackPanel>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- English text -->
+            <Border Grid.Column="1"
+                    Style="{StaticResource FluentCardBorderStyle}"
+                    Margin="8,8,8,8">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12,10">
+                    <StackPanel>
+
+                        <!-- English text) -->
+                        <TextBlock Text="English text&#10;English text."
+                                   Foreground="{DynamicResource SettingsFgHint}" FontSize="12"
+                                   TextWrapping="Wrap"
+                                   Visibility="{Binding HasSelectedKey,
+                                       Converter={StaticResource InvBoolToVis}}"/>
+
+                        <!-- English text -->
+                        <StackPanel Visibility="{Binding HasSelectedKey,
+                                        Converter={StaticResource BoolToVis}}">
+
+                            <TextBlock Text="English text" Style="{StaticResource LabelText}"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Button Content="◀ English text"
+                                        Command="{Binding MoveKeyLeftCommand}"
+                                        Style="{StaticResource DarkBtn}" FontSize="10"
+                                        IsEnabled="{Binding CanMoveKeyLeft}"/>
+                                <Button Content="English text ▶"
+                                        Command="{Binding MoveKeyRightCommand}"
+                                        Style="{StaticResource DarkBtn}" FontSize="10"
+                                        IsEnabled="{Binding CanMoveKeyRight}"/>
+                            </StackPanel>
+
+                            <TextBlock Text="English text" Style="{StaticResource LabelText}"/>
+                            <TextBox Text="{Binding SelectedKey.EditLabel,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource InputBox}"/>
+
+                            <TextBlock Text="Shift English text)" Style="{StaticResource LabelText}"/>
+                            <TextBox Text="{Binding SelectedKey.EditShiftLabel,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource InputBox}"/>
+
+                            <TextBlock Text="English text" Style="{StaticResource LabelText}"/>
+                            <TextBox Text="{Binding SelectedKey.EnglishLabel,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource InputBox}"/>
+
+                            <TextBlock Text="English text" Style="{StaticResource LabelText}"/>
+                            <TextBox Text="{Binding SelectedKey.EnglishShiftLabel,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource InputBox}"/>
+
+                            <Separator Background="{DynamicResource SettingsHighlight}" Margin="0,0,0,10"/>
+
+                            <StackPanel IsEnabled="{Binding SelectedKey.CanEditFunctionOverrides}">
+                                <TextBlock Text="Fn English text)" Style="{StaticResource LabelText}"/>
+                                <TextBox Text="{Binding SelectedKey.FunctionLabel,
+                                             UpdateSourceTrigger=PropertyChanged}"
+                                         Style="{StaticResource InputBox}"/>
+
+                                <TextBlock Text="Fn Shift English text)" Style="{StaticResource LabelText}"/>
+                                <TextBox Text="{Binding SelectedKey.FunctionShiftLabel,
+                                             UpdateSourceTrigger=PropertyChanged}"
+                                         Style="{StaticResource InputBox}"/>
+
+                                <TextBlock Text="Fn English text)" Style="{StaticResource LabelText}"/>
+                                <TextBox Text="{Binding SelectedKey.FunctionEnglishLabel,
+                                             UpdateSourceTrigger=PropertyChanged}"
+                                         Style="{StaticResource InputBox}"/>
+
+                                <TextBlock Text="Fn English text)" Style="{StaticResource LabelText}"/>
+                                <TextBox Text="{Binding SelectedKey.FunctionEnglishShiftLabel,
+                                             UpdateSourceTrigger=PropertyChanged}"
+                                         Style="{StaticResource InputBox}"/>
+                            </StackPanel>
+
+                            <TextBlock Text="Fn English text."
+                                       Foreground="{DynamicResource SettingsFgHint}"
+                                       FontSize="10"
+                                       Margin="0,-2,0,8"
+                                       TextWrapping="Wrap"
+                                       Visibility="{Binding SelectedKey.CanEditFunctionOverrides,
+                                           Converter={StaticResource InvBoolToVis}}"/>
+
+                            <TextBlock Text="English text" Style="{StaticResource LabelText}"/>
+                            <ctrl:NumericAdjuster Value="{Binding SelectedKey.EditWidth}"
+                                                  Minimum="0.5" Maximum="6.0" Step="0.1" DecimalPlaces="1"
+                                                  Margin="0,0,0,8"/>
+
+                            <TextBlock Text="English text" Style="{StaticResource LabelText}"/>
+                            <ctrl:NumericAdjuster Value="{Binding SelectedKey.EditGapBefore}"
+                                                  Minimum="0.0" Maximum="4.0" Step="0.1" DecimalPlaces="1"
+                                                  Margin="0,0,0,12"/>
+
+                            <!-- English text. -->
+                            <CheckBox Content="English text"
+                                      IsChecked="{Binding SelectedKey.UseSoftAccentStyle}"
+                                      Margin="0,0,0,12"
+                                      Foreground="{DynamicResource SettingsFg}"/>
+
+                            <Separator Background="{DynamicResource SettingsHighlight}" Margin="0,0,0,10"/>
+
+                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFg}"
+                                       FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <views:ActionBuilderView DataContext="{Binding ActionBuilder}"/>
+                            <Button Content="English text)"
+                                    Command="{Binding AutoFillBaseLabelsCommand}"
+                                    Style="{StaticResource DarkBtn}"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="0,4,0,0"
+                                    ToolTip="English text."/>
+
+                            <TextBlock Text="Fn English text" Foreground="{DynamicResource SettingsFg}"
+                                       FontWeight="SemiBold" Margin="0,10,0,6"/>
+                            <StackPanel IsEnabled="{Binding SelectedKey.CanEditFunctionOverrides}">
+                                <views:ActionBuilderView DataContext="{Binding FunctionActionBuilder}"/>
+                                <Button Content="Fn English text)"
+                                        Command="{Binding AutoFillFunctionLabelsCommand}"
+                                        Style="{StaticResource DarkBtn}"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="0,4,0,0"
+                                        ToolTip="Fn SendKey English text."/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <!-- ── English text ── -->
+        <Border Grid.Row="2" Style="{StaticResource FluentCardBorderStyle}" Padding="12,5">
+            <TextBlock Text="{Binding StatusMessage}"
+                       Foreground="{DynamicResource SettingsFgHint}" FontSize="11"/>
+        </Border>
+
+        <!-- ── English text ── -->
+        <Border Grid.RowSpan="3"
+                Background="#99000000"
+                Visibility="{Binding ShowColumnDeleteDialog,
+                    Converter={StaticResource BoolToVis}}"
+                Panel.ZIndex="10">
+            <Border Background="{DynamicResource SettingsBg}" CornerRadius="8"
+                    Padding="24,20" MaxWidth="400" MaxHeight="200"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    BorderBrush="{DynamicResource SettingsBorder}" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="English text" Foreground="{DynamicResource SettingsFg}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                    <TextBlock Text="English text?"
+                               Foreground="{DynamicResource SettingsFgSub}" FontSize="12"
+                               TextWrapping="Wrap" Margin="0,0,0,16"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="English text"
+                                Command="{Binding CancelDeleteColumnCommand}"
+                                Style="{StaticResource DarkBtn}" Margin="0,0,6,0"/>
+                        <Button Content="English text"
+                                Command="{Binding ConfirmDeleteColumnMoveCommand}"
+                                Style="{StaticResource AccentBtn}" Margin="0,0,6,0"
+                                Visibility="{Binding CanMoveColumnContents,
+                                    Converter={StaticResource BoolToVis}}"/>
+                        <Button Content="English text"
+                                Command="{Binding ConfirmDeleteColumnAllCommand}"
+                                Style="{StaticResource DangerBtn}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+
+        <!-- ── English text ── -->
+        <Border Grid.RowSpan="3"
+                Background="#99000000"
+                Visibility="{Binding ShowDeleteLayoutDialog,
+                    Converter={StaticResource BoolToVis}}"
+                Panel.ZIndex="11">
+            <Border Background="{DynamicResource SettingsBg}" CornerRadius="8"
+                    Padding="24,20" MaxWidth="350" MaxHeight="150"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    BorderBrush="{DynamicResource SettingsBorder}" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="English text" Foreground="{DynamicResource SettingsFg}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                    <TextBlock Text="English text?"
+                               Foreground="{DynamicResource SettingsFgSub}" FontSize="12"
+                               TextWrapping="Wrap" Margin="0,0,0,16"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="English text"
+                                Command="{Binding CancelDeleteLayoutCommand}"
+                                Style="{StaticResource DarkBtn}" Margin="0,0,6,0"/>
+                        <Button Content="English text"
+                                Command="{Binding ConfirmDeleteLayoutCommand}"
+                                Style="{StaticResource DangerBtn}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+    </Grid>
+</Window>
