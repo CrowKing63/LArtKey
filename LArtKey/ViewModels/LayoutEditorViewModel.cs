@@ -340,8 +340,8 @@ public partial class LayoutEditorViewModel : ObservableObject
     [RelayCommand]
     private void NewLayout()
     {
-        ApplySnapshot(new LayoutEditorSnapshot("", new LayoutConfig("Custom shortcut", null, [])), resetUndoHistory: true);
-        StatusMessage  = "Custom shortcut";
+        ApplySnapshot(new LayoutEditorSnapshot("", new LayoutConfig("New layout", null, [])), resetUndoHistory: true);
+        StatusMessage  = "New layout created.";
     }
 
     // ── SelectedKey text ────────────────────────────
@@ -386,7 +386,7 @@ public partial class LayoutEditorViewModel : ObservableObject
                 SelectedKey.EnglishLabel = null;
                 SelectedKey.EnglishShiftLabel = null;
             },
-            "Custom shortcut");
+            "Selected key");
     }
 
     /// text.
@@ -429,7 +429,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         Columns.Add(newColumn);
         NormalizeSharedRowHeights();
         SelectedColumn = newColumn;
-        StatusMessage = "Custom shortcut";
+        StatusMessage = "Column added.";
     }
 
     [RelayCommand]
@@ -522,7 +522,7 @@ public partial class LayoutEditorViewModel : ObservableObject
 
         Columns.Remove(column);
         NormalizeSharedRowHeights();
-        StatusMessage = "Custom shortcut";
+        StatusMessage = "Column removed.";
     }
 
     // ── text ─────────────────────────────────────────────────────
@@ -543,7 +543,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         NormalizeSharedRowHeights();
         SelectedColumn = targetColumn;
         SelectedRow = newRow;
-        StatusMessage = "Custom shortcut";
+        StatusMessage = "Row added.";
     }
 
     [RelayCommand]
@@ -565,21 +565,21 @@ public partial class LayoutEditorViewModel : ObservableObject
         }
 
         NormalizeSharedRowHeights();
-        StatusMessage = "Custom shortcut";
+        StatusMessage = "Row removed.";
     }
 
     [RelayCommand]
     private void SetRowDefaultHeight(EditableKeyRowVm row)
     {
         ApplySharedHeightToRowBand(row, EditableKeySlotVm.DefaultHeightRatio);
-        StatusMessage = "Custom shortcut";
+        StatusMessage = "Row height set to default.";
     }
 
     [RelayCommand]
     private void SetRowCompactHeight(EditableKeyRowVm row)
     {
         ApplySharedHeightToRowBand(row, EditableKeySlotVm.CompactHeightRatio);
-        StatusMessage = "Custom shortcut";
+        StatusMessage = "Row height set to compact.";
     }
 
     // ── text ─────────────────────────────────────────────────
@@ -687,7 +687,7 @@ public partial class LayoutEditorViewModel : ObservableObject
             }
             else
             {
-                StatusMessage = "Custom shortcut";
+                StatusMessage = "Layout could not be deleted.";
             }
         }
         catch (Exception ex)
@@ -714,7 +714,7 @@ public partial class LayoutEditorViewModel : ObservableObject
     {
         if (string.IsNullOrWhiteSpace(CurrentFileName))
         {
-            StatusMessage = "Custom shortcut";
+            StatusMessage = "Enter a layout file name before saving.";
             return;
         }
 
@@ -733,7 +733,7 @@ public partial class LayoutEditorViewModel : ObservableObject
             var verification = _layoutRepository.TryLoad(CurrentFileName);
             var accentKeyCount = verification is null ? 0 : CountSoftAccentKeys(verification);
             var currentLayoutHint = IsEditingCurrentLayout
-                ? "Done."
+                ? "The main keyboard is using this layout."
                 : $"The main keyboard is currently using '{CurrentActiveLayoutName}'.";
 
             StatusMessage = $"'{CurrentFileName}' saved. Highlighted keys: {accentKeyCount} · {currentLayoutHint}";
@@ -749,7 +749,7 @@ public partial class LayoutEditorViewModel : ObservableObject
     {
         if (string.IsNullOrWhiteSpace(CurrentFileName))
         {
-            StatusMessage = "Custom shortcut";
+            StatusMessage = "Enter a layout file name before saving.";
             return;
         }
 
@@ -766,7 +766,7 @@ public partial class LayoutEditorViewModel : ObservableObject
 
         var snapshot = _undoStack.Pop();
         ApplySnapshot(snapshot, resetUndoHistory: false);
-        StatusMessage = "Custom shortcut";
+        StatusMessage = "Undo applied.";
         OnPropertyChanged(nameof(CanUndo));
         UndoCommand.NotifyCanExecuteChanged();
     }
@@ -780,7 +780,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         _changeCheckpointTimer.Stop();
         _pendingUndoSnapshot = null;
         ApplySnapshot(_savedSnapshot, resetUndoHistory: true);
-        StatusMessage = "Custom shortcut";
+        StatusMessage = "Edits canceled.";
     }
 
     // ── text ─────────────────────────────────────────────────────────

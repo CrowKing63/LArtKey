@@ -57,8 +57,8 @@ public partial class ActionBuilderViewModel : ObservableObject
         // text
         ["VK_HOME"] = "Home", ["VK_END"] = "End", ["VK_PRIOR"] = "PageUp", ["VK_NEXT"] = "PageDown",
         ["VK_INSERT"] = "Insert", ["VK_DELETE"] = "Delete",
-        // text
-        ["VK_HANGUL"] = "InputLang", ["VK_HANJA"] = "IMEConvert", ["VK_CAPITAL"] = "CapsLock",
+        // lock keys
+        ["VK_CAPITAL"] = "CapsLock",
         // text
         ["VK_NUMLOCK"] = "NumLock", ["VK_SCROLL"] = "ScrollLock",
         ["VK_OEM_3"] = "`", ["VK_SNAPSHOT"] = "Print", ["VK_OEM_5"] = "\\",
@@ -72,7 +72,7 @@ public partial class ActionBuilderViewModel : ObservableObject
     [
         "SendKey", "SendCombo", "ToggleSticky", "SwitchLayout",
         "RunApp", "Boilerplate", "ShellCommand", "VolumeControl", "ClipboardPaste",
-        "ToggleInputMode", "ToggleFunctionLayer", "Ai"
+        "ToggleFunctionLayer", "Ai"
     ];
 
     public static IReadOnlyList<string> ShellTypes  { get; } = ["cmd", "powershell"];
@@ -94,7 +94,7 @@ public partial class ActionBuilderViewModel : ObservableObject
         "VK_LEFT", "VK_UP", "VK_RIGHT", "VK_DOWN",
         "VK_HOME", "VK_END", "VK_PRIOR", "VK_NEXT",
         "VK_INSERT", "VK_DELETE", "VK_NUMLOCK", "VK_SCROLL", "VK_SNAPSHOT",
-        "VK_HANGUL", "VK_HANJA", "VK_CAPITAL",
+        "VK_CAPITAL",
         "VK_LWIN", "VK_RWIN", "VK_LSHIFT", "VK_RSHIFT",
         "VK_LCONTROL", "VK_RCONTROL", "VK_LMENU", "VK_RMENU"
     ];

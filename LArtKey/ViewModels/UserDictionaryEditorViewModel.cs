@@ -73,38 +73,11 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
     public Visibility WordTabVisibility => IsWordTabSelected ? Visibility.Visible : Visibility.Collapsed;
     public Visibility BigramTabVisibility => IsWordTabSelected ? Visibility.Collapsed : Visibility.Visible;
 
-    private bool _isPrimaryTabActive = true;
-    public bool IsPrimaryTabActive
-    {
-        get => _isPrimaryTabActive;
-        set
-        {
-            if (SetProperty(ref _isPrimaryTabActive, value) && value)
-                SwitchTab(korean: true);
-        }
-    }
-    public bool IsEnglishTabActive
-    {
-        get => !_isPrimaryTabActive;
-        set
-        {
-            if (value && _isPrimaryTabActive)
-            {
-                _isPrimaryTabActive = false;
-                OnPropertyChanged(nameof(IsPrimaryTabActive));
-                OnPropertyChanged(nameof(IsEnglishTabActive));
-                SwitchTab(korean: false);
-            }
-        }
-    }
-
     public ICollectionView FilteredWords { get; }
 
     public UserDictionaryEditorViewModel(IUserDictionaryRepository dictionaryRepository)
     {
         _dictionaryRepository = dictionaryRepository;
-        _dictionaryRepository.SelectLanguage(korean: true);
-
         FilteredWords = CollectionViewSource.GetDefaultView(Words);
         FilteredWords.Filter = obj =>
         {
@@ -117,10 +90,6 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
     public void OnLoaded()
     {
         SearchQuery = "";
-        _isPrimaryTabActive = true;
-        OnPropertyChanged(nameof(IsPrimaryTabActive));
-        OnPropertyChanged(nameof(IsEnglishTabActive));
-        _dictionaryRepository.SelectLanguage(korean: true);
         ReloadWords();
         LoadBigrams();
     }
@@ -134,13 +103,6 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
     {
         FilteredWords.Refresh();
         UpdateStatus();
-    }
-
-    private void SwitchTab(bool korean)
-    {
-        _dictionaryRepository.SelectLanguage(korean);
-        ReloadWords();
-        LoadBigrams();
     }
 
     private void ReloadWords()
@@ -209,7 +171,7 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
 
         var result = WpfMsgBox.Show(
             $"Delete {toRemove.Count} selected words?",
-            "Custom shortcut",
+            "Delete words",
             WpfMsgBoxButton.YesNo,
             WpfMsgBoxImage.Question);
         if (result != WpfMsgBoxResult.Yes) return;
@@ -227,10 +189,9 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
     [RelayCommand]
     private void ClearAll()
     {
-        var label = _isPrimaryTabActive ? "Custom shortcut" : "Custom shortcut";
         var result = WpfMsgBox.Show(
-            $"Delete all {label} entries ({Words.Count} items)?\nThis cannot be undone.",
-            "Custom shortcut",
+            $"Delete all user dictionary entries ({Words.Count} items)?\nThis cannot be undone.",
+            "Delete words",
             WpfMsgBoxButton.YesNo,
             WpfMsgBoxImage.Warning);
         if (result != WpfMsgBoxResult.Yes) return;
@@ -286,10 +247,9 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
     [RelayCommand]
     private void ClearAllBigrams()
     {
-        var label = _isPrimaryTabActive ? "Custom shortcut" : "Custom shortcut";
         var result = WpfMsgBox.Show(
-            $"Delete all {label} data?\nThis cannot be undone.",
-            "Custom shortcut",
+            "Delete all learned bigram data?\nThis cannot be undone.",
+            "Delete bigrams",
             WpfMsgBoxButton.YesNo,
             WpfMsgBoxImage.Warning);
         if (result != WpfMsgBoxResult.Yes) return;

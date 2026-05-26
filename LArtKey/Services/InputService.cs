@@ -31,7 +31,7 @@ public class InputService
 
     private static readonly uint OwnProcessId = (uint)Environment.ProcessId;
     private static readonly IntPtr InputExtraInfoTag =
-        unchecked((IntPtr)(long)Win32.INPUT_EXTRAINFO_ALTKEY);
+        unchecked((IntPtr)(long)Win32.INPUT_EXTRAINFO_LARTKEY);
 
     // Ctrl/Alt/Win can leave the desktop in a risky state if they stay pressed while the window hides.
     private static readonly HashSet<VirtualKeyCode> HighRiskModifiers =

@@ -129,7 +129,6 @@ public class HeaderButtonConfig
         CreateBuiltIn(IdClipboard, visible: true, position: "Right"),
         CreateBuiltIn(IdEmoji, visible: true, position: "Right"),
         CreateBuiltIn(IdAutoComplete, visible: true, position: "Right"),
-        CreateBuiltIn(IdOsIme, visible: true, position: "Right"),
         CreateBuiltIn(IdOsk, visible: true, position: "Right"),
         CreateBuiltIn(IdSettings, visible: true, position: "Right"),
         CreateBuiltIn(IdAi, visible: false, position: "Right"),
@@ -161,14 +160,13 @@ public class HeaderButtonConfig
     };
 
     public static bool IsBuiltInId(string id) => id is
-        IdClipboard or IdEmoji or IdAutoComplete or IdOsIme or IdOsk or IdSettings or IdAi;
+        IdClipboard or IdEmoji or IdAutoComplete or IdOsk or IdSettings or IdAi;
 
     public static string GetDisplayName(string id) => id switch
     {
         IdClipboard => "Clipboard",
         IdEmoji => "Emoji",
         IdAutoComplete => "Prediction",
-        IdOsIme => "OS input language",
         IdOsk => "Windows on-screen keyboard",
         IdSettings => "Settings",
         IdAi => "AI",
@@ -180,7 +178,6 @@ public class HeaderButtonConfig
         IdClipboard => "📋",
         IdEmoji => "😊",
         IdAutoComplete => "ABC",
-        IdOsIme => "IME",
         IdOsk => "⌨",
         IdSettings => "⚙",
         IdAi => "✨",
@@ -192,7 +189,6 @@ public class HeaderButtonConfig
         IdClipboard => "Open clipboard history",
         IdEmoji => "Open emoji panel",
         IdAutoComplete => "Toggle prediction",
-        IdOsIme => "Switch OS input language",
         IdOsk => "Open Windows on-screen keyboard",
         IdSettings => "Open settings",
         IdAi => "Run AI tool",
@@ -204,7 +200,6 @@ public class HeaderButtonConfig
         IdClipboard => "Clipboard button",
         IdEmoji => "Emoji button",
         IdAutoComplete => "Prediction toggle button",
-        IdOsIme => "OS input language button",
         IdOsk => "Windows on-screen keyboard button",
         IdSettings => "Settings button",
         IdAi => "AI tool button",

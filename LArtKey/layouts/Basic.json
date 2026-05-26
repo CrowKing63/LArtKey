@@ -1126,50 +1126,13 @@
               "fn_english_shift_label": null
             },
             {
-              "label": "Hanja",
-              "shift_label": null,
-              "action": {
-                "type": "SendKey",
-                "vk": "VK_HANJA"
-              },
-              "width": 1.4,
-              "height": 1,
-              "style_key": "",
-              "gap_before": 0,
-              "english_label": null,
-              "english_shift_label": null,
-              "fn_action": null,
-              "fn_label": null,
-              "fn_shift_label": null,
-              "fn_english_label": null,
-              "fn_english_shift_label": null
-            },
-            {
               "label": "",
               "shift_label": null,
               "action": {
                 "type": "SendKey",
                 "vk": "VK_SPACE"
               },
-              "width": 4.1,
-              "height": 1,
-              "style_key": "",
-              "gap_before": 0,
-              "english_label": null,
-              "english_shift_label": null,
-              "fn_action": null,
-              "fn_label": null,
-              "fn_shift_label": null,
-              "fn_english_label": null,
-              "fn_english_shift_label": null
-            },
-            {
-              "label": "A",
-              "shift_label": null,
-              "action": {
-                "type": "ToggleInputMode"
-              },
-              "width": 1.4,
+              "width": 7.8,
               "height": 1,
               "style_key": "",
               "gap_before": 0,
@@ -1246,25 +1209,6 @@
                 "vk": "VK_RIGHT"
               },
               "width": 1,
-              "height": 1,
-              "style_key": "",
-              "gap_before": 0,
-              "english_label": null,
-              "english_shift_label": null,
-              "fn_action": null,
-              "fn_label": null,
-              "fn_shift_label": null,
-              "fn_english_label": null,
-              "fn_english_shift_label": null
-            },
-            {
-              "label": "Lang",
-              "shift_label": null,
-              "action": {
-                "type": "SendKey",
-                "vk": "VK_HANGUL"
-              },
-              "width": 0.9,
               "height": 1,
               "style_key": "",
               "gap_before": 0,

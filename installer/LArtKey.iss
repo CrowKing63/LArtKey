@@ -1,10 +1,10 @@
 #define AppName    "LArtKey"
-#define AppVersion "1.1.2"
+#define AppVersion "1.0.0"
 #define AppExeName "LArtKey.exe"
 #define BuildDir   "..\dist\publish"
 
 [Setup]
-AppId={{9E2DF5FD-F184-4B88-A756-LARTKEY00001}
+AppId={{9E2DF5FD-F184-4B88-A756-4A7C4B450001}
 AppName={#AppName}
 AppVersion={#AppVersion}
 DefaultDirName={autopf}\{#AppName}

@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Threading;
 using LArtKey.Controls;
 using LArtKey.Models;
+using LArtKey.Platform;
 using LArtKey.Services;
 
 namespace LArtKey.Tests;
@@ -50,6 +51,35 @@ public class AccessibilitySafetyTests
         Assert.Equal(SwitchScanMode.Linear, config.SwitchScanMode);
         Assert.True(config.SwitchScanWrapEnabled);
         Assert.True(config.SwitchScanIncludeSuggestions);
+    }
+
+    [Fact]
+    public void ReleaseDefaults_do_not_include_korean_language_config()
+    {
+        var configPath = Path.GetFullPath(Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..", "..",
+            "LArtKey", "config.json"));
+
+        var json = File.ReadAllText(configPath);
+
+        Assert.DoesNotContain("\"Language\": \"ko\"", json, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void DefaultHeaderButtons_do_not_include_os_ime_button()
+    {
+        var defaults = HeaderButtonConfig.CreateDefaults();
+
+        Assert.DoesNotContain(defaults, button => button.Id == HeaderButtonConfig.IdOsIme);
+    }
+
+    [Fact]
+    public void InjectedInputMarker_is_unique_to_lartkey()
+    {
+        const ulong altKeyMarker = 0xA17A11UL;
+
+        Assert.NotEqual(altKeyMarker, Win32.INPUT_EXTRAINFO_LARTKEY);
     }
 
     [Fact]
@@ -138,7 +168,7 @@ public class AccessibilitySafetyTests
                 HeaderButtons = HeaderButtonConfig.CreateDefaults()
             };
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 config.HeaderButtons.Add(new HeaderButtonConfig
                 {
@@ -229,5 +259,22 @@ public class AccessibilitySafetyTests
 
         var action = Assert.IsType<ToggleStickyAction>(winKey.Action);
         Assert.Equal("VK_LWIN", action.Vk);
+    }
+
+    [Theory]
+    [InlineData("Basic.json")]
+    [InlineData("Basic Plus.json")]
+    public void StockLayouts_do_not_ship_ime_or_input_mode_keys(string fileName)
+    {
+        var layoutPath = Path.GetFullPath(Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..", "..",
+            "LArtKey", "layouts", fileName));
+
+        var json = File.ReadAllText(layoutPath);
+
+        Assert.DoesNotContain("VK_HANGUL", json, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("VK_HANJA", json, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("ToggleInputMode", json, StringComparison.OrdinalIgnoreCase);
     }
 }

@@ -87,7 +87,7 @@ public class KeySlotVm(KeySlot slot, AutoCompleteService autoComplete) : Observa
     public string GetLabel(InputSubmode submode)
     {
         if (IsInputModeToggle)
-            return _autoCompleteComposeStateLabel ?? "Custom shortcut";
+            return _autoCompleteComposeStateLabel ?? "A";
 
         if (submode == InputSubmode.QuietEnglish && Slot.EnglishLabel is { Length: > 0 } eng)
         {
@@ -1118,8 +1118,8 @@ public partial class KeyboardViewModel : ObservableObject
         RefreshKeyLabels(submode);
 
         _liveRegion.Announce(submode == InputSubmode.QuietEnglish
-            ? "Custom shortcut"
-            : "Custom shortcut");
+            ? "English input mode"
+            : "English input mode");
     }
 
     private void RefreshKeyLabels(InputSubmode submode)

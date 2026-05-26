@@ -4,12 +4,11 @@ using System.Diagnostics;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [text] text.
-/// [text] text.
+/// Manages the current-user Windows startup entry for LArtKey.
 /// </summary>
 public class StartupService
 {
-    private const string RegPath = @"Software\Microsoft\Windows\CurrentVersion\Run"; // text.
+    private const string RegPath = @"Software\Microsoft\Windows\CurrentVersion\Run";
     private const string AppName = "LArtKey";
 
     public bool IsEnabled
@@ -27,7 +26,7 @@ public class StartupService
     public void Enable()
     {
         using var key = Registry.CurrentUser.OpenSubKey(RegPath, writable: true)
-            ?? throw new InvalidOperationException("Done.");
+            ?? throw new InvalidOperationException("Could not open the Windows startup registry key.");
         key.SetValue(AppName, $"\"{ExePath}\"");
     }
 
@@ -41,20 +40,18 @@ public class StartupService
     {
         get
         {
-            // single-file publish text
             var processPath = Environment.ProcessPath;
             if (!string.IsNullOrEmpty(processPath))
                 return processPath;
 
-            // text
             try
             {
                 return Process.GetCurrentProcess().MainModule?.FileName
-                    ?? throw new InvalidOperationException("Done.");
+                    ?? throw new InvalidOperationException("Could not resolve the LArtKey executable path.");
             }
             catch
             {
-                throw new InvalidOperationException("Done.");
+                throw new InvalidOperationException("Could not resolve the LArtKey executable path.");
             }
         }
     }

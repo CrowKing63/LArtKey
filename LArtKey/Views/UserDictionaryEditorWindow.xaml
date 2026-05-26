@@ -71,28 +71,11 @@
         <Grid Grid.Row="2" Visibility="{Binding WordTabVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!-- text -->
-            <Border Grid.Row="0" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,6">
-                <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="English"
-                                 Foreground="{DynamicResource SettingsFg}"
-                                 IsChecked="{Binding IsPrimaryTabActive, Mode=TwoWay}"
-                                 Margin="0,0,12,0" Padding="6,3"
-                                 GroupName="DictTab"/>
-                    <RadioButton Content="English"
-                                 Foreground="{DynamicResource SettingsFg}"
-                                 IsChecked="{Binding IsEnglishTabActive, Mode=TwoWay}"
-                                 Padding="6,3"
-                                 GroupName="DictTab"/>
-                </StackPanel>
-            </Border>
-
-            <!-- text -->
-            <Border Grid.Row="1" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,8">
+            <Border Grid.Row="0" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,8">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -140,7 +123,7 @@
             </Border>
 
             <!-- text -->
-            <DataGrid Grid.Row="2"
+            <DataGrid Grid.Row="1"
                       ItemsSource="{Binding FilteredWords}"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
@@ -200,27 +183,11 @@
         <Grid Grid.Row="2" Visibility="{Binding BigramTabVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- text -->
-            <Border Grid.Row="0" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,6">
-                <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="English"
-                                 Foreground="{DynamicResource SettingsFg}"
-                                 IsChecked="{Binding IsPrimaryTabActive, Mode=TwoWay}"
-                                 Margin="0,0,12,0" Padding="6,3"
-                                 GroupName="BigramDictTab"/>
-                    <RadioButton Content="English"
-                                 Foreground="{DynamicResource SettingsFg}"
-                                 IsChecked="{Binding IsEnglishTabActive, Mode=TwoWay}"
-                                 Padding="6,3"
-                                 GroupName="BigramDictTab"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Row="1" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,8">
+            <Border Grid.Row="0" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,8">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Text="Previous" Foreground="{DynamicResource SettingsFgSub}"
                                VerticalAlignment="Center" Margin="0,0,6,0"/>
@@ -251,7 +218,7 @@
             </Border>
 
             <!-- text -->
-            <DataGrid Grid.Row="2"
+            <DataGrid Grid.Row="1"
                       ItemsSource="{Binding BigramRows}"
                       SelectedItem="{Binding SelectedBigramRow}"
                       AutoGenerateColumns="False"
@@ -288,7 +255,7 @@
             </DataGrid>
 
             <!-- text -->
-            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
                 <Button Content="Delete the selected previous word"
                         Command="{Binding RemoveBigramsByPrevCommand}"
                         CommandParameter="{Binding SelectedBigramRow}"

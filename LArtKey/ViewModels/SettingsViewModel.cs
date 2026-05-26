@@ -870,14 +870,14 @@ public partial class SettingsViewModel : ObservableObject
         {
             SendKeyAction sendKey => sendKey.Vk,
             SendComboAction sendCombo => string.Join(" + ", sendCombo.Keys),
-            ToggleStickyAction sticky => $"{sticky.Vk} text",
-            SwitchLayoutAction switchLayout => $"{switchLayout.Name} text",
+            ToggleStickyAction sticky => $"Toggle {sticky.Vk}",
+            SwitchLayoutAction switchLayout => $"Switch to {switchLayout.Name}",
             RunAppAction runApp => runApp.Path,
-            BoilerplateAction => "Custom shortcut",
-            ShellCommandAction => "Custom shortcut",
-            VolumeControlAction volume => $"text {volume.Direction}",
-            ClipboardPasteAction => "Custom shortcut",
-            ToggleInputModeAction => "Custom shortcut",
+            BoilerplateAction => "Insert saved text",
+            ShellCommandAction => "Run shell command",
+            VolumeControlAction volume => $"Volume {volume.Direction}",
+            ClipboardPasteAction => "Paste saved clipboard text",
+            ToggleInputModeAction => "Legacy input mode toggle",
             ToggleFunctionLayerAction => "Fn layer",
             AiAction => "AI tool",
             _ => "Custom shortcut"
@@ -901,7 +901,7 @@ public partial class SettingsViewModel : ObservableObject
         var leftVisibleCount = HeaderButtonConfig.CountVisibleButtons(HeaderButtons, "Left");
         if (leftVisibleCount > HeaderButtonConfig.MaxVisibleButtonsLeft)
         {
-            ShowHeaderButtonSideLimitMessage("Custom shortcut", HeaderButtonConfig.MaxVisibleButtonsLeft);
+            ShowHeaderButtonSideLimitMessage("left", HeaderButtonConfig.MaxVisibleButtonsLeft);
             RestoreHeaderButtonsFromConfig();
             return false;
         }
@@ -909,7 +909,7 @@ public partial class SettingsViewModel : ObservableObject
         var rightVisibleCount = HeaderButtonConfig.CountVisibleButtons(HeaderButtons, "Right");
         if (rightVisibleCount > HeaderButtonConfig.MaxVisibleButtonsRight)
         {
-            ShowHeaderButtonSideLimitMessage("Custom shortcut", HeaderButtonConfig.MaxVisibleButtonsRight);
+            ShowHeaderButtonSideLimitMessage("right", HeaderButtonConfig.MaxVisibleButtonsRight);
             RestoreHeaderButtonsFromConfig();
             return false;
         }
@@ -934,7 +934,7 @@ public partial class SettingsViewModel : ObservableObject
     {
         WpfMsgBox.Show(
             $"The {sideName} side can show up to {maxCount} custom header shortcuts.\nHide another shortcut or move it to the other side.",
-            "Custom shortcut",
+            "Header shortcuts",
             WpfMsgBoxButton.OK,
             WpfMsgBoxImage.Information);
     }
@@ -949,7 +949,7 @@ public partial class SettingsViewModel : ObservableObject
 
         WpfMsgBox.Show(
             $"You can create up to {HeaderButtonConfig.MaxCustomButtonCount} custom header shortcuts.",
-            "Custom shortcut",
+            "Header shortcuts",
             WpfMsgBoxButton.OK,
             WpfMsgBoxImage.Information);
         return false;
@@ -1029,8 +1029,8 @@ public partial class SettingsViewModel : ObservableObject
 
         var copy = CloneHeaderButtonConfig(item);
         copy.Id = HeaderButtonConfig.CreateCustomDefault().Id;
-        copy.Tooltip = string.IsNullOrWhiteSpace(copy.Tooltip) ? "Custom shortcut" : $"{copy.Tooltip} text";
-        copy.AccessibleName = string.IsNullOrWhiteSpace(copy.AccessibleName) ? copy.Tooltip : $"{copy.AccessibleName} text";
+        copy.Tooltip = string.IsNullOrWhiteSpace(copy.Tooltip) ? "Custom shortcut copy" : $"{copy.Tooltip} copy";
+        copy.AccessibleName = string.IsNullOrWhiteSpace(copy.AccessibleName) ? copy.Tooltip : $"{copy.AccessibleName} copy";
 
         var index = HeaderButtons.IndexOf(item);
         if (index < 0)
@@ -1176,9 +1176,9 @@ public partial class SettingsViewModel : ObservableObject
         if (!File.Exists(toolsExePath))
         {
             WpfMsgBox.Show(
-                "text.\n" +
-                "Done.",
-                "Custom shortcut",
+                "LArtKey.Tools could not be found.\n" +
+                "Install the full package or place LArtKey.Tools.exe next to LArtKey.exe.",
+                "LArtKey Tools",
                 WpfMsgBoxButton.OK,
                 WpfMsgBoxImage.Warning);
             return;
@@ -1213,8 +1213,8 @@ public partial class SettingsViewModel : ObservableObject
                     WpfApp.Current.Dispatcher.BeginInvoke(() =>
                     {
                         WpfMsgBox.Show(
-                            $"text.\n\ntext: {toolsExePath}\ntext.",
-                            "Custom shortcut",
+                            $"LArtKey.Tools closed unexpectedly.\n\nPath: {toolsExePath}\nCheck that the tools package was published correctly.",
+                            "LArtKey Tools",
                             WpfMsgBoxButton.OK,
                             WpfMsgBoxImage.Error);
                     });
@@ -1225,7 +1225,7 @@ public partial class SettingsViewModel : ObservableObject
         {
             WpfMsgBox.Show(
                 $"Error: {ex.Message}",
-                "Custom shortcut",
+                "LArtKey Tools",
                 WpfMsgBoxButton.OK,
                 WpfMsgBoxImage.Error);
         }
@@ -1247,7 +1247,7 @@ public partial class SettingsViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            WpfMsgBox.Show($"Error: {ex.Message}", "Custom shortcut", WpfMsgBoxButton.OK, WpfMsgBoxImage.Error);
+            WpfMsgBox.Show($"Error: {ex.Message}", "Open settings folder", WpfMsgBoxButton.OK, WpfMsgBoxImage.Error);
         }
     }
 
@@ -1338,11 +1338,10 @@ public partial class SettingsViewModel : ObservableObject
         });
     }
 
-    // ── T-9.5: text ───────────────────────────────────
+    // ── Updates ───────────────────────────────────
 
-    /// <summary>GitHubtext</summary>
     /// <summary>
-    /// text.
+    /// Checks GitHub Releases for the latest LArtKey version.
     /// </summary>
     [RelayCommand]
     private async Task CheckForUpdate()
@@ -1357,8 +1356,8 @@ public partial class SettingsViewModel : ObservableObject
 
             if (string.IsNullOrEmpty(version))
             {
-                UpdateStatusMessage = "text)";
-                ShowUpdateMessage("text.\ntext.");
+                UpdateStatusMessage = "Could not check for updates.";
+                ShowUpdateMessage("Could not read the latest release information.\nPlease try again later.");
                 return;
             }
 
@@ -1374,14 +1373,14 @@ public partial class SettingsViewModel : ObservableObject
             else
             {
                 HasUpdateAvailable = false;
-                UpdateStatusMessage = "Done.";
-                ShowUpdateMessage($"text.\ntext: {CurrentVersion}");
+                UpdateStatusMessage = "Up to date.";
+                ShowUpdateMessage($"LArtKey is up to date.\nCurrent version: {CurrentVersion}");
             }
         }
         catch (Exception ex)
         {
-            UpdateStatusMessage = "Custom shortcut";
-            ShowUpdateMessage($"text:\n{ex.Message}");
+            UpdateStatusMessage = "Update check failed.";
+            ShowUpdateMessage($"Update check failed:\n{ex.Message}");
         }
         finally
         {
@@ -1395,14 +1394,14 @@ public partial class SettingsViewModel : ObservableObject
     {
         if (string.IsNullOrEmpty(UpdateInstallerUrl))
         {
-            ShowUpdateMessage("text.\nGitHub text.");
+            ShowUpdateMessage("No installer is available for this release.\nOpening GitHub Releases instead.");
             OpenReleasePage();
             return;
         }
 
         if (PathResolver.IsPortable)
         {
-            ShowUpdateMessage("text.\nGitHub text.");
+            ShowUpdateMessage("Portable builds cannot install updates automatically.\nOpening GitHub Releases instead.");
             OpenReleasePage();
             return;
         }
@@ -1428,32 +1427,28 @@ public partial class SettingsViewModel : ObservableObject
                 _downloadCts.Token);
 
             IsDownloading = false;
-            UpdateStatusMessage = "Working...";
+            UpdateStatusMessage = "Preparing installer...";
 
-            // text
             var result = WpfMsgBox.Show(
                 $"LArtKey {LatestVersion} has been downloaded.\n\nThe app may close and restart during installation.\n\nInstall now?",
-                "Custom shortcut",
+                "Install LArtKey update",
                 WpfMsgBoxButton.YesNo,
                 WpfMsgBoxImage.Question);
 
             if (result != WpfMsgBoxResult.Yes)
             {
-                UpdateStatusMessage = "Done.";
+                UpdateStatusMessage = "Download canceled.";
                 try { File.Delete(installerPath); } catch { }
                 return;
             }
 
-            // text
             IsInstalling = true;
 
-            // 1. text.
             _installerService.StartInstaller(
                 installerPath,
                 autoRestart: true,
                 requestElevation: false);
 
-            // 2. text)
             if (WpfApp.Current.MainWindow is MainWindow mw)
                 mw.IsShuttingDown = true;
 
@@ -1461,15 +1456,15 @@ public partial class SettingsViewModel : ObservableObject
         }
         catch (OperationCanceledException)
         {
-            UpdateStatusMessage = "Custom shortcut";
+            UpdateStatusMessage = "Download canceled.";
         }
         catch (Exception ex)
         {
             IsDownloading = false;
             IsInstalling = false;
-            UpdateStatusMessage = "Custom shortcut";
+            UpdateStatusMessage = "Install failed.";
 
-            ShowUpdateMessage($"text:\n{ex.Message}\n\nGitHubtext.");
+            ShowUpdateMessage($"Update install failed:\n{ex.Message}\n\nOpening GitHub Releases instead.");
             OpenReleasePage();
         }
         finally
@@ -1496,7 +1491,7 @@ public partial class SettingsViewModel : ObservableObject
 
     private static void ShowUpdateMessage(string message)
     {
-        WpfMsgBox.Show(message, "Custom shortcut", WpfMsgBoxButton.OK, WpfMsgBoxImage.Information);
+        WpfMsgBox.Show(message, "LArtKey update", WpfMsgBoxButton.OK, WpfMsgBoxImage.Information);
     }
 }
 

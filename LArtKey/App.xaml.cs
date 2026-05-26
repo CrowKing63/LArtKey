@@ -184,7 +184,7 @@ public partial class App : System.Windows.Application
 
             RegisterRestoreWindowHandler();
 
-            // LArtKey.Toolstext.
+            // Warm up the external tools path so settings can open editors quickly.
             _ = Services.GetRequiredService<ToolsReloadSignalService>();
 
             // L1: text

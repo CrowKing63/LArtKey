@@ -139,6 +139,16 @@ public class ConfigService
     {
         var changed = false;
 
+        for (var i = Current.HeaderButtons.Count - 1; i >= 0; i--)
+        {
+            if (Current.HeaderButtons[i].Kind == HeaderButtonKind.BuiltIn
+                && Current.HeaderButtons[i].Id == HeaderButtonConfig.IdOsIme)
+            {
+                Current.HeaderButtons.RemoveAt(i);
+                changed = true;
+            }
+        }
+
         foreach (var button in Current.HeaderButtons)
         {
             var normalizedPosition = HeaderButtonConfig.NormalizePosition(button.Position);

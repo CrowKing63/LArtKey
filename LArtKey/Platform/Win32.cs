@@ -264,6 +264,6 @@ internal static class Win32
 
     public const int ERROR_ACCESS_DENIED = 5;
 
-    // LArtKeytext
-    public const ulong INPUT_EXTRAINFO_ALTKEY = 0xA17A11UL;
+    // Marker used to identify input injected by LArtKey.
+    public const ulong INPUT_EXTRAINFO_LARTKEY = 0x1A47_4B45_5901UL;
 }

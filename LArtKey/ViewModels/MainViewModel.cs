@@ -105,7 +105,7 @@ public partial class MainViewModel : ObservableObject
             if (!ok && value)
             {
                 System.Media.SystemSounds.Beep.Play();
-                _liveRegion.Announce("Custom shortcut");
+                _liveRegion.Announce("Prediction is unavailable while elevated input is blocked.");
                 OnPropertyChanged(nameof(AutoCompleteEnabled));
                 return;
             }
@@ -116,7 +116,7 @@ public partial class MainViewModel : ObservableObject
             _autoCompleteService.ResetState();
             AutoComplete.IsVisible = _configService.Current.AutoCompleteEnabled;
 
-            _liveRegion.Announce(value ? "Custom shortcut" : "Custom shortcut");
+            _liveRegion.Announce(value ? "Prediction on" : "Prediction off");
         }
     }
 
@@ -363,8 +363,8 @@ public partial class MainViewModel : ObservableObject
 
                 WpfApp.Current.Dispatcher.BeginInvoke(() =>
                     WpfMsgBox.Show(
-                        $"text '{name}'text.\n{ex.Message}\n\ntext.",
-                        "Custom shortcut",
+                        $"Could not load layout '{name}'.\n{ex.Message}\n\nLArtKey switched to another available layout.",
+                        "Layout load failed",
                         WpfMsgBoxButton.OK,
                         WpfMsgBoxImage.Warning));
             });
@@ -373,7 +373,6 @@ public partial class MainViewModel : ObservableObject
             Keyboard.LoadLayout(layout);
             CurrentLayoutName = layout.Name;
 
-            // text "ko"text
             _autoCompleteService.ResetState();
         }
         finally
@@ -412,8 +411,8 @@ public partial class MainViewModel : ObservableObject
             if (PathResolver.IsPortable)
             {
                 WpfMsgBox.Show(
-                    "text.\ntext.",
-                    "Custom shortcut",
+                    "Portable builds cannot install updates automatically.\nOpening GitHub Releases instead.",
+                    "LArtKey update",
                     WpfMsgBoxButton.OK,
                     WpfMsgBoxImage.Information);
                 OpenReleasePage();
@@ -452,11 +451,11 @@ public partial class MainViewModel : ObservableObject
         {
             IsDownloading = false;
             IsInstalling = false;
-            UpdateStatusMessage = "Custom shortcut";
+            UpdateStatusMessage = "Install failed.";
 
             WpfMsgBox.Show(
-                $"text:\n{ex.Message}\n\nGitHub text.",
-                "Custom shortcut",
+                $"Update install failed:\n{ex.Message}\n\nOpening GitHub Releases instead.",
+                "LArtKey update",
                 WpfMsgBoxButton.OK,
                 WpfMsgBoxImage.Error);
 
@@ -469,7 +468,7 @@ public partial class MainViewModel : ObservableObject
     {
         IsDownloading = false;
         DownloadProgress = 0;
-        UpdateStatusMessage = "Done.";
+        UpdateStatusMessage = "Download canceled.";
     }
 
     [RelayCommand]
@@ -479,23 +478,14 @@ public partial class MainViewModel : ObservableObject
     private void ToggleClipboardPanel() => Clipboard.IsVisible = !Clipboard.IsVisible;
 
     [RelayCommand]
-    private void SendLanguageToggle()
-    {
-        _inputService.SendKeyPress(VirtualKeyCode.VK_HANGUL);
-        _liveRegion.Announce("OS input language");
-    }
-
-    [RelayCommand]
     private void SendOsk()
     {
-        // text.
         if (!_oskLauncher.TryLaunch())
         {
-            // text.
             _inputService.SendCombo([VirtualKeyCode.VK_LWIN, VirtualKeyCode.VK_LCONTROL, VirtualKeyCode.VK_O]);
         }
 
-        _liveRegion.Announce("Custom shortcut");
+        _liveRegion.Announce("Windows on-screen keyboard");
     }
 
     // ── AI tool ───────────────────────────────────────────
@@ -558,7 +548,7 @@ public partial class MainViewModel : ObservableObject
                 selectedText = ClipboardHelper.GetTextWithRetry());
 
             if (string.IsNullOrWhiteSpace(selectedText))
-            { _liveRegion.Announce("Custom shortcut"); return; }
+            { _liveRegion.Announce("Select text before running the AI tool."); return; }
 
             _liveRegion.Announce("AI is processing...");
             var result = await _aiService.ProcessTextAsync(selectedText, prompt, ct);
@@ -635,7 +625,6 @@ public partial class MainViewModel : ObservableObject
             HeaderButtonConfig.IdClipboard => CreateBuiltInHeaderButtonVm(config, ToggleClipboardPanelCommand),
             HeaderButtonConfig.IdEmoji => CreateBuiltInHeaderButtonVm(config, ToggleEmojiPanelCommand),
             HeaderButtonConfig.IdAutoComplete => CreateBuiltInHeaderButtonVm(config, command: null, isToggle: true),
-            HeaderButtonConfig.IdOsIme => CreateBuiltInHeaderButtonVm(config, SendLanguageToggleCommand, width: 40, fontSize: 10),
             HeaderButtonConfig.IdOsk => CreateBuiltInHeaderButtonVm(config, SendOskCommand),
             HeaderButtonConfig.IdSettings => CreateBuiltInHeaderButtonVm(config, Settings.OpenSettingsCommand),
             HeaderButtonConfig.IdAi => _configService.Current.AiEnabled
@@ -706,31 +695,30 @@ public partial class MainViewModel : ObservableObject
         {
             return builtInId switch
             {
-                HeaderButtonConfig.IdClipboard => "Done.",
-                HeaderButtonConfig.IdEmoji => "Done.",
-                HeaderButtonConfig.IdAutoComplete => "Done.",
-                HeaderButtonConfig.IdOsIme => "Switches the OS input language.",
-                HeaderButtonConfig.IdOsk => "Done.",
-                HeaderButtonConfig.IdSettings => "Done.",
-                HeaderButtonConfig.IdAi => "Done.",
+                HeaderButtonConfig.IdClipboard => "Opens clipboard history.",
+                HeaderButtonConfig.IdEmoji => "Opens the emoji panel.",
+                HeaderButtonConfig.IdAutoComplete => "Toggles word prediction.",
+                HeaderButtonConfig.IdOsk => "Opens the Windows on-screen keyboard.",
+                HeaderButtonConfig.IdSettings => "Opens settings.",
+                HeaderButtonConfig.IdAi => "Runs the configured AI action.",
                 _ => ""
             };
         }
 
         return action switch
         {
-            SendKeyAction sendKey => $"{sendKey.Vk} text.",
-            SendComboAction sendCombo => $"{string.Join(" + ", sendCombo.Keys)} text.",
-            ToggleStickyAction sticky => $"{sticky.Vk} text.",
-            SwitchLayoutAction switchLayout => $"{switchLayout.Name} text.",
-            RunAppAction runApp => $"{runApp.Path} text.",
-            BoilerplateAction => "Done.",
-            ShellCommandAction => "Done.",
-            VolumeControlAction volume => $"text {volume.Direction} text.",
-            ClipboardPasteAction => "Done.",
-            ToggleInputModeAction => "LArtKey text.",
+            SendKeyAction sendKey => $"Sends {sendKey.Vk}.",
+            SendComboAction sendCombo => $"Sends {string.Join(" + ", sendCombo.Keys)}.",
+            ToggleStickyAction sticky => $"Toggles {sticky.Vk}.",
+            SwitchLayoutAction switchLayout => $"Switches to {switchLayout.Name}.",
+            RunAppAction runApp => $"Runs {runApp.Path}.",
+            BoilerplateAction => "Inserts saved text.",
+            ShellCommandAction => "Runs a shell command.",
+            VolumeControlAction volume => $"Adjusts volume {volume.Direction}.",
+            ClipboardPasteAction => "Pastes saved clipboard text.",
+            ToggleInputModeAction => "Legacy input mode toggle.",
             ToggleFunctionLayerAction => "Fn layer.",
-            AiAction => "Done.",
+            AiAction => "Runs an AI action.",
             _ => ""
         };
     }

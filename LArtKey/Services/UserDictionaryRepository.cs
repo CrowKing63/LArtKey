@@ -12,11 +12,6 @@ public sealed class UserDictionaryRepository : IUserDictionaryRepository
         _dictionary = dictionary;
     }
 
-    public void SelectLanguage(bool korean)
-    {
-        // LArtKey is English-only; the parameter is kept for existing editor bindings.
-    }
-
     public string NormalizeWord(string rawWord) => rawWord.Trim().ToLowerInvariant();
 
     public IReadOnlyList<(string Word, int Frequency)> GetAllWords() => _dictionary.UserStore.GetAllWords();

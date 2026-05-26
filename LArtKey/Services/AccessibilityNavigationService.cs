@@ -47,7 +47,7 @@ public sealed class AccessibilityNavigationService : IDisposable
 
         var info = Marshal.PtrToStructure<Win32.KBDLLHOOKSTRUCT>(lParam);
         ulong extraInfo = unchecked((ulong)info.dwExtraInfo.ToInt64());
-        if (extraInfo == Win32.INPUT_EXTRAINFO_ALTKEY)
+        if (extraInfo == Win32.INPUT_EXTRAINFO_LARTKEY)
             return Win32.CallNextHookEx(_hookHandle, nCode, wParam, lParam);
 
         uint vk = info.vkCode;

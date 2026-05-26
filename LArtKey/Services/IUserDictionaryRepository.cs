@@ -5,8 +5,6 @@ namespace LArtKey.Services;
 /// </summary>
 public interface IUserDictionaryRepository
 {
-    void SelectLanguage(bool korean);
-
     string NormalizeWord(string rawWord);
 
     IReadOnlyList<(string Word, int Frequency)> GetAllWords();
