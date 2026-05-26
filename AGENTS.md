@@ -1,6 +1,7 @@
 # LArtKey Agent Guide
 
 LArtKey is an English-only Windows on-screen keyboard. All source comments, user-facing strings, documentation, issue templates, and release notes should be written in English.
+(However, during the development process, responses must be tailored to the user's language. Ex: Respond to Korean requests in Korean.)
 
 ## Priorities
 

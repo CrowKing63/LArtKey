@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f3ff" />
+  <title>LArtKey - English On-Screen Keyboard for Windows</title>
+  <meta name="description"
+    content="LArtKey is an English-only Windows on-screen keyboard with word prediction, accessibility controls, switch scanning, and standalone editor tools." />
+  <meta property="og:title" content="LArtKey - English On-Screen Keyboard for Windows" />
+  <meta property="og:description"
+    content="An English-only customizable on-screen keyboard for Windows with prediction, accessibility features, and external editor tools." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="LArtKey home">
+      <span class="brand-mark">⌨</span>
+      <span>LArtKey</span>
+    </a>
+
+    <nav class="top-nav" aria-label="Main links">
+      <a href="#guide">Start</a>
+      <a href="#features">Features</a>
+      <a href="#showcase">Screens</a>
+      <a href="#manual">Docs</a>
+      <a href="#faq">FAQ</a>
+      <a href="#download">Download</a>
+    </nav>
+
+    <div class="theme-switcher">
+      <label for="theme-select">Theme</label>
+      <select id="theme-select" class="theme-select" aria-label="Choose website theme">
+        <option value="system">System</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="high-contrast">High contrast</option>
+      </select>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Windows 10 / 11 · English-only · LArtKey.Tools included</p>
+        <h1 id="hero-title">An accessible English on-screen keyboard built for real work</h1>
+        <p class="hero-lead">
+          LArtKey helps you type, trigger shortcuts, and manage repeated text with a mouse, touch screen,
+          external switch, or keyboard navigation. It keeps the mature accessibility and tooling foundation
+          from AltKey while keeping the input path focused on English.
+        </p>
+        <div class="hero-actions" aria-label="Primary actions">
+          <a class="button primary" href="https://github.com/CrowKing63/LArtKey/releases/latest">Download latest</a>
+          <a class="button secondary" href="https://github.com/CrowKing63/LArtKey">View source</a>
+        </div>
+      </div>
+
+      <figure class="hero-visual glass-panel" aria-label="LArtKey English keyboard preview">
+        <div class="keyboard-preview" role="img" aria-label="English QWERTY on-screen keyboard preview">
+          <div class="keyboard-toolbar">
+            <span>LArtKey</span>
+            <span>Prediction · Scan · Tools</span>
+          </div>
+          <div class="suggestion-strip" aria-hidden="true">
+            <span>the</span>
+            <span>that</span>
+            <span>with</span>
+            <span>work</span>
+          </div>
+          <div class="key-row">
+            <span>Esc</span><span>Q</span><span>W</span><span>E</span><span>R</span><span>T</span><span>Y</span><span>U</span><span>I</span><span>O</span><span>P</span>
+          </div>
+          <div class="key-row">
+            <span>Tab</span><span>A</span><span>S</span><span>D</span><span>F</span><span>G</span><span>H</span><span>J</span><span>K</span><span>L</span><span>Enter</span>
+          </div>
+          <div class="key-row">
+            <span>Shift</span><span>Z</span><span>X</span><span>C</span><span>V</span><span>B</span><span>N</span><span>M</span><span>Left</span><span>Right</span>
+          </div>
+          <div class="key-row">
+            <span>Ctrl</span><span>Alt</span><span class="space-key">Space</span><span>Paste</span><span>Tools</span>
+          </div>
+        </div>
+        <figcaption>Designed as a practical keyboard surface, not a demo widget.</figcaption>
+      </figure>
+    </section>
+
+    <section class="quick-guide section-shell" id="guide" aria-labelledby="guide-title">
+      <div class="section-heading">
+        <p class="eyebrow">Start</p>
+        <h2 id="guide-title">Three things to check first</h2>
+      </div>
+
+      <div class="guide-grid">
+        <article class="glass-panel guide-card">
+          <span class="step-number">1</span>
+          <h3>Install or unpack</h3>
+          <p>Use the installer for a normal Windows app, or the portable ZIP when you want settings beside the executable.</p>
+        </article>
+        <article class="glass-panel guide-card">
+          <span class="step-number">2</span>
+          <h3>Turn on prediction</h3>
+          <p>English word prediction learns from accepted and completed words, including common word pairs.</p>
+        </article>
+        <article class="glass-panel guide-card">
+          <span class="step-number">3</span>
+          <h3>Choose access mode</h3>
+          <p>Use pointer input, dwell click, Tab navigation, or switch scanning depending on the control method that works best.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="quick-guide section-shell" id="features" aria-labelledby="features-title">
+      <div class="section-heading">
+        <p class="eyebrow">Features</p>
+        <h2 id="features-title">Core tools for everyday typing</h2>
+      </div>
+
+      <div class="guide-grid">
+        <article class="glass-panel guide-card">
+          <span class="step-number">A</span>
+          <h3>English prediction</h3>
+          <p>Prefix suggestions combine built-in English words, user frequency, and learned bigram context.</p>
+        </article>
+        <article class="glass-panel guide-card">
+          <span class="step-number">B</span>
+          <h3>Accessible operation</h3>
+          <p>High contrast themes, large text scaling, reduced motion, voice readout, and scan controls are first-class workflows.</p>
+        </article>
+        <article class="glass-panel guide-card">
+          <span class="step-number">C</span>
+          <h3>Action keys</h3>
+          <p>Assign key presses, shortcuts, app launches, shell commands, clipboard paste actions, volume controls, and AI actions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="showcase section-shell" id="showcase" aria-labelledby="showcase-title">
+      <div class="section-heading">
+        <p class="eyebrow">Screens</p>
+        <h2 id="showcase-title">A keyboard surface you can tune</h2>
+      </div>
+
+      <div class="showcase-grid">
+        <figure class="glass-panel screenshot-card wide-screen">
+          <div class="layout-preview expanded-preview" role="img" aria-label="Expanded English keyboard layout preview">
+            <span>Esc</span><span>F1</span><span>F2</span><span>F3</span><span>F4</span><span>Q</span><span>W</span><span>E</span><span>R</span><span>T</span><span>Y</span><span>U</span><span>I</span><span>O</span><span>P</span><span>Home</span><span>End</span><span>Scan</span>
+            <span>Ctrl</span><span>Win</span><span>Alt</span><span class="wide">Space</span><span>Paste</span><span>Tools</span><span>Vol -</span><span>Vol +</span>
+          </div>
+          <figcaption>Expanded layouts can keep navigation, modifiers, and action keys within reach.</figcaption>
+        </figure>
+        <figure class="glass-panel screenshot-card">
+          <div class="layout-preview compact-preview" role="img" aria-label="Compact English keyboard layout preview">
+            <span>Q</span><span>W</span><span>E</span><span>R</span><span>T</span><span>Y</span>
+            <span>A</span><span>S</span><span>D</span><span>F</span><span>G</span><span>H</span>
+            <span>Z</span><span>X</span><span>C</span><span>V</span><span>B</span><span>N</span>
+            <span class="wide">Space</span><span>Enter</span>
+          </div>
+          <figcaption>Basic layouts stay compact for repeated typing.</figcaption>
+        </figure>
+        <figure class="glass-panel screenshot-card">
+          <div class="tools-preview" role="img" aria-label="LArtKey Tools hub preview">
+            <span>Layout Editor</span>
+            <span>User Dictionary</span>
+            <span>Shortcut Profiles</span>
+            <span>Prompt Actions</span>
+          </div>
+          <figcaption>Layout and dictionary editing live in a separate tools process.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="manual section-shell" id="manual" aria-labelledby="manual-title">
+      <div class="manual-panel glass-panel">
+        <div>
+          <p class="eyebrow">Docs</p>
+          <h2 id="manual-title">Built for users and source readers</h2>
+          <p>
+            LArtKey is maintained as an English-first project. Source comments, public docs, release notes,
+            and issue discussions should be understandable to English-speaking users and contributors.
+          </p>
+        </div>
+        <div class="manual-links" aria-label="Documentation links">
+          <a href="../README.md">README</a>
+          <a href="architecture.md">Architecture</a>
+          <a href="../TESTING.md">Testing</a>
+          <a href="../AGENTS.md">Agent guide</a>
+          <a href="https://github.com/CrowKing63/LArtKey/issues">Issues</a>
+          <a href="https://github.com/CrowKing63/LArtKey/releases">Releases</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq section-shell" id="faq" aria-labelledby="faq-title">
+      <div class="faq-panel glass-panel">
+        <div class="section-heading">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">Common questions</h2>
+          <p>These answers focus on the English-only LArtKey edition.</p>
+        </div>
+
+        <div class="faq-list" aria-label="Frequently asked questions">
+          <details class="faq-item" open>
+            <summary class="faq-summary">How is LArtKey different from AltKey?</summary>
+            <div class="faq-answer">
+              <p>LArtKey is the English-only sibling project. It keeps accessibility, editor tools, action keys, and prediction, but narrows the input system and layouts to English.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Can it be installed alongside AltKey?</summary>
+            <div class="faq-answer">
+              <p>Yes. LArtKey uses its own executable names, app data folder, reload events, startup entry, installer names, and update endpoint.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">What does word prediction learn?</summary>
+            <div class="faq-answer">
+              <p>It records completed or accepted English words and learns word pairs so the next suggestion can reflect recent context.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Why are editor tools separate from the keyboard?</summary>
+            <div class="faq-answer">
+              <p>The tools process lets you edit layouts, dictionaries, shortcuts, profiles, and prompts without mixing heavy editing workflows into the no-activate keyboard window.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Can it type into elevated apps?</summary>
+            <div class="faq-answer">
+              <p>Windows may block input from a normal-permission app into an administrator-permission app. LArtKey shows warnings and can be restarted with matching permissions when needed.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="download section-shell" id="download" aria-labelledby="download-title">
+      <div class="download-panel glass-panel">
+        <p class="eyebrow">Download</p>
+        <h2 id="download-title">Start with the installer or portable ZIP</h2>
+        <p>LArtKey targets Windows 10 22H2 and Windows 11. Release packages include the main app and LArtKey.Tools.</p>
+        <div class="download-actions">
+          <a class="button primary" href="https://github.com/CrowKing63/LArtKey/releases/latest">GitHub Releases</a>
+          <a class="button secondary" href="https://github.com/CrowKing63/LArtKey/issues">Send feedback</a>
+          <a class="button ghost" href="https://github.com/CrowKing63/LArtKey">Source code</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>LArtKey Contributors · <a href="https://github.com/CrowKing63/LArtKey/blob/main/LICENSE">MIT License</a></p>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+
+</html>
