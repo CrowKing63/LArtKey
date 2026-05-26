@@ -1,16 +1,16 @@
 <#
 .SYNOPSIS
-    LArtKey English text.
+    LAltKey English text.
 .EXAMPLE
     .\scripts\create-icon.ps1
 #>
 
 Add-Type -AssemblyName System.Drawing
 
-$outDir = Join-Path $PSScriptRoot "..\LArtKey\Assets"
+$outDir = Join-Path $PSScriptRoot "..\LAltKey\Assets"
 New-Item -ItemType Directory -Force $outDir | Out-Null
 
-function New-LArtKeyBitmap([int]$size) {
+function New-LAltKeyBitmap([int]$size) {
     $bmp = [System.Drawing.Bitmap]::new($size, $size, [System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
     $g   = [System.Drawing.Graphics]::FromImage($bmp)
     $g.SmoothingMode     = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
@@ -58,7 +58,7 @@ function New-LArtKeyBitmap([int]$size) {
 }
 
 # PNG English text (256px)
-$png256  = New-LArtKeyBitmap 256
+$png256  = New-LAltKeyBitmap 256
 $pngPath = Join-Path $outDir "icon.png"
 $png256.Save($pngPath, [System.Drawing.Imaging.ImageFormat]::Png)
 $png256.Dispose()
@@ -69,7 +69,7 @@ function Save-IcoDib([string]$icoPath, [int[]]$iconSizes) {
     $ms     = [System.IO.MemoryStream]::new()
     $writer = [System.IO.BinaryWriter]::new($ms)
 
-    $bitmaps  = $iconSizes | ForEach-Object { New-LArtKeyBitmap $_ }
+    $bitmaps  = $iconSizes | ForEach-Object { New-LAltKeyBitmap $_ }
     $dibStreams = [System.IO.MemoryStream[]]::new($bitmaps.Count)
 
     for ($i = 0; $i -lt $bitmaps.Count; $i++) {

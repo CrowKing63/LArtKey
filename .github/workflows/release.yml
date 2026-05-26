@@ -17,11 +17,11 @@ jobs:
           dotnet-version: '8.0.x'
       - name: Restore dependencies
         run: |
-          dotnet restore LArtKey/LArtKey.csproj
-          dotnet restore LArtKey.Tools/LArtKey.Tools.csproj
+          dotnet restore LAltKey/LAltKey.csproj
+          dotnet restore LAltKey.Tools/LAltKey.Tools.csproj
       - name: Publish portable single-file
         run: >
-          dotnet publish LArtKey/LArtKey.csproj
+          dotnet publish LAltKey/LAltKey.csproj
           -c Release
           -r win-x64
           --self-contained true
@@ -32,7 +32,7 @@ jobs:
           -o dist/publish
       - name: Publish tools app
         run: >
-          dotnet publish LArtKey.Tools/LArtKey.Tools.csproj
+          dotnet publish LAltKey.Tools/LAltKey.Tools.csproj
           -c Release
           -r win-x64
           --self-contained true
@@ -53,16 +53,16 @@ jobs:
           choco install innosetup --no-progress -y
           $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + ";" + $env:PATH
           $version = "${{ github.ref_name }}".TrimStart('v')
-          (Get-Content installer/LArtKey.iss) `
+          (Get-Content installer/LAltKey.iss) `
             -replace '#define AppVersion\s+"[^"]+"', "#define AppVersion `"$version`"" |
-            Set-Content installer/LArtKey.iss
-          iscc installer/LArtKey.iss
+            Set-Content installer/LAltKey.iss
+          iscc installer/LAltKey.iss
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/LArtKey-Portable-*.zip
-            dist/LArtKey-Setup-*.exe
+            dist/LAltKey-Portable-*.zip
+            dist/LAltKey-Setup-*.exe
           fail_on_unmatched_files: true
           overwrite: true
         env:

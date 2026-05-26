@@ -1,0 +1,35 @@
+<Application x:Class="LAltKey.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LAltKey"
+             xmlns:themes="clr-namespace:LAltKey.Themes"
+             xmlns:converters="clr-namespace:LAltKey.Converters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- text -->
+                <ResourceDictionary Source="/LAltKey;component/Themes/Generic.xaml"/>
+                <!-- text -->
+                <ResourceDictionary Source="/LAltKey;component/Themes/DarkTheme.xaml"/>
+                <ResourceDictionary Source="/LAltKey;component/Themes/SettingsControls.xaml"/>
+                <!-- Phase 1: text -->
+                <ResourceDictionary Source="/LAltKey;component/Themes/FluentControls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- text -->
+            <FontFamily x:Key="AppFontFamily">NanumGothic, Malgun Gothic, Segoe UI</FontFamily>
+            <Style TargetType="Control">
+                <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}"/>
+            </Style>
+
+            <themes:ProgressToOffsetConverter x:Key="ProgressToOffsetConverter"/>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVis"/>
+            <themes:InverseBoolToVisibilityConverter x:Key="InvBoolToVis"/>
+            <themes:GapToRightMarginConverter x:Key="GapToRightMargin"/>
+            <themes:BoolToStarConverter x:Key="BoolToStar"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

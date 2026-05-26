@@ -1,5 +1,5 @@
 (() => {
-  const storageKey = 'lartkey-docs-theme';
+  const storageKey = 'laltkey-docs-theme';
   const root = document.documentElement;
   const select = document.getElementById('theme-select');
   const themeColorMeta = document.querySelector('meta[name="theme-color"]');

@@ -1,0 +1,139 @@
+<Window x:Class="LAltKey.Tools.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="LAltKey Tools"
+        Width="720"
+        Height="560"
+        MinWidth="620"
+        MinHeight="500"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- text. -->
+        <Style TargetType="Button" BasedOn="{StaticResource FluentButtonStyle}">
+            <Setter Property="Padding" Value="16,12" />
+        </Style>
+    </Window.Resources>
+
+    <Border Margin="14"
+            Padding="20"
+            Background="{DynamicResource SettingsBg}"
+            BorderBrush="{DynamicResource SettingsBorder}"
+            BorderThickness="1"
+            CornerRadius="12">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Margin="0,0,0,8"
+                       FontSize="24"
+                       FontWeight="SemiBold"
+                       Text="LAltKey editing tools"
+                       AutomationProperties.Name="Tools window title" />
+
+            <TextBlock Grid.Row="1"
+                       Margin="0,0,0,16"
+                       Text="Choose a tool below to start editing. All edits happen in a separate, safer window away from the main keyboard."
+                       TextWrapping="Wrap"
+                       AutomationProperties.Name="Tools help text" />
+
+            <Border Grid.Row="2"
+                    Style="{StaticResource FluentCardBorderStyle}"
+                    KeyboardNavigation.TabNavigation="Continue">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,10"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="Choose a tool"
+                               AutomationProperties.Name="Tool selection section title" />
+
+                    <Button x:Name="LayoutEditorButton"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="0"
+                            Content="Open layout editor"
+                            Click="OnOpenLayoutEditor"
+                            AutomationProperties.Name="Open layout editor button"
+                            AutomationProperties.HelpText="Opens the editor for names and key labels." />
+                    <TextBlock Margin="2,0,0,10"
+                               Foreground="{DynamicResource SettingsFgSub}"
+                               Text="Review and edit key placement and labels."
+                               TextWrapping="Wrap"
+                               AutomationProperties.Name="Layout editor description" />
+
+                    <Button x:Name="UserDictionaryEditorButton"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="1"
+                            Content="Open user dictionary editor"
+                            Click="OnOpenUserDictionaryEditor"
+                            AutomationProperties.Name="Open user dictionary editor button"
+                            AutomationProperties.HelpText="Opens the editor for English word and bigram data." />
+                    <TextBlock Margin="2,0,0,10"
+                               Foreground="{DynamicResource SettingsFgSub}"
+                               Text="Add, edit, and delete word and bigram data."
+                               TextWrapping="Wrap"
+                               AutomationProperties.Name="User dictionary editor description" />
+
+                    <Button x:Name="ProfileMappingEditorButton"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="2"
+                            Content="Open profile mapping editor"
+                            Click="OnOpenProfileMappingEditor"
+                            AutomationProperties.Name="Open profile mapping editor button"
+                            AutomationProperties.HelpText="Opens the editor for app-specific layout mappings." />
+                    <TextBlock Margin="2,0,0,10"
+                               Foreground="{DynamicResource SettingsFgSub}"
+                               Text="Review and adjust app-specific layout assignments."
+                               TextWrapping="Wrap"
+                               AutomationProperties.Name="Profile mapping editor description" />
+
+                    <Button x:Name="AiPromptEditorButton"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="3"
+                            Content="Open AI prompt editor"
+                            Click="OnOpenAiPromptEditor"
+                            AutomationProperties.Name="Open AI prompt editor button"
+                            AutomationProperties.HelpText="Opens a comfortable editor for longer default prompts." />
+                    <TextBlock Margin="2,0,0,0"
+                               Foreground="{DynamicResource SettingsFgSub}"
+                               Text="Edit long prompts in a more readable form."
+                               TextWrapping="Wrap"
+                               AutomationProperties.Name="AI prompt editor description" />
+
+                    <Button x:Name="HeaderShortcutEditorButton"
+                            Margin="0,10,0,8"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="4"
+                            Content="Open header shortcut editor"
+                            Click="OnOpenHeaderShortcutEditor"
+                            AutomationProperties.Name="Open header shortcut editor button"
+                            AutomationProperties.HelpText="Opens the editor for custom header shortcut icons, tooltips, and actions." />
+                    <TextBlock Margin="2,0,0,0"
+                               Foreground="{DynamicResource SettingsFgSub}"
+                               Text="Edit icon text, tooltip, accessible name, and action for custom header buttons."
+                               TextWrapping="Wrap"
+                               AutomationProperties.Name="Header shortcut editor description" />
+                </StackPanel>
+            </Border>
+
+            <Button Grid.Row="3"
+                    Margin="0,16,0,0"
+                    HorizontalAlignment="Right"
+                    TabIndex="5"
+                    Content="Close (Esc)"
+                    Click="OnClose"
+                    AutomationProperties.Name="Close tools window button"
+                    AutomationProperties.HelpText="Closes the LAltKey Tools window." />
+        </Grid>
+    </Border>
+</Window>
