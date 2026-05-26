@@ -3,13 +3,13 @@ using LArtKey.Models;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public static class WindowOpacityProfile
 {
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static double GetBaseOpacity(AppConfig config)
     {
@@ -19,7 +19,7 @@ public static class WindowOpacityProfile
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static double GetIdleOpacity(AppConfig config)
     {
@@ -30,12 +30,12 @@ public static class WindowOpacityProfile
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static double GetIdleOpacityMaximum(AppConfig config) => GetBaseOpacity(config);
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static bool ShouldStartIdleTimer(AppConfig config) => config.IdleOpacityEnabled;
 

@@ -5,7 +5,7 @@ using LArtKey.ViewModels;
 namespace LArtKey.Views;
 
 /// <summary>
-/// [English text] English text.
+/// [text] text.
 /// </summary>
 public partial class SwitchScanSettingsWindow : Window
 {

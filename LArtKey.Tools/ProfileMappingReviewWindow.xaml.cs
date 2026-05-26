@@ -9,8 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 namespace LArtKey.Tools;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public partial class ProfileMappingReviewWindow : Window, INotifyPropertyChanged
 {
@@ -64,7 +64,7 @@ public partial class ProfileMappingReviewWindow : Window, INotifyPropertyChanged
 
         DataContext = this;
 
-        // English text.
+        // text.
         Loaded += (_, _) => ReviewGrid.Focus();
         PreviewKeyDown += OnPreviewKeyDown;
 
@@ -85,29 +85,29 @@ public partial class ProfileMappingReviewWindow : Window, INotifyPropertyChanged
         {
             var processName = pair.Key?.Trim() ?? string.Empty;
             var layoutName = pair.Value?.Trim() ?? string.Empty;
-            var status = "English text";
+            var status = "OK";
 
             if (string.IsNullOrWhiteSpace(layoutName))
             {
-                status = "English text";
+                status = "Missing layout";
                 emptyLayoutCount++;
             }
             else if (!availableLayouts.Contains(layoutName))
             {
-                status = "English text";
+                status = "Unknown layout";
                 unknownLayoutCount++;
             }
 
             Entries.Add(new ProfileMappingReviewEntry(processName, layoutName, status));
         }
 
-        SummaryText = $"English text {Entries.Count}English text {availableLayouts.Count}English text";
-        RiskText = $"English text {emptyLayoutCount}English text {unknownLayoutCount}English text";
+        SummaryText = $"Mappings: {Entries.Count} / available layouts: {availableLayouts.Count}";
+        RiskText = $"Missing layouts: {emptyLayoutCount} / unknown layouts: {unknownLayoutCount}";
 
-        // English text->English text.
+        // text->text.
         DecisionText =
-            "English text. " +
-            "English text.";
+            "The current profile mapping structure is usable. " +
+            "Promote it to a full editor when app-specific layouts become a primary workflow.";
     }
 
     private void OnClose(object sender, RoutedEventArgs e)
@@ -135,6 +135,6 @@ public partial class ProfileMappingReviewWindow : Window, INotifyPropertyChanged
 }
 
 /// <summary>
-/// [English text] English text.
+/// [text] text.
 /// </summary>
 public sealed record ProfileMappingReviewEntry(string ProcessName, string LayoutName, string Status);

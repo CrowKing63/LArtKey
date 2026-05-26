@@ -11,8 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 namespace LArtKey.Tools;
 
 /// <summary>
-/// [English text] English text → English text.
-/// [English text] English text.
+/// [text] text → text.
+/// [text] text.
 /// </summary>
 public partial class ProfileMappingEditorWindow : Window, INotifyPropertyChanged
 {
@@ -51,7 +51,7 @@ public partial class ProfileMappingEditorWindow : Window, INotifyPropertyChanged
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void LoadFromConfig()
     {
@@ -108,7 +108,7 @@ public partial class ProfileMappingEditorWindow : Window, INotifyPropertyChanged
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void UpdateRowStatuses()
     {
@@ -131,38 +131,38 @@ public partial class ProfileMappingEditorWindow : Window, INotifyPropertyChanged
 
             if (string.IsNullOrWhiteSpace(processName))
             {
-                row.Status = "English text";
+                row.Status = "Missing process";
                 emptyProcessCount++;
                 continue;
             }
 
             if (duplicated.Contains(processName.ToLowerInvariant()))
             {
-                row.Status = "English text";
+                row.Status = "Duplicate process";
                 duplicateCount++;
                 continue;
             }
 
             if (string.IsNullOrWhiteSpace(layoutName))
             {
-                row.Status = "English text";
+                row.Status = "Missing layout";
                 emptyLayoutCount++;
                 continue;
             }
 
             if (!AvailableLayouts.Contains(layoutName))
             {
-                row.Status = "English text";
+                row.Status = "Unknown layout";
                 unknownLayoutCount++;
                 continue;
             }
 
-            row.Status = "English text";
+            row.Status = "OK";
         }
 
         ValidationSummaryText =
-            $"English text {Rows.Count}English text | English text {emptyProcessCount} | English text {emptyLayoutCount} | " +
-            $"English text {unknownLayoutCount} | English text {duplicateCount}";
+            $"Rows: {Rows.Count} | missing process: {emptyProcessCount} | missing layout: {emptyLayoutCount} | " +
+            $"unknown layout: {unknownLayoutCount} | duplicate process: {duplicateCount}";
     }
 
     private void OnAddRow(object sender, RoutedEventArgs e)
@@ -188,12 +188,12 @@ public partial class ProfileMappingEditorWindow : Window, INotifyPropertyChanged
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void OnSave(object sender, RoutedEventArgs e)
     {
         var validRows = Rows
-            .Where(r => string.Equals(r.Status, "English text", StringComparison.Ordinal))
+            .Where(r => string.Equals(r.Status, "OK", StringComparison.Ordinal))
             .Select(r => new
             {
                 ProcessName = r.ProcessName.Trim().ToLowerInvariant(),
@@ -206,12 +206,12 @@ public partial class ProfileMappingEditorWindow : Window, INotifyPropertyChanged
             c.Profiles = validRows.ToDictionary(x => x.ProcessName, x => x.LayoutName);
         });
 
-        // English text.
+        // text.
         ToolsReloadSignalService.NotifyReloadProfiles();
 
         MessageBox.Show(
-            $"English text {validRows.Count}English text.",
-            "English text",
+            $"Saved {validRows.Count} profile mappings.",
+            "Profile mappings",
             MessageBoxButton.OK,
             MessageBoxImage.Information);
     }
@@ -241,7 +241,7 @@ public partial class ProfileMappingEditorWindow : Window, INotifyPropertyChanged
 }
 
 /// <summary>
-/// [English text] English text.
+/// [text] text.
 /// </summary>
 public sealed class ProfileMappingEditorRow : INotifyPropertyChanged
 {
@@ -286,7 +286,7 @@ public sealed class ProfileMappingEditorRow : INotifyPropertyChanged
     {
         _processName = processName ?? string.Empty;
         _layoutName = layoutName ?? string.Empty;
-        _status = "English text";
+        _status = "Ready";
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

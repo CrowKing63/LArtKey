@@ -7,8 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 namespace LArtKey.Tools;
 
 /// <summary>
-/// [English text] LArtKey English text.
-/// [English text] English text.
+/// [text] LArtKey text.
+/// [text] text.
 /// </summary>
 public partial class MainWindow : Window
 {
@@ -22,15 +22,15 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        // English text.
+        // text.
         Loaded += (_, _) => LayoutEditorButton.Focus();
 
-        // English text.
+        // text.
         PreviewKeyDown += OnPreviewKeyDown;
     }
 
     /// <summary>
-    /// English text: "layout", "dictionary", "profile", "ai-prompt", "header-shortcut"
+    /// text: "layout", "dictionary", "profile", "ai-prompt", "header-shortcut"
     /// </summary>
     public void ApplyStartupArguments(string[] args)
     {
@@ -53,7 +53,7 @@ public partial class MainWindow : Window
             if (string.Equals(toolName, "layout", StringComparison.OrdinalIgnoreCase))
             {
                 OpenLayoutEditorWindow(attachOwner: false);
-                // English text.
+                // text.
                 Close();
                 return;
             }
@@ -88,7 +88,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// "--tool layout" English text.
+    /// "--tool layout" text.
     /// </summary>
     private static string? GetToolArgument(string[] args)
     {
@@ -127,7 +127,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void OnOpenLayoutEditor(object sender, RoutedEventArgs e)
     {
@@ -135,8 +135,8 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// English text.
-    /// attachOwner=falseEnglish text.
+    /// text.
+    /// attachOwner=falsetext.
     /// </summary>
     private void OpenLayoutEditorWindow(bool attachOwner)
     {
@@ -157,7 +157,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void OnOpenUserDictionaryEditor(object sender, RoutedEventArgs e)
     {
@@ -165,8 +165,8 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// English text.
-    /// attachOwner=falseEnglish text.
+    /// text.
+    /// attachOwner=falsetext.
     /// </summary>
     private void OpenUserDictionaryEditorWindow(bool attachOwner)
     {
@@ -187,7 +187,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void OnOpenProfileMappingEditor(object sender, RoutedEventArgs e)
     {
@@ -195,8 +195,8 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// English text.
-    /// attachOwner=falseEnglish text.
+    /// text.
+    /// attachOwner=falsetext.
     /// </summary>
     private void OpenProfileMappingEditorWindow(bool attachOwner)
     {
@@ -216,7 +216,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// AI English text.
+    /// AI tool.
     /// </summary>
     private void OnOpenAiPromptEditor(object sender, RoutedEventArgs e)
     {
@@ -224,8 +224,8 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// AI English text.
-    /// attachOwner=falseEnglish text.
+    /// AI tool.
+    /// attachOwner=falsetext.
     /// </summary>
     private void OpenAiPromptEditorWindow(bool attachOwner)
     {
@@ -245,7 +245,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void OnOpenHeaderShortcutEditor(object sender, RoutedEventArgs e)
     {
@@ -271,7 +271,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void OnClose(object sender, RoutedEventArgs e)
     {
@@ -279,7 +279,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// Esc English text.
+    /// Esc text.
     /// </summary>
     private void OnPreviewKeyDown(object sender, KeyEventArgs e)
     {

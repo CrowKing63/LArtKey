@@ -3,16 +3,16 @@ using System.IO;
 
 namespace LArtKey.Services;
 
-/// <summary>T-9.5: English text</summary>
+/// <summary>T-9.5: text</summary>
 public class InstallerService
 {
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
-    /// <param name="installerPath">English text</param>
-    /// <param name="autoRestart">English text</param>
-    /// <param name="requestElevation">runasEnglish text</param>
-    /// <returns>English text</returns>
+    /// <param name="installerPath">text</param>
+    /// <param name="autoRestart">text</param>
+    /// <param name="requestElevation">runastext</param>
+    /// <returns>text</returns>
     public async Task<int> RunInstallerAsync(
         string installerPath,
         bool autoRestart = false,
@@ -28,7 +28,7 @@ public class InstallerService
             UseShellExecute = true
         };
 
-        // English text.
+        // text.
         if (requestElevation)
             psi.Verb = "runas";
 
@@ -38,15 +38,15 @@ public class InstallerService
         await process.WaitForExitAsync();
         var exitCode = process.ExitCode;
 
-        // English text
+        // text
         try { File.Delete(installerPath); }
-        catch { /* English text */ }
+        catch { /* text */ }
 
         return exitCode;
     }
 
     /// <summary>
-    /// English text)
+    /// text)
     /// </summary>
     public void StartInstaller(
         string installerPath,
@@ -63,7 +63,7 @@ public class InstallerService
             UseShellExecute = true
         };
 
-        // English text.
+        // text.
         if (requestElevation)
             psi.Verb = "runas";
 
@@ -72,7 +72,7 @@ public class InstallerService
 
     private string GetArguments(bool autoRestart)
     {
-        // Inno Setup English text
+        // Inno Setup text
         return autoRestart
             ? "/VERYSILENT /SUPPRESSMSGBOXES /CLOSEAPPLICATIONS /AUTORESTART /LOG"
             : "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /CLOSEAPPLICATIONS";

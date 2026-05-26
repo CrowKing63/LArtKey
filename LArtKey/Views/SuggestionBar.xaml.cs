@@ -1,8 +1,8 @@
 namespace LArtKey.Views;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public partial class SuggestionBar : System.Windows.Controls.UserControl
 {
@@ -12,7 +12,7 @@ public partial class SuggestionBar : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void CurrentWordSlot_RightClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {

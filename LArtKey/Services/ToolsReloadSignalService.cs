@@ -2,13 +2,13 @@ using System.Threading;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] Handles lightweight reload signals between LArtKey.Tools and the main app.
-/// [English text] English text.
-/// [English text] 1English text.
+/// [text] Handles lightweight reload signals between LArtKey.Tools and the main app.
+/// [text] text.
+/// [text] 1text.
 /// </summary>
 public sealed class ToolsReloadSignalService : IDisposable
 {
-    // English text.
+    // text.
     private const string ReloadLayoutsEventName = "LArtKey.Tools.ReloadLayouts";
     private const string ReloadUserDictionaryEventName = "LArtKey.Tools.ReloadUserDictionary";
     private const string ReloadBigramDataEventName = "LArtKey.Tools.ReloadBigramData";
@@ -86,7 +86,7 @@ public sealed class ToolsReloadSignalService : IDisposable
 
         _reloadAiSettingsWaitHandle = ThreadPool.RegisterWaitForSingleObject(
             _reloadAiSettingsEvent,
-            // AI English text.
+            // AI tool.
             (_, _) => System.Windows.Application.Current.Dispatcher.BeginInvoke(() => _configService.ReloadFromDiskAndNotify(nameof(Models.AppConfig.AiDefaultPrompt))),
             null,
             Timeout.Infinite,
@@ -100,22 +100,22 @@ public sealed class ToolsReloadSignalService : IDisposable
             false);
     }
 
-    /// <summary>English text.</summary>
+    /// <summary>text.</summary>
     public static void NotifyReloadLayouts() => Signal(ReloadLayoutsEventName);
 
-    /// <summary>English text.</summary>
+    /// <summary>text.</summary>
     public static void NotifyReloadUserDictionary() => Signal(ReloadUserDictionaryEventName);
 
-    /// <summary>English text.</summary>
+    /// <summary>text.</summary>
     public static void NotifyReloadBigramData() => Signal(ReloadBigramDataEventName);
 
-    /// <summary>English text.</summary>
+    /// <summary>text.</summary>
     public static void NotifyReloadProfiles() => Signal(ReloadProfilesEventName);
 
-    /// <summary>AI English text.</summary>
+    /// <summary>AI tool.</summary>
     public static void NotifyReloadAiSettings() => Signal(ReloadAiSettingsEventName);
 
-    /// <summary>English text.</summary>
+    /// <summary>text.</summary>
     public static void NotifyReloadHeaderButtons() => Signal(ReloadHeaderButtonsEventName);
 
     private static void Signal(string eventName)
@@ -127,7 +127,7 @@ public sealed class ToolsReloadSignalService : IDisposable
         }
         catch (WaitHandleCannotBeOpenedException)
         {
-            // English text.
+            // text.
         }
     }
 

@@ -19,7 +19,7 @@ public enum InputMode
 
 public class InputService
 {
-    // English text.
+    // text.
     private static readonly Dictionary<string, SystemShortcutCommand> SystemShortcutCommands = new()
     {
         [NormalizeShortcutKey([
@@ -149,7 +149,7 @@ public class InputService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void ResetTransientInputStateForModeChange()
     {
@@ -204,7 +204,7 @@ public class InputService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     protected virtual bool TryHandleSystemShortcut(IReadOnlyList<VirtualKeyCode> keys)
     {
@@ -223,7 +223,7 @@ public class InputService
     }
 
     /// <summary>
-    /// English text "English text"English text.
+    /// text "text"text.
     /// </summary>
     public void ArmHeldKeyGesture(VirtualKeyCode vk)
     {
@@ -231,7 +231,7 @@ public class InputService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void CancelHeldKeyGesture(VirtualKeyCode? vk = null)
     {
@@ -240,7 +240,7 @@ public class InputService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public virtual void BeginHeldKey(VirtualKeyCode vk)
     {
@@ -251,7 +251,7 @@ public class InputService
     }
 
     /// <summary>
-    /// BeginHeldKeyEnglish text.
+    /// BeginHeldKeytext.
     /// </summary>
     public virtual void EndHeldKey(VirtualKeyCode vk)
     {
@@ -262,7 +262,7 @@ public class InputService
     }
 
     /// <summary>
-    /// English text "English text"English text.
+    /// text "text"text.
     /// </summary>
     public virtual void PulseHeldKey(VirtualKeyCode vk)
     {
@@ -273,7 +273,7 @@ public class InputService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public virtual void ReleaseAllHeldKeys(string reason = "manual")
     {
@@ -286,7 +286,7 @@ public class InputService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public bool IsHeldKey(VirtualKeyCode vk) => _heldKeys.Contains(vk);
 
@@ -355,7 +355,7 @@ public class InputService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     protected virtual void StartProcess(ProcessStartInfo psi)
     {
@@ -369,7 +369,7 @@ public class InputService
             case SendKeyAction { Vk: var vkStr }:
                 if (Enum.TryParse<VirtualKeyCode>(vkStr, out var vk))
                 {
-                    // English text "English text" English text.
+                    // text "text" text.
                     if (_armedHeldKey == vk)
                     {
                         BeginHeldKey(vk);
@@ -502,7 +502,7 @@ public class InputService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static ProcessStartInfo CreateRunAppProcessStartInfo(string path, string args) => new(path)
     {
@@ -511,7 +511,7 @@ public class InputService
     };
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static ProcessStartInfo CreateShellCommandProcessStartInfo(string command, string shell, bool hidden)
     {
@@ -565,7 +565,7 @@ public class InputService
     private static bool IsHighRiskModifier(VirtualKeyCode vk) => HighRiskModifiers.Contains(vk);
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static string NormalizeShortcutKey(IReadOnlyList<VirtualKeyCode> keys)
         => string.Join("+", keys
@@ -594,7 +594,7 @@ public class InputService
             : MakeKeyUp((ushort)vk);
 
     /// <summary>
-    /// SendKey English text VK_* English text.
+    /// SendKey text VK_* text.
     /// </summary>
     private bool TryMakeScanCodeInput(VirtualKeyCode vk, bool keyUp, out Win32.INPUT input)
     {
@@ -623,9 +623,9 @@ public class InputService
     private static bool IsScanCodeFallbackKey(VirtualKeyCode vk)
     {
         if (vk is
-            // IME English text.
+            // IME text.
             VirtualKeyCode.VK_HANGUL or VirtualKeyCode.VK_HANJA or
-            // PauseEnglish text.
+            // Pausetext.
             VirtualKeyCode.VK_PAUSE or VirtualKeyCode.VK_SNAPSHOT)
         {
             return true;
@@ -633,7 +633,7 @@ public class InputService
 
         ushort rawVk = (ushort)vk;
         return rawVk is
-            // English text.
+            // text.
             0xAD or 0xAE or 0xAF or
             0xA6 or 0xA7 or 0xA8 or 0xA9 or 0xAA or 0xAB or 0xAC or
             0xB0 or 0xB1 or 0xB2 or 0xB3 or

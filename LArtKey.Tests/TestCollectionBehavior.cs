@@ -1,4 +1,4 @@
 using Xunit;
 
-// ConfigServiceEnglish text.
+// ConfigServicesample text.
 [assembly: CollectionBehavior(DisableTestParallelization = true)]

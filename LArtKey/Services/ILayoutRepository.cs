@@ -3,7 +3,7 @@ using LArtKey.Models;
 namespace LArtKey.Services;
 
 /// <summary>
-/// English text.
+/// text.
 /// </summary>
 public interface ILayoutRepository
 {

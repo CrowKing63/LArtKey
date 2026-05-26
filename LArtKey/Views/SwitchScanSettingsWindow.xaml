@@ -6,14 +6,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="English text"
+        Title="Switch scan settings"
         Width="680" Height="820"
         MinWidth="600" MinHeight="700"
         WindowStartupLocation="Manual"
         Background="{DynamicResource SettingsBg}"
         d:DataContext="{d:DesignInstance vm:SettingsViewModel}">
     <Window.Resources>
-        <!-- English text. -->
+        <!-- text. -->
         <Style TargetType="Button" BasedOn="{StaticResource FluentButtonStyle}"/>
         <Style TargetType="TextBox" BasedOn="{StaticResource FluentTextBoxStyle}"/>
         <Style TargetType="ComboBox" BasedOn="{StaticResource FluentComboBoxStyle}"/>
@@ -27,12 +27,12 @@
             <StackPanel>
                 <Border Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,12">
                     <StackPanel>
-                        <TextBlock Text="English text"
+                        <TextBlock Text="Switch scan settings"
                                    FontSize="16"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource SettingsFg}"
                                    Margin="0,0,0,6"/>
-                        <TextBlock Text="English text."
+                        <TextBlock Text="Adjust switch input keys and scan behavior for your setup."
                                    FontSize="11"
                                    Foreground="{DynamicResource SettingsFgSub}"/>
                     </StackPanel>
@@ -40,8 +40,8 @@
 
                 <Border Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,12">
                     <StackPanel>
-                        <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,6"/>
-                        <TextBlock Text="English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                        <TextBlock Text="Scan behavior" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,6"/>
+                        <TextBlock Text="Scan interval (milliseconds)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                         <ctrl:NumericAdjuster Value="{Binding SwitchScanIntervalMs}"
                                               Minimum="200" Maximum="3000" Step="100" DecimalPlaces="0"
                                               IsEnabled="{Binding SwitchScanEnabled}"
@@ -51,45 +51,45 @@
                                               TextBoxForeground="{DynamicResource SettingsFg}"
                                               TextBoxBorderBrush="{DynamicResource SettingsBorder}"
                                               Margin="0,0,0,8"/>
-                        <CheckBox Content="2English text)"
+                        <CheckBox Content="Use two-switch mode (separate next/select)"
                                   Foreground="{DynamicResource SettingsFg}"
                                   IsChecked="{Binding SwitchScanTwoSwitch}"
                                   IsEnabled="{Binding SwitchScanEnabled}"
                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                        <TextBlock Text="Scan mode" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                         <ComboBox ItemsSource="{Binding SwitchScanModes}"
                                   SelectedItem="{Binding SwitchScanMode}"
                                   IsEnabled="{Binding SwitchScanEnabled}"
                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                        <TextBlock Text="Initial delay (milliseconds)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                         <ctrl:NumericAdjuster Value="{Binding SwitchScanInitialDelayMs}" Minimum="0" Maximum="5000" Step="100" DecimalPlaces="0"
                                               IsEnabled="{Binding SwitchScanEnabled}"
                                               ButtonBackground="{DynamicResource SettingsHighlight}" ButtonForeground="{DynamicResource SettingsFg}"
                                               TextBoxBackground="{DynamicResource SettingsHighlight}" TextBoxForeground="{DynamicResource SettingsFg}"
                                               TextBoxBorderBrush="{DynamicResource SettingsBorder}" Margin="0,0,0,8"/>
-                        <TextBlock Text="English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                        <TextBlock Text="Pause after selection (milliseconds)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                         <ctrl:NumericAdjuster Value="{Binding SwitchScanSelectPauseMs}" Minimum="0" Maximum="5000" Step="100" DecimalPlaces="0"
                                               IsEnabled="{Binding SwitchScanEnabled}"
                                               ButtonBackground="{DynamicResource SettingsHighlight}" ButtonForeground="{DynamicResource SettingsFg}"
                                               TextBoxBackground="{DynamicResource SettingsHighlight}" TextBoxForeground="{DynamicResource SettingsFg}"
                                               TextBoxBorderBrush="{DynamicResource SettingsBorder}" Margin="0,0,0,8"/>
-                        <TextBlock Text="English text (0=English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                        <TextBlock Text="Maximum cycles before stopping (0 = unlimited)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                         <ctrl:NumericAdjuster Value="{Binding SwitchScanCyclesBeforePause}" Minimum="0" Maximum="20" Step="1" DecimalPlaces="0"
                                               IsEnabled="{Binding SwitchScanEnabled}"
                                               ButtonBackground="{DynamicResource SettingsHighlight}" ButtonForeground="{DynamicResource SettingsFg}"
                                               TextBoxBackground="{DynamicResource SettingsHighlight}" TextBoxForeground="{DynamicResource SettingsFg}"
                                               TextBoxBorderBrush="{DynamicResource SettingsBorder}" Margin="0,0,0,8"/>
-                        <CheckBox Content="English text"
+                        <CheckBox Content="Wrap scan from end to start"
                                   Foreground="{DynamicResource SettingsFg}"
                                   IsChecked="{Binding SwitchScanWrapEnabled}"
                                   IsEnabled="{Binding SwitchScanEnabled}"
                                   Margin="0,0,0,8"/>
-                        <CheckBox Content="English text"
+                        <CheckBox Content="Include prediction suggestions and current word in scan targets"
                                   Foreground="{DynamicResource SettingsFg}"
                                   IsChecked="{Binding SwitchScanIncludeSuggestions}"
                                   IsEnabled="{Binding SwitchScanEnabled}"
                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                        <TextBlock Text="Suggestion scan priority" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                         <ComboBox ItemsSource="{Binding SwitchScanSuggestionPriorities}"
                                   SelectedItem="{Binding SwitchScanSuggestionPriority}"
                                   IsEnabled="{Binding SwitchScanEnabled}"/>
@@ -98,7 +98,7 @@
 
                 <Border Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,12">
                     <StackPanel>
-                        <TextBlock Text="English text (VK_English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,6"/>
+                        <TextBlock Text="Switch key mapping (VK name)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,6"/>
                         <TextBox Text="{Binding SwitchScanNextKey, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding SwitchScanEnabled}" Margin="0,0,0,4"/>
                         <TextBox Text="{Binding SwitchScanSelectKey, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding SwitchScanEnabled}" Margin="0,0,0,4"/>
                         <TextBox Text="{Binding SwitchScanSecondarySelectKey, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding SwitchScanEnabled}" Margin="0,0,0,4"/>
@@ -107,11 +107,11 @@
                         <TextBlock TextWrapping="Wrap"
                                    FontSize="11"
                                    Foreground="{DynamicResource SettingsFgSub}"
-                                   Text="English text: VK_TAB / VK_RETURN / VK_SPACE"/>
+                                   Text="Input order: next, select, alternate select, previous, pause. Example: VK_TAB / VK_RETURN / VK_SPACE"/>
                     </StackPanel>
                 </Border>
 
-                <Button Content="English text"
+                <Button Content="Close"
                         Height="34"
                         HorizontalAlignment="Right"
                         Width="110"
@@ -120,7 +120,7 @@
                         Foreground="{DynamicResource SettingsFg}"
                         BorderThickness="0"
                         Cursor="Hand"
-                        AutomationProperties.Name="English text"/>
+                        AutomationProperties.Name="Close switch scan settings"/>
             </StackPanel>
         </ScrollViewer>
     </Border>

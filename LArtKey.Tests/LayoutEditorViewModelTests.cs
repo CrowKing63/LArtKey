@@ -44,11 +44,11 @@ public class LayoutEditorViewModelTests
             var vm = new LayoutEditorViewModel(repo, new ConfigService());
             vm.LoadLayout("shared-row");
 
-            Assert.Equal("English text", vm.Columns[0].Rows[0].HeightPresetLabel);
-            Assert.Equal("English text", vm.Columns[1].Rows[0].HeightPresetLabel);
+            Assert.Equal("Compact", vm.Columns[0].Rows[0].HeightPresetLabel);
+            Assert.Equal("Compact", vm.Columns[1].Rows[0].HeightPresetLabel);
             Assert.Equal(EditableKeySlotVm.CompactHeightRatio, vm.Columns[0].Rows[0].Keys[0].EditHeight);
             Assert.Equal(EditableKeySlotVm.CompactHeightRatio, vm.Columns[1].Rows[0].Keys[0].EditHeight);
-            Assert.Equal("English text", vm.Columns[0].Rows[1].HeightPresetLabel);
+            Assert.Equal("Default", vm.Columns[0].Rows[1].HeightPresetLabel);
         });
     }
 

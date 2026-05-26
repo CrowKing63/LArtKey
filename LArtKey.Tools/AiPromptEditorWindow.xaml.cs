@@ -7,8 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 namespace LArtKey.Tools;
 
 /// <summary>
-/// [English text] AI English text.
-/// [English text] English text.
+/// [text] AI tool.
+/// [text] text.
 /// </summary>
 public partial class AiPromptEditorWindow : Window, INotifyPropertyChanged
 {
@@ -44,7 +44,7 @@ public partial class AiPromptEditorWindow : Window, INotifyPropertyChanged
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void LoadFromConfig()
     {
@@ -52,7 +52,7 @@ public partial class AiPromptEditorWindow : Window, INotifyPropertyChanged
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void OnSave(object sender, RoutedEventArgs e)
     {
@@ -62,8 +62,8 @@ public partial class AiPromptEditorWindow : Window, INotifyPropertyChanged
         ToolsReloadSignalService.NotifyReloadAiSettings();
 
         MessageBox.Show(
-            "AI English text.",
-            "AI English text",
+            "AI prompt saved.",
+            "AI prompt",
             MessageBoxButton.OK,
             MessageBoxImage.Information);
     }

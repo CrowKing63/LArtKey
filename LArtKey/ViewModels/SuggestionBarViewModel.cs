@@ -31,13 +31,13 @@ public partial class SuggestionBarViewModel : ObservableObject
     [ObservableProperty]
     private bool hasCurrentWord;
 
-    // [English text][L3] English text.
+    // [text][L3] text.
     [ObservableProperty]
     private ObservableCollection<ScanTargetVm> scanTargets = [];
     [ObservableProperty]
     private ObservableCollection<ScanTargetVm> suggestionScanTargets = [];
 
-    // [English text][L3] English text.
+    // [text][L3] text.
     public event Action? ScanTargetsChanged;
 
     public SuggestionBarViewModel(

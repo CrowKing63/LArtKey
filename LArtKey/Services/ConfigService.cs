@@ -7,8 +7,8 @@ using LArtKey.Models;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public class ConfigService
 {
@@ -17,22 +17,22 @@ public class ConfigService
     private const string CurrentDefaultLayoutName = "Basic";
     private const string CurrentDefaultLayoutPlusName = "Basic Plus";
 
-    /// <summary>English text.</summary>
+    /// <summary>text.</summary>
     public AppConfig Current { get; private set; } = new();
 
-    /// <summary>English text.</summary>
-    /// <param name="propertyName">English text.</param>
+    /// <summary>text.</summary>
+    /// <param name="propertyName">text.</param>
     public event Action<string?>? ConfigChanged;
 
     public ConfigService()
     {
-        // English text.
+        // text.
         Directory.CreateDirectory(Path.GetDirectoryName(PathResolver.ConfigPath)!);
         Load();
     }
 
     /// <summary>
-    /// config.jsonEnglish text.
+    /// config.jsontext.
     /// </summary>
     public void Load()
     {
@@ -50,7 +50,7 @@ public class ConfigService
             MigrateWindowConfig(json);
             MigrateLegacyLayoutNames();
 
-            // English text.
+            // text.
             Current.HeaderButtons ??= [];
             if (Current.HeaderButtons.Count == 0)
             {
@@ -71,7 +71,7 @@ public class ConfigService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void ReloadFromDiskAndNotify(string? propertyName = null)
     {
@@ -80,7 +80,7 @@ public class ConfigService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void MigrateWindowConfig(string json)
     {
@@ -103,7 +103,7 @@ public class ConfigService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void MigrateLegacyLayoutNames()
     {
@@ -120,7 +120,7 @@ public class ConfigService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static string MigrateLegacyLayoutName(string? layoutName)
     {
@@ -133,7 +133,7 @@ public class ConfigService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private bool NormalizeHeaderButtons()
     {
@@ -169,14 +169,14 @@ public class ConfigService
                 changed = true;
             }
 
-            var iconText = string.IsNullOrWhiteSpace(button.IconText) ? "English text" : button.IconText.Trim();
+            var iconText = string.IsNullOrWhiteSpace(button.IconText) ? "A" : button.IconText.Trim();
             if (button.IconText != iconText)
             {
                 button.IconText = iconText;
                 changed = true;
             }
 
-            var tooltip = string.IsNullOrWhiteSpace(button.Tooltip) ? "English text" : button.Tooltip.Trim();
+            var tooltip = string.IsNullOrWhiteSpace(button.Tooltip) ? "Custom shortcut" : button.Tooltip.Trim();
             if (button.Tooltip != tooltip)
             {
                 button.Tooltip = tooltip;
@@ -197,7 +197,7 @@ public class ConfigService
             }
         }
 
-        // English text.
+        // text.
         var visibleLeft = 0;
         var visibleRight = 0;
         foreach (var button in Current.HeaderButtons)
@@ -232,7 +232,7 @@ public class ConfigService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void Save()
     {
@@ -254,7 +254,7 @@ public class ConfigService
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void Update(Action<AppConfig> updater, string? propertyName = null)
     {

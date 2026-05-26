@@ -14,105 +14,105 @@ public enum HeaderButtonDisplayMode
 }
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public class HeaderButtonConfig
 {
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public const int MaxCustomButtonCount = 10;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public const int MaxVisibleButtonsLeft = 8;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public const int MaxVisibleButtonsRight = 8;
 
     /// <summary>
-    /// English text "custom-..." English text.
+    /// text "custom-..." text.
     /// </summary>
     public string Id { get; set; } = "";
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public HeaderButtonKind Kind { get; set; } = HeaderButtonKind.BuiltIn;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public bool Visible { get; set; } = true;
 
     /// <summary>
-    /// English text. "Left" English text "Right"English text.
+    /// text. "Left" text "Right"text.
     /// </summary>
     public string Position { get; set; } = "Right";
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public HeaderButtonDisplayMode DisplayMode { get; set; } = HeaderButtonDisplayMode.IconOnly;
 
     /// <summary>
-    /// English text: "English text", "English text", "📌"
+    /// text: "Custom shortcut", "Custom shortcut", "📌"
     /// </summary>
     public string IconText { get; set; } = "";
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public string Tooltip { get; set; } = "";
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public string AccessibleName { get; set; } = "";
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public KeyAction? CustomAction { get; set; }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [JsonIgnore]
     public string DisplayName => Kind == HeaderButtonKind.BuiltIn
         ? GetDisplayName(Id)
-        : (string.IsNullOrWhiteSpace(Tooltip) ? "English text" : Tooltip);
+        : (string.IsNullOrWhiteSpace(Tooltip) ? "Custom shortcut" : Tooltip);
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [JsonIgnore]
     public string EffectiveIconText => Kind == HeaderButtonKind.BuiltIn
         ? GetBuiltInIconText(Id)
-        : (string.IsNullOrWhiteSpace(IconText) ? "English text" : IconText);
+        : (string.IsNullOrWhiteSpace(IconText) ? "Custom shortcut" : IconText);
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [JsonIgnore]
     public string EffectiveTooltip => Kind == HeaderButtonKind.BuiltIn
         ? GetBuiltInTooltip(Id)
-        : (string.IsNullOrWhiteSpace(Tooltip) ? "English text" : Tooltip);
+        : (string.IsNullOrWhiteSpace(Tooltip) ? "Custom shortcut" : Tooltip);
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [JsonIgnore]
     public string EffectiveAccessibleName => Kind == HeaderButtonKind.BuiltIn
         ? GetBuiltInAccessibleName(Id)
         : (string.IsNullOrWhiteSpace(AccessibleName) ? EffectiveTooltip : AccessibleName);
 
-    // ── English text ─────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────
     public const string IdClipboard = "Clipboard";
     public const string IdEmoji = "Emoji";
     public const string IdAutoComplete = "AutoComplete";
@@ -122,7 +122,7 @@ public class HeaderButtonConfig
     public const string IdAi = "Ai";
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static List<HeaderButtonConfig> CreateDefaults() =>
     [
@@ -145,7 +145,7 @@ public class HeaderButtonConfig
     };
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static HeaderButtonConfig CreateCustomDefault() => new()
     {
@@ -154,9 +154,9 @@ public class HeaderButtonConfig
         Visible = true,
         Position = "Right",
         DisplayMode = HeaderButtonDisplayMode.IconOnly,
-        IconText = "English text",
-        Tooltip = "English text",
-        AccessibleName = "English text",
+        IconText = "A",
+        Tooltip = "Custom shortcut",
+        AccessibleName = "Custom shortcut",
         CustomAction = new SendKeyAction("VK_A")
     };
 
@@ -165,22 +165,22 @@ public class HeaderButtonConfig
 
     public static string GetDisplayName(string id) => id switch
     {
-        IdClipboard => "English text",
-        IdEmoji => "English text",
-        IdAutoComplete => "English text",
-        IdOsIme => "OS IME English text",
-        IdOsk => "English text",
-        IdSettings => "English text",
+        IdClipboard => "Clipboard",
+        IdEmoji => "Emoji",
+        IdAutoComplete => "Prediction",
+        IdOsIme => "OS input language",
+        IdOsk => "Windows on-screen keyboard",
+        IdSettings => "Settings",
         IdAi => "AI",
-        _ => "English text"
+        _ => "Custom shortcut"
     };
 
     public static string GetBuiltInIconText(string id) => id switch
     {
         IdClipboard => "📋",
         IdEmoji => "😊",
-        IdAutoComplete => "English text",
-        IdOsIme => "English text",
+        IdAutoComplete => "ABC",
+        IdOsIme => "IME",
         IdOsk => "⌨",
         IdSettings => "⚙",
         IdAi => "✨",
@@ -189,25 +189,25 @@ public class HeaderButtonConfig
 
     public static string GetBuiltInTooltip(string id) => id switch
     {
-        IdClipboard => "English text",
-        IdEmoji => "English text",
-        IdAutoComplete => "English text",
-        IdOsIme => "OS IME English text",
-        IdOsk => "English text",
-        IdSettings => "English text",
-        IdAi => "AI English text",
+        IdClipboard => "Open clipboard history",
+        IdEmoji => "Open emoji panel",
+        IdAutoComplete => "Toggle prediction",
+        IdOsIme => "Switch OS input language",
+        IdOsk => "Open Windows on-screen keyboard",
+        IdSettings => "Open settings",
+        IdAi => "Run AI tool",
         _ => GetDisplayName(id)
     };
 
     public static string GetBuiltInAccessibleName(string id) => id switch
     {
-        IdClipboard => "English text",
-        IdEmoji => "English text",
-        IdAutoComplete => "English text",
-        IdOsIme => "OS IME English text",
-        IdOsk => "English text",
-        IdSettings => "English text",
-        IdAi => "AI English text",
+        IdClipboard => "Clipboard button",
+        IdEmoji => "Emoji button",
+        IdAutoComplete => "Prediction toggle button",
+        IdOsIme => "OS input language button",
+        IdOsk => "Windows on-screen keyboard button",
+        IdSettings => "Settings button",
+        IdAi => "AI tool button",
         _ => GetDisplayName(id)
     };
 
@@ -215,13 +215,13 @@ public class HeaderButtonConfig
         string.Equals(position, "Left", StringComparison.OrdinalIgnoreCase) ? "Left" : "Right";
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static int GetMaxVisibleButtons(string? position) =>
         NormalizePosition(position) == "Left" ? MaxVisibleButtonsLeft : MaxVisibleButtonsRight;
 
     /// <summary>
-    /// English text, "English text"English text "English text" English text.
+    /// text, "Custom shortcut"text "Custom shortcut" text.
     /// </summary>
     public static int CountCustomButtons(IEnumerable<HeaderButtonConfig> buttons, string? excludingId = null) =>
         buttons.Count(button =>
@@ -229,7 +229,7 @@ public class HeaderButtonConfig
             && !string.Equals(button.Id, excludingId, StringComparison.Ordinal));
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static int CountVisibleButtons(IEnumerable<HeaderButtonConfig> buttons, string? position, string? excludingId = null)
     {

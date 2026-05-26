@@ -35,7 +35,7 @@
                                 <ScaleTransform x:Name="Scale"/>
                             </Border.RenderTransform>
                             <Grid>
-                                <!-- English text -->
+                                <!-- text -->
                                 <TextBlock x:Name="SubLabelText"
                                            Text="{Binding RelativeSource={RelativeSource TemplatedParent},
                                                           Path=SubLabel}"
@@ -59,7 +59,7 @@
                                            TextAlignment="Center"
                                            IsHitTestVisible="False"
                                            AutomationProperties.Name=""/>
-                                <!-- L2: Locked English text) -->
+                                <!-- L2: Locked text) -->
                                 <TextBlock x:Name="LockIcon"
                                            Text="🔒"
                                            FontSize="9"
@@ -69,7 +69,7 @@
                                            Visibility="Collapsed"
                                            IsHitTestVisible="False"
                                            AutomationProperties.Name=""/>
-                                <!-- L2: Sticky English text "S" English text -->
+                                <!-- L2: Sticky text "S" text -->
                                 <TextBlock x:Name="StickyBadge"
                                            Text="S"
                                            FontSize="9"
@@ -81,7 +81,7 @@
                                            Visibility="Collapsed"
                                            IsHitTestVisible="False"
                                            AutomationProperties.Name=""/>
-                                <!-- Fn English text. -->
+                                <!-- Fn layer. -->
                                 <TextBlock x:Name="FunctionBadge"
                                            Text="Fn"
                                            FontSize="8"
@@ -105,7 +105,7 @@
                             </Grid>
                         </Border>
 
-                        <!-- L2: Sticky English text) -->
+                        <!-- L2: Sticky text) -->
                         <Rectangle x:Name="StickyDashBorder"
                                    Stroke="{DynamicResource KeyFgSticky}"
                                    StrokeDashArray="2,2"
@@ -127,7 +127,7 @@
                                    IsHitTestVisible="False"
                                    SnapsToDevicePixels="True"/>
 
-                        <!-- T-5.2: English text -->
+                        <!-- T-5.2: text -->
                         <Ellipse x:Name="DwellRing"
                                  Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
                                  Height="{Binding ActualHeight, RelativeSource={RelativeSource TemplatedParent}}"
@@ -144,7 +144,7 @@
                                  IsHitTestVisible="False"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <!-- L2: Hover — English text -->
+                        <!-- L2: Hover — text -->
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Root" Property="Background"
                                     Value="{DynamicResource KeyBgHover}"/>
@@ -180,7 +180,7 @@
                             </MultiTrigger.ExitActions>
                         </MultiTrigger>
 
-                        <!-- L2: Pressed — English text -->
+                        <!-- L2: Pressed — text -->
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="Root" Property="Background"
                                     Value="{DynamicResource KeyBgPressed}"/>
@@ -221,7 +221,7 @@
                             <Setter Property="Foreground" Value="#FF555555"/>
                         </Trigger>
 
-                        <!-- L1: English text -->
+                        <!-- L1: text -->
                         <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="Root" Property="BorderBrush"
                                     Value="{DynamicResource AccentBrush}"/>
@@ -236,8 +236,8 @@
                                     Value="3"/>
                         </Trigger>
 
-                        <!-- L2/T-4.7: Sticky English text) — English text -->
-                        <!-- English text. -->
+                        <!-- L2/T-4.7: Sticky text) — text -->
+                        <!-- text. -->
                         <DataTrigger Binding="{Binding HasSoftAccentStyle}" Value="True">
                             <Setter TargetName="Root" Property="Background"
                                     Value="{DynamicResource KeyBgAccent}"/>
@@ -273,7 +273,7 @@
                                     Value="Visible"/>
                         </Trigger>
 
-                        <!-- L2/T-4.7: Locked English text) — English text -->
+                        <!-- L2/T-4.7: Locked text) — text -->
                         <Trigger Property="controls:KeyButton.IsLocked" Value="True">
                             <Setter TargetName="Root" Property="Background"
                                     Value="{DynamicResource KeyBgSticky}"/>
@@ -319,7 +319,7 @@
                                     Value="Visible"/>
                         </MultiTrigger>
 
-                        <!-- 07: English text -->
+                        <!-- 07: text -->
                         <DataTrigger Binding="{Binding Slot.IsInputModeToggle, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
                             <Setter TargetName="Root" Property="Background"
                                     Value="{DynamicResource AccentBrush}"/>

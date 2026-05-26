@@ -10,8 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 namespace LArtKey.Controls;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public class KeyButton : System.Windows.Controls.Button
 {
@@ -29,45 +29,45 @@ public class KeyButton : System.Windows.Controls.Button
             new FrameworkPropertyMetadata(typeof(KeyButton)));
     }
 
-    // ── Dependency Properties (WPF UIEnglish text) ────────────────────────
+    // ── Dependency Properties (WPF UItext) ────────────────────────
 
-    // English text.
+    // text.
     public static readonly DependencyProperty SlotProperty =
         DependencyProperty.Register(
             nameof(Slot), typeof(KeySlotVm), typeof(KeyButton),
             new PropertyMetadata(null, OnSlotChanged));
 
-    // Shift English text.
+    // Shift text.
     public static readonly DependencyProperty ShowUpperCaseProperty =
         DependencyProperty.Register(
             nameof(ShowUpperCase), typeof(bool), typeof(KeyButton),
             new PropertyMetadata(false, OnShowUpperCaseChanged));
 
-    // English text.
+    // text.
     public static readonly DependencyProperty SubLabelProperty =
         DependencyProperty.Register(
             nameof(SubLabel), typeof(string), typeof(KeyButton),
             new PropertyMetadata(""));
 
-    // English text.
+    // text.
     public static readonly DependencyProperty DisplayLabelProperty =
         DependencyProperty.Register(
             nameof(DisplayLabel), typeof(string), typeof(KeyButton),
             new PropertyMetadata("", OnDisplayLabelChanged));
 
-    // English text.
+    // text.
     public static readonly DependencyProperty IsDimmedProperty =
         DependencyProperty.Register(
             nameof(IsDimmed), typeof(bool), typeof(KeyButton),
             new PropertyMetadata(false, OnIsDimmedChanged));
 
-    // Shift/Ctrl English text 'English text'English text.
+    // Shift/Ctrl text 'text'text.
     public static readonly DependencyProperty IsStickyProperty =
         DependencyProperty.Register(
             nameof(IsSticky), typeof(bool), typeof(KeyButton),
             new PropertyMetadata(false));
 
-    // Caps Lock English text 'English text'English text.
+    // Caps Lock text 'text'text.
     public static readonly DependencyProperty IsLockedProperty =
         DependencyProperty.Register(
             nameof(IsLocked), typeof(bool), typeof(KeyButton),
@@ -88,67 +88,67 @@ public class KeyButton : System.Windows.Controls.Button
             nameof(HasFunctionLayerAccent), typeof(bool), typeof(KeyButton),
             new PropertyMetadata(false));
 
-    // English text.
+    // text.
     public static readonly DependencyProperty KeyUnitProperty =
         DependencyProperty.Register(
             nameof(KeyUnit), typeof(double), typeof(KeyButton),
             new PropertyMetadata(48.0, OnKeyUnitChanged));
 
-    // [English text] English text.
+    // [text] text.
     public static readonly DependencyProperty DwellEnabledProperty =
         DependencyProperty.Register(
             nameof(DwellEnabled), typeof(bool), typeof(KeyButton),
             new PropertyMetadata(false));
 
-    // English text.
+    // text.
     public static readonly DependencyProperty DwellTimeProperty =
         DependencyProperty.Register(
             nameof(DwellTime), typeof(int), typeof(KeyButton),
             new PropertyMetadata(800));
 
-    // English text (0.0 ~ 1.0). English text.
+    // text (0.0 ~ 1.0). text.
     public static readonly DependencyProperty DwellProgressProperty =
         DependencyProperty.Register(
             nameof(DwellProgress), typeof(double), typeof(KeyButton),
             new PropertyMetadata(0.0));
 
-    // English text.
+    // text.
     public static readonly DependencyProperty KeyRepeatEnabledProperty =
         DependencyProperty.Register(
             nameof(KeyRepeatEnabled), typeof(bool), typeof(KeyButton),
             new PropertyMetadata(false));
 
-    // English text.
+    // text.
     public static readonly DependencyProperty KeyRepeatDelayMsProperty =
         DependencyProperty.Register(
             nameof(KeyRepeatDelayMs), typeof(int), typeof(KeyButton),
             new PropertyMetadata(300));
 
-    // English text.
+    // text.
     public static readonly DependencyProperty KeyRepeatIntervalMsProperty =
         DependencyProperty.Register(
             nameof(KeyRepeatIntervalMs), typeof(int), typeof(KeyButton),
             new PropertyMetadata(50));
 
-    // [English text] English text.
+    // [text] text.
     public static readonly DependencyProperty KeyboardA11yNavigationEnabledProperty =
         DependencyProperty.Register(
             nameof(KeyboardA11yNavigationEnabled), typeof(bool), typeof(KeyButton),
             new PropertyMetadata(false, OnKeyboardA11yNavigationEnabledChanged));
 
-    // English text.
+    // text.
     public static readonly DependencyProperty IsA11yFocusedProperty =
         DependencyProperty.Register(
             nameof(IsA11yFocused), typeof(bool), typeof(KeyButton),
             new PropertyMetadata(false));
 
-    // [English text][L2] English text.
+    // [text][L2] text.
     public static readonly DependencyProperty ReducedMotionEnabledProperty =
         DependencyProperty.Register(
             nameof(ReducedMotionEnabled), typeof(bool), typeof(KeyButton),
             new PropertyMetadata(false));
 
-    // [English text][L2] English text.
+    // [text][L2] text.
     public static readonly DependencyProperty TtsOnHoverProperty =
         DependencyProperty.Register(
             nameof(TtsOnHover), typeof(bool), typeof(KeyButton),
@@ -282,12 +282,12 @@ public class KeyButton : System.Windows.Controls.Button
         set => SetValue(TtsOnHoverProperty, value);
     }
 
-    // ── English text ─────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────
 
     private DispatcherTimer? _dwellTimer;
     private DateTime         _dwellStart;
 
-    // T-10: English text
+    // T-10: text
     private DispatcherTimer? _repeatDelayTimer;
     private DispatcherTimer? _repeatTimer;
     private bool _isRepeating;
@@ -347,7 +347,7 @@ public class KeyButton : System.Windows.Controls.Button
     {
         base.OnMouseEnter(e);
 
-        // L2: English text)
+        // L2: text)
         if (TtsOnHover && !string.IsNullOrWhiteSpace(DisplayLabel))
         {
             try
@@ -356,7 +356,7 @@ public class KeyButton : System.Windows.Controls.Button
             }
             catch
             {
-                // TTS English text
+                // TTS text
             }
         }
 
@@ -391,7 +391,7 @@ public class KeyButton : System.Windows.Controls.Button
             e.Handled = true;
             CancelRepeat();
             _isRepeating = false;
-            // English text.
+            // text.
             _suppressNextClick = true;
             StartHoldGestureIfNeeded();
             ExecuteKeyPress();
@@ -449,7 +449,7 @@ public class KeyButton : System.Windows.Controls.Button
     {
         base.OnMouseMove(e);
 
-        // English text "English text"English text.
+        // text "text"text.
         if (!IsMouseCaptured)
             return;
 
@@ -477,7 +477,7 @@ public class KeyButton : System.Windows.Controls.Button
         if (policy == RepeatPolicy.Disabled)
             return;
 
-        // English text.
+        // text.
         if (ShouldCancelCompositionOnRepeatStart(policy, TryGetVirtualKey(action)))
         {
             App.Services?.GetService<AutoCompleteService>()?.CancelComposition();
@@ -509,7 +509,7 @@ public class KeyButton : System.Windows.Controls.Button
     }
 
     /// <summary>
-    /// English text 'English text' English text.
+    /// text 'text' text.
     /// </summary>
     private void ExecuteKeyPress()
     {
@@ -520,7 +520,7 @@ public class KeyButton : System.Windows.Controls.Button
     }
 
     /// <summary>
-    /// English text "English text"English text.
+    /// text "text"text.
     /// </summary>
     private void StartHoldGestureIfNeeded()
     {
@@ -537,7 +537,7 @@ public class KeyButton : System.Windows.Controls.Button
     }
 
     /// <summary>
-    /// Command English text.
+    /// Command text.
     /// </summary>
     private void FinalizePressDispatch()
     {
@@ -566,7 +566,7 @@ public class KeyButton : System.Windows.Controls.Button
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void ReleaseHeldKey(string reason)
     {
@@ -618,7 +618,7 @@ public class KeyButton : System.Windows.Controls.Button
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void ResetTransientGestureState(string reason)
     {
@@ -636,20 +636,20 @@ public class KeyButton : System.Windows.Controls.Button
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static bool IsUnicodeHeldRepeatKey(VirtualKeyCode vk) => vk is
-        // English text
+        // text
         VirtualKeyCode.VK_BACK or VirtualKeyCode.VK_DELETE or
-        // English text
+        // text
         VirtualKeyCode.VK_LEFT or VirtualKeyCode.VK_RIGHT or
         VirtualKeyCode.VK_UP or VirtualKeyCode.VK_DOWN or
-        // English text
+        // text
         VirtualKeyCode.VK_HOME or VirtualKeyCode.VK_END or
         VirtualKeyCode.VK_PRIOR or VirtualKeyCode.VK_NEXT;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private KeyAction? ResolveRepeatAction()
     {
@@ -664,7 +664,7 @@ public class KeyButton : System.Windows.Controls.Button
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private VirtualKeyCode? TryGetHoldableVirtualKey()
     {
@@ -722,7 +722,7 @@ public class KeyButton : System.Windows.Controls.Button
         var elapsed = (DateTime.UtcNow - _dwellStart).TotalMilliseconds;
         DwellProgress = elapsed / DwellTime; // 0.0 ~ 1.0
 
-        if (elapsed >= 100) // 100msEnglish text
+        if (elapsed >= 100) // 100mstext
             System.Diagnostics.Debug.WriteLine($"[KeyButton] Dwell progress: {DwellProgress:P0}");
 
         if (elapsed >= DwellTime)
@@ -730,7 +730,7 @@ public class KeyButton : System.Windows.Controls.Button
             System.Diagnostics.Debug.WriteLine($"[KeyButton] DWELL CLICK - Slot={Slot?.Slot.Label}");
             CancelDwell();
             
-            // Command English text)
+            // Command text)
             if (Command?.CanExecute(CommandParameter) == true)
             {
                 System.Diagnostics.Debug.WriteLine($"[KeyButton] Executing command...");
@@ -749,7 +749,7 @@ public class KeyButton : System.Windows.Controls.Button
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private bool IsPointerWithinButton(System.Windows.Input.MouseEventArgs e)
     {
@@ -760,14 +760,14 @@ public class KeyButton : System.Windows.Controls.Button
             && point.Y <= ActualHeight;
     }
 
-    // ── English text ────────────────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────────────────
 
     private static void OnSlotChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is not KeyButton kb || e.NewValue is not KeySlotVm slot) return;
         kb.UpdateSize();
         kb.UpdateLabel();
-        // English text: style_keyEnglish text.
+        // text: style_keytext.
         ToolTipService.SetToolTip(kb, null);
     }
 
@@ -781,7 +781,7 @@ public class KeyButton : System.Windows.Controls.Button
     {
         if (Slot is null) return;
         Slot.RefreshDisplay();
-        // XAML English text
+        // XAML text
         SetCurrentValue(DisplayLabelProperty, Slot.DisplayLabel);
         SetCurrentValue(SubLabelProperty, Slot.GetSubLabel(ShowUpperCase));
     }
@@ -815,7 +815,7 @@ public class KeyButton : System.Windows.Controls.Button
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void UpdateSize()
     {

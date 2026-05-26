@@ -1,6 +1,6 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- English text. -->
+    <!-- text. -->
     <Style TargetType="TabControl">
         <Setter Property="Background" Value="{DynamicResource SettingsBg}"/>
         <Setter Property="Foreground" Value="{DynamicResource SettingsFg}"/>
@@ -14,7 +14,7 @@
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="{DynamicResource SettingsBg}"/>
-                <!-- English text. -->
+                <!-- text. -->
                 <Setter Property="Foreground" Value="Black"/>
             </Trigger>
         </Style.Triggers>
@@ -42,7 +42,7 @@
 
     <Style TargetType="ComboBox">
         <Setter Property="Background" Value="{DynamicResource SettingsHighlight}"/>
-        <!-- English text. -->
+        <!-- text. -->
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="TextElement.Foreground" Value="Black"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SettingsBorder}"/>
@@ -60,7 +60,7 @@
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
-                <!-- English text. -->
+                <!-- text. -->
                 <Setter Property="Foreground" Value="Black"/>
             </Trigger>
         </Style.Triggers>

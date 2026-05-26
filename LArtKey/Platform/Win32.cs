@@ -4,14 +4,14 @@ namespace LArtKey.Platform;
 
 internal static class Win32
 {
-    // English text
+    // text
     public const int GWL_EXSTYLE = -20;
     public const int WS_EX_NOACTIVATE = 0x08000000;
     public const int WS_EX_TOOLWINDOW = 0x00000080;
     public const int WS_EX_LAYERED = 0x00080000;
     public const int WS_EX_TOPMOST_VAL = 0x00000008;
 
-    // SetWindowPos English text
+    // SetWindowPos text
     public static readonly IntPtr HWND_TOPMOST = new(-1);
     public static readonly IntPtr HWND_NOTOPMOST = new(-2);
     public const uint SWP_NOMOVE = 0x0002;
@@ -32,25 +32,25 @@ internal static class Win32
     public static extern bool SetLayeredWindowAttributes(
         IntPtr hWnd, uint crKey, byte bAlpha, uint dwFlags);
 
-    // SendInput (Phase 2English text)
+    // SendInput (Phase 2text)
     [DllImport("user32.dll", SetLastError = true)]
     public static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
 
-    // English text(VK_*)English text.
+    // text(VK_*)text.
     [DllImport("user32.dll")]
     public static extern uint MapVirtualKey(uint uCode, uint uMapType);
 
     [DllImport("user32.dll")]
     public static extern short GetKeyState(int nVirtKey);
 
-    // RegisterHotKey (Phase 5English text)
+    // RegisterHotKey (Phase 5text)
     [DllImport("user32.dll")]
     public static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
 
     [DllImport("user32.dll")]
     public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-    // WinEventHook (Phase 5English text)
+    // WinEventHook (Phase 5text)
     public delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType,
         IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
 
@@ -62,21 +62,21 @@ internal static class Win32
     [DllImport("user32.dll")]
     public static extern bool UnhookWinEvent(IntPtr hWinEventHook);
 
-    // English text)
+    // text)
     [DllImport("user32.dll")]
     public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
     [DllImport("user32.dll")]
     public static extern IntPtr GetForegroundWindow();
 
-    /// <summary>English text)</summary>
+    /// <summary>text)</summary>
     [DllImport("user32.dll")]
     public static extern bool SetForegroundWindow(IntPtr hWnd);
 
     [DllImport("user32.dll")]
     public static extern bool IsWindow(IntPtr hWnd);
 
-    // T-2.10b: English text
+    // T-2.10b: text
     [DllImport("kernel32.dll")]
     public static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
 
@@ -102,7 +102,7 @@ internal static class Win32
 
     public const uint PROCESS_QUERY_INFORMATION = 0x0400;
     public const uint TOKEN_QUERY = 0x0008;
-    public const int SECURITY_MANDATORY_MEDIUM_RID = 0x2000; // English text
+    public const int SECURITY_MANDATORY_MEDIUM_RID = 0x2000; // text
 
     public enum TOKEN_INFORMATION_CLASS
     {
@@ -138,7 +138,7 @@ internal static class Win32
         public uint Attributes;
     }
 
-    // ── English text (WH_KEYBOARD_LL) ────────────────────────────
+    // ── text (WH_KEYBOARD_LL) ────────────────────────────
     public const int WH_KEYBOARD_LL  = 13;
     public const int WM_KEYDOWN      = 0x0100;
     public const int WM_KEYUP        = 0x0101;
@@ -167,12 +167,12 @@ internal static class Win32
         public IntPtr dwExtraInfo;
     }
 
-    // Acrylic English text)
+    // Acrylic text)
     [DllImport("user32.dll")]
     public static extern int SetWindowCompositionAttribute(
         IntPtr hwnd, ref WindowCompositionAttribData data);
 
-    // INPUT English text)
+    // INPUT text)
     [StructLayout(LayoutKind.Sequential)]
     public struct INPUT
     {
@@ -254,7 +254,7 @@ internal static class Win32
     public const uint LWA_ALPHA = 0x00000002;
     public const uint LWA_COLORKEY = 0x00000001;
 
-    // English text (Phase 2)
+    // text (Phase 2)
     public const uint INPUT_KEYBOARD = 1;
     public const uint KEYEVENTF_KEYUP       = 0x0002;
     public const uint KEYEVENTF_UNICODE     = 0x0004;
@@ -264,6 +264,6 @@ internal static class Win32
 
     public const int ERROR_ACCESS_DENIED = 5;
 
-    // LArtKeyEnglish text
+    // LArtKeytext
     public const ulong INPUT_EXTRAINFO_ALTKEY = 0xA17A11UL;
 }

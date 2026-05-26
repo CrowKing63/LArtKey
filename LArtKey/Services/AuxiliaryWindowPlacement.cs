@@ -3,21 +3,21 @@ using System.Windows;
 namespace LArtKey.Services;
 
 /// <summary>
-/// English text.
+/// text.
 /// </summary>
 public static class AuxiliaryWindowPlacement
 {
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static void CenterOnScreen(Window window)
     {
-        // English text.
+        // text.
         window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static void CenterNear(Window window, Window? reference)
     {

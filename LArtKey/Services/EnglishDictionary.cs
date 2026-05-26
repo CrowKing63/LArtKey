@@ -43,21 +43,21 @@ public class EnglishDictionary
         return [..userSuggestions, ..builtInSuggestions];
     }
 
-    /// English text)
+    /// text)
     public void RecordWord(string word)
     {
         if (word.Length < 2) return;
         _userStore.RecordWord(word.ToLowerInvariant());
     }
 
-    /// English text).
+    /// text).
     public bool TryRemoveUserWord(string word)
     {
         if (string.IsNullOrWhiteSpace(word)) return false;
         return _userStore.RemoveWord(word.Trim().ToLowerInvariant());
     }
 
-    /// (prev, next) English text.
+    /// (prev, next) text.
     public void RecordBigram(string prevWord, string nextWord)
     {
         if (string.IsNullOrWhiteSpace(prevWord) || string.IsNullOrWhiteSpace(nextWord)) return;
@@ -67,7 +67,7 @@ public class EnglishDictionary
             nextWord.ToLowerInvariant().Trim());
     }
 
-    /// English text.
+    /// text.
     public IReadOnlyList<string> GetSuggestions(string prefix, string? prevWord, int count = 20)
     {
         var baseList = GetSuggestions(prefix, count);
@@ -81,7 +81,7 @@ public class EnglishDictionary
         for (int i = 0; i < baseList.Count; i++)
             baseIndex[baseList[i]] = i;
 
-        // English text.
+        // text.
         int maxNewInserts = string.IsNullOrEmpty(prefix) ? count : count / 2;
         int newInserts = 0;
 
@@ -113,11 +113,11 @@ public class EnglishDictionary
             .ToList();
     }
 
-    /// English text.
+    /// text.
     public bool TryRemoveBigramPair(string prev, string next) =>
         _bigramStore.RemovePair(prev.ToLowerInvariant(), next.ToLowerInvariant());
 
-    /// English text — English text
+    /// text — text
     public void Flush()
     {
         _userStore.Flush();
@@ -125,12 +125,12 @@ public class EnglishDictionary
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void ReloadUserWords() => _userStore.ReloadFromDisk();
 
     /// <summary>
-    /// bigram English text.
+    /// bigram text.
     /// </summary>
     public void ReloadBigrams() => _bigramStore.ReloadFromDisk();
 

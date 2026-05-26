@@ -11,14 +11,14 @@ using System.Windows.Threading;
 
 namespace LArtKey.ViewModels;
 
-// ── English text VM ──────────────────────────────────────────────────
+// ── text VM ──────────────────────────────────────────────────
 
 public partial class EditableKeySlotVm : ObservableObject
 {
     public const double DefaultHeightRatio = 1.0;
     public const double CompactHeightRatio = 2.0 / 3.0;
 
-    // English text style_key English text.
+    // text style_key text.
     public const string SoftAccentStyleKey = "soft_accent";
 
     [ObservableProperty] private string  editLabel       = "";
@@ -44,16 +44,16 @@ public partial class EditableKeySlotVm : ObservableObject
     [ObservableProperty] private string? functionEnglishShiftLabel;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public bool SupportsAccentStyle => true;
 
     /// <summary>
-    /// Fn English text.
+    /// Fn layer.
     /// </summary>
     public bool CanEditFunctionOverrides => EditAction is not ToggleFunctionLayerAction;
 
-    /// English text
+    /// text
     public KeySlot ToKeySlot() =>
         new(EditLabel, EditShiftLabel, EditAction, EditWidth, EditHeight,
             UseSoftAccentStyle ? SoftAccentStyleKey : "", EditGapBefore, EnglishLabel, EnglishShiftLabel,
@@ -63,7 +63,7 @@ public partial class EditableKeySlotVm : ObservableObject
 
     partial void OnEditActionChanged(KeyAction? value)
     {
-        // Fn English text.
+        // Fn layer.
         if (value is ToggleFunctionLayerAction)
         {
             FunctionAction = null;
@@ -92,7 +92,7 @@ public partial class EditableKeySlotVm : ObservableObject
     }
 }
 
-// ── English text VM ────────────────────────────────────────────────────
+// ── text VM ────────────────────────────────────────────────────
 
 public partial class EditableKeyRowVm : ObservableObject
 {
@@ -103,10 +103,10 @@ public partial class EditableKeyRowVm : ObservableObject
     private ObservableCollection<EditableKeySlotVm> keys = [];
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public string HeightPresetLabel =>
-        Math.Abs(HeightRatio - EditableKeySlotVm.CompactHeightRatio) < 0.001 ? "English text" : "English text";
+        Math.Abs(HeightRatio - EditableKeySlotVm.CompactHeightRatio) < 0.001 ? "Compact" : "Default";
 
     public void ApplyHeight(double heightRatio)
     {
@@ -119,7 +119,7 @@ public partial class EditableKeyRowVm : ObservableObject
     public KeyRow ToKeyRow() => new(Keys.Select(k => k.ToKeySlot()).ToList());
 }
 
-// ── English text VM ────────────────────────────────────────────────────────
+// ── text VM ────────────────────────────────────────────────────────
 
 public partial class EditableKeyColumnVm : ObservableObject
 {
@@ -151,7 +151,7 @@ public partial class LayoutEditorViewModel : ObservableObject
     private bool _isLoadingActionBuilder;
     private bool _isLoadingFunctionActionBuilder;
 
-    // ── VK → English text) ─────────────────────
+    // ── VK → text) ─────────────────────
     private static readonly Dictionary<string, (string Label, string? ShiftLabel, string? EnglishLabel)> VkLabelMap
         = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -171,7 +171,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         ["VK_M"] = ("ㅡ", null, "m"),
     };
 
-    // ── English text ────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsExistingLayout))]
     [NotifyPropertyChangedFor(nameof(CanDeleteLayout))]
@@ -185,33 +185,33 @@ public partial class LayoutEditorViewModel : ObservableObject
 
     partial void OnLayoutNameChanged(string value) => HandleWorkingCopyMutated();
 
-    /// English text)
+    /// text)
     public bool IsExistingLayout => !string.IsNullOrEmpty(CurrentFileName)
         && _layoutRepository.GetAvailableLayouts().Contains(CurrentFileName);
 
-    /// English text
+    /// text
     public bool CanDeleteLayout => IsExistingLayout
         && !string.Equals(CurrentFileName, _layoutRepository.DefaultLayoutName,
             StringComparison.OrdinalIgnoreCase);
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public string CurrentActiveLayoutName => _configService.Current.DefaultLayout;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public bool IsEditingCurrentLayout =>
         !string.IsNullOrWhiteSpace(CurrentFileName)
         && string.Equals(CurrentFileName, CurrentActiveLayoutName, StringComparison.OrdinalIgnoreCase);
 
-    // ── English text ────────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────────
     [ObservableProperty] private string layoutName = "";
 
     [ObservableProperty] private ObservableCollection<EditableKeyColumnVm> columns = [];
 
-    // ── English text ─────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasSelectedColumn))]
     private EditableKeyColumnVm? selectedColumn;
@@ -254,7 +254,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         }
     }
 
-    // ── English text ─────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────
     [ObservableProperty] private string statusMessage = "";
 
     [ObservableProperty]
@@ -264,22 +264,22 @@ public partial class LayoutEditorViewModel : ObservableObject
 
     public bool CanUndo => _undoStack.Count > 0;
 
-    // ── English text ──────────────────────────────────────────
+    // ── text ──────────────────────────────────────────
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CanMoveColumnContents))]
     private bool showColumnDeleteDialog = false;
 
     private EditableKeyColumnVm? _pendingDeleteColumn;
 
-    /// English text 'English text' English text
+    /// text 'text' text
     public bool CanMoveColumnContents =>
         _pendingDeleteColumn is not null && Columns.IndexOf(_pendingDeleteColumn) > 0;
 
-    // ── English text ActionBuilder ────────────────────────────────────────────────
+    // ── text ActionBuilder ────────────────────────────────────────────────
     public ActionBuilderViewModel ActionBuilder { get; } = new();
     public ActionBuilderViewModel FunctionActionBuilder { get; } = new();
 
-    // ── English text ────────────────────────────────────
+    // ── text ────────────────────────────────────
     [ObservableProperty]
     private ObservableCollection<string> availableLayouts = [];
 
@@ -318,7 +318,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         OnPropertyChanged(nameof(IsEditingCurrentLayout));
     }
 
-    // ── English text ──────────────────────────────────────────────────────
+    // ── text ──────────────────────────────────────────────────────
 
     [RelayCommand]
     public void LoadLayout(string fileName)
@@ -326,7 +326,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         var config = _layoutRepository.TryLoad(fileName);
         if (config is null) return;
         ApplySnapshot(new LayoutEditorSnapshot(fileName, CloneLayoutConfig(config)), resetUndoHistory: true);
-        StatusMessage  = $"'{config.Name}' English text";
+        StatusMessage  = $"'{config.Name}' loaded";
     }
 
     [RelayCommand]
@@ -336,15 +336,15 @@ public partial class LayoutEditorViewModel : ObservableObject
             LoadLayout(SelectedLayoutToLoad);
     }
 
-    // ── English text ─────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────
     [RelayCommand]
     private void NewLayout()
     {
-        ApplySnapshot(new LayoutEditorSnapshot("", new LayoutConfig("English text", null, [])), resetUndoHistory: true);
-        StatusMessage  = "English text";
+        ApplySnapshot(new LayoutEditorSnapshot("", new LayoutConfig("Custom shortcut", null, [])), resetUndoHistory: true);
+        StatusMessage  = "Custom shortcut";
     }
 
-    // ── SelectedKey English text ────────────────────────────
+    // ── SelectedKey text ────────────────────────────
     partial void OnSelectedKeyChanged(EditableKeySlotVm? oldValue, EditableKeySlotVm? newValue)
     {
         if (oldValue is not null) oldValue.IsSelected = false;
@@ -355,7 +355,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         OnPropertyChanged(nameof(CanMoveKeyRight));
     }
 
-    // ── English text ────────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────────
 
     [RelayCommand]
     public void SelectKey(EditableKeySlotVm slot)
@@ -363,7 +363,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         SelectedKey = slot;
     }
 
-    /// English text.
+    /// text.
     [RelayCommand]
     private void AutoFillBaseLabels()
     {
@@ -386,17 +386,17 @@ public partial class LayoutEditorViewModel : ObservableObject
                 SelectedKey.EnglishLabel = null;
                 SelectedKey.EnglishShiftLabel = null;
             },
-            "English text");
+            "Custom shortcut");
     }
 
-    /// English text.
+    /// text.
     [RelayCommand]
     private void AutoFillFunctionLabels()
     {
         if (SelectedKey is null) return;
         if (!SelectedKey.CanEditFunctionOverrides)
         {
-            StatusMessage = "Fn English text";
+            StatusMessage = "Fn layer";
             return;
         }
 
@@ -417,10 +417,10 @@ public partial class LayoutEditorViewModel : ObservableObject
                 SelectedKey.FunctionEnglishLabel = null;
                 SelectedKey.FunctionEnglishShiftLabel = null;
             },
-            "Fn English text");
+            "Fn layer");
     }
 
-    // ── English text ─────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────
 
     [RelayCommand]
     private void AddColumn()
@@ -429,13 +429,13 @@ public partial class LayoutEditorViewModel : ObservableObject
         Columns.Add(newColumn);
         NormalizeSharedRowHeights();
         SelectedColumn = newColumn;
-        StatusMessage = "English text";
+        StatusMessage = "Custom shortcut";
     }
 
     [RelayCommand]
     private void RequestRemoveColumn(EditableKeyColumnVm column)
     {
-        // English text
+        // text
         bool hasContent = column.Rows.Count > 0 && column.Rows.Any(r => r.Keys.Count > 0);
         if (hasContent)
         {
@@ -444,7 +444,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         }
         else
         {
-            // English text
+            // text
             ExecuteRemoveColumn(column);
         }
     }
@@ -469,23 +469,23 @@ public partial class LayoutEditorViewModel : ObservableObject
             if (idx > 0)
             {
                 var prevColumn = Columns[idx - 1];
-                // English text
+                // text
                 for (int i = 0; i < _pendingDeleteColumn.Rows.Count; i++)
                 {
                     if (i < prevColumn.Rows.Count)
                     {
-                        // English text
+                        // text
                         foreach (var key in _pendingDeleteColumn.Rows[i].Keys)
                             prevColumn.Rows[i].Keys.Add(key);
                     }
                     else
                     {
-                        // English text
+                        // text
                         prevColumn.Rows.Add(_pendingDeleteColumn.Rows[i]);
                     }
                 }
             }
-            // English text
+            // text
             ExecuteRemoveColumn(_pendingDeleteColumn, clearSelection: true);
             NormalizeSharedRowHeights();
             _pendingDeleteColumn = null;
@@ -522,15 +522,15 @@ public partial class LayoutEditorViewModel : ObservableObject
 
         Columns.Remove(column);
         NormalizeSharedRowHeights();
-        StatusMessage = "English text";
+        StatusMessage = "Custom shortcut";
     }
 
-    // ── English text ─────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────
 
     [RelayCommand]
     private void AddRow(EditableKeyColumnVm? targetColumn = null)
     {
-        // CommandParameterEnglish text
+        // CommandParametertext
         targetColumn ??= SelectedColumn ?? Columns.FirstOrDefault();
         if (targetColumn is null)
         {
@@ -543,7 +543,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         NormalizeSharedRowHeights();
         SelectedColumn = targetColumn;
         SelectedRow = newRow;
-        StatusMessage = "English text";
+        StatusMessage = "Custom shortcut";
     }
 
     [RelayCommand]
@@ -565,24 +565,24 @@ public partial class LayoutEditorViewModel : ObservableObject
         }
 
         NormalizeSharedRowHeights();
-        StatusMessage = "English text";
+        StatusMessage = "Custom shortcut";
     }
 
     [RelayCommand]
     private void SetRowDefaultHeight(EditableKeyRowVm row)
     {
         ApplySharedHeightToRowBand(row, EditableKeySlotVm.DefaultHeightRatio);
-        StatusMessage = "English text";
+        StatusMessage = "Custom shortcut";
     }
 
     [RelayCommand]
     private void SetRowCompactHeight(EditableKeyRowVm row)
     {
         ApplySharedHeightToRowBand(row, EditableKeySlotVm.CompactHeightRatio);
-        StatusMessage = "English text";
+        StatusMessage = "Custom shortcut";
     }
 
-    // ── English text ─────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────
 
     [RelayCommand]
     private void MoveKeyLeft()
@@ -648,19 +648,19 @@ public partial class LayoutEditorViewModel : ObservableObject
             SelectedKey = null;
     }
 
-    // ── English text ──────────────────────────────────────
+    // ── text ──────────────────────────────────────
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CanDeletePendingLayout))]
     private bool showDeleteLayoutDialog = false;
 
     private string? _pendingDeleteLayoutName;
 
-    /// English text
+    /// text
     public bool CanDeletePendingLayout =>
         _pendingDeleteLayoutName is not null && !string.Equals(_pendingDeleteLayoutName,
             _layoutRepository.DefaultLayoutName, StringComparison.OrdinalIgnoreCase);
 
-    // ── English text ───────────────────────────────────────────────────
+    // ── text ───────────────────────────────────────────────────
     [RelayCommand]
     private void RequestDeleteLayout()
     {
@@ -669,7 +669,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         ShowDeleteLayoutDialog = true;
     }
 
-    // ── English text ───────────────────────────────────────────────────
+    // ── text ───────────────────────────────────────────────────
     [RelayCommand]
     private void ConfirmDeleteLayout()
     {
@@ -679,27 +679,27 @@ public partial class LayoutEditorViewModel : ObservableObject
         {
             if (_layoutRepository.Delete(_pendingDeleteLayoutName))
             {
-                // English text.
+                // text.
                 ToolsReloadSignalService.NotifyReloadLayouts();
-                StatusMessage = $"'{_pendingDeleteLayoutName}' English text";
+                StatusMessage = $"'{_pendingDeleteLayoutName}' deleted";
                 ApplySnapshot(new LayoutEditorSnapshot("", new LayoutConfig("", null, [])), resetUndoHistory: true);
                 RefreshAvailableLayouts();
             }
             else
             {
-                StatusMessage = "English text";
+                StatusMessage = "Custom shortcut";
             }
         }
         catch (Exception ex)
         {
-            StatusMessage = $"English text: {ex.Message}";
+            StatusMessage = $"Error: {ex.Message}";
         }
 
         _pendingDeleteLayoutName = null;
         ShowDeleteLayoutDialog = false;
     }
 
-    // ── English text ───────────────────────────────────────────────────
+    // ── text ───────────────────────────────────────────────────
     [RelayCommand]
     private void CancelDeleteLayout()
     {
@@ -707,14 +707,14 @@ public partial class LayoutEditorViewModel : ObservableObject
         ShowDeleteLayoutDialog = false;
     }
 
-    // ── English text ────────────────────────────────
+    // ── text ────────────────────────────────
 
     [RelayCommand]
     private void Save()
     {
         if (string.IsNullOrWhiteSpace(CurrentFileName))
         {
-            StatusMessage = "English text";
+            StatusMessage = "Custom shortcut";
             return;
         }
 
@@ -724,7 +724,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         {
             var layoutToSave = BuildLayoutConfig();
             _layoutRepository.Save(CurrentFileName, layoutToSave);
-            // English text, "English text" English text.
+            // text, "Custom shortcut" text.
             ToolsReloadSignalService.NotifyReloadLayouts();
             RefreshAvailableLayouts();
             RefreshCurrentActiveLayoutInfo();
@@ -733,14 +733,14 @@ public partial class LayoutEditorViewModel : ObservableObject
             var verification = _layoutRepository.TryLoad(CurrentFileName);
             var accentKeyCount = verification is null ? 0 : CountSoftAccentKeys(verification);
             var currentLayoutHint = IsEditingCurrentLayout
-                ? "English text."
-                : $"English text '{CurrentActiveLayoutName}' English text.";
+                ? "Done."
+                : $"The main keyboard is currently using '{CurrentActiveLayoutName}'.";
 
-            StatusMessage = $"'{CurrentFileName}' English text {accentKeyCount}English text · {currentLayoutHint}";
+            StatusMessage = $"'{CurrentFileName}' saved. Highlighted keys: {accentKeyCount} · {currentLayoutHint}";
         }
         catch (Exception ex)
         {
-            StatusMessage = $"English text: {ex.Message}";
+            StatusMessage = $"Error: {ex.Message}";
         }
     }
 
@@ -749,7 +749,7 @@ public partial class LayoutEditorViewModel : ObservableObject
     {
         if (string.IsNullOrWhiteSpace(CurrentFileName))
         {
-            StatusMessage = "English text";
+            StatusMessage = "Custom shortcut";
             return;
         }
 
@@ -766,7 +766,7 @@ public partial class LayoutEditorViewModel : ObservableObject
 
         var snapshot = _undoStack.Pop();
         ApplySnapshot(snapshot, resetUndoHistory: false);
-        StatusMessage = "English text";
+        StatusMessage = "Custom shortcut";
         OnPropertyChanged(nameof(CanUndo));
         UndoCommand.NotifyCanExecuteChanged();
     }
@@ -780,10 +780,10 @@ public partial class LayoutEditorViewModel : ObservableObject
         _changeCheckpointTimer.Stop();
         _pendingUndoSnapshot = null;
         ApplySnapshot(_savedSnapshot, resetUndoHistory: true);
-        StatusMessage = "English text";
+        StatusMessage = "Custom shortcut";
     }
 
-    // ── English text ─────────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────────
 
     private void HookActionBuilderEvents()
     {
@@ -951,21 +951,21 @@ public partial class LayoutEditorViewModel : ObservableObject
         };
 
         if (vk is null)
-            return "SendKey English text";
+            return "SendKey text";
 
         if (VkLabelMap.TryGetValue(vk, out var mapping))
         {
             applyMapped(mapping);
-            return $"{targetLabel} English text: {mapping.Label} / {mapping.EnglishLabel}";
+            return $"{targetLabel} label: {mapping.Label} / {mapping.EnglishLabel}";
         }
 
         if (ActionBuilderViewModel.KeyDisplayNameMap.TryGetValue(vk, out var displayName))
         {
             applyDisplayOnly(displayName);
-            return $"{targetLabel} English text: {displayName}";
+            return $"{targetLabel} label: {displayName}";
         }
 
-        return $"'{vk}'English text";
+        return $"'{vk}' key";
     }
 
     private void AttachWorkingCopyObservers()
@@ -1262,7 +1262,7 @@ public partial class LayoutEditorViewModel : ObservableObject
         new(LayoutName, null, Columns.Select(c => c.ToKeyColumn()).ToList());
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void NormalizeSharedRowHeights()
     {

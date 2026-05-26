@@ -9,8 +9,8 @@ using CommunityToolkit.Mvvm.Input;
 namespace LArtKey.ViewModels;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] FullText: English text
+/// [text] text.
+/// [text] FullText: text
 /// </summary>
 public record ClipboardItem(string FullText, string Preview, bool IsFavorite);
 
@@ -22,7 +22,7 @@ public partial class ClipboardViewModel : ObservableObject
     [ObservableProperty]
     private bool isVisible;
 
-    // English text)
+    // text)
     [ObservableProperty]
     private bool isFavoritesTab;
 
@@ -37,7 +37,7 @@ public partial class ClipboardViewModel : ObservableObject
         _clipboardService.FavoritesChanged += RefreshItems;
     }
 
-    // ── English text ───────────────────────────────────────────────────────────
+    // ── text ───────────────────────────────────────────────────────────
 
     partial void OnIsFavoritesTabChanged(bool value)
     {
@@ -45,7 +45,7 @@ public partial class ClipboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// "English text" English text.
+    /// "text" text.
     /// </summary>
     [RelayCommand]
     private void SwitchToHistoryTab()
@@ -54,7 +54,7 @@ public partial class ClipboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// "English text" English text.
+    /// "text" text.
     /// </summary>
     [RelayCommand]
     private void SwitchToFavoritesTab()
@@ -62,7 +62,7 @@ public partial class ClipboardViewModel : ObservableObject
         IsFavoritesTab = true;
     }
 
-    // ── English text ─────────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────────
 
     private void RefreshItems()
     {
@@ -72,7 +72,7 @@ public partial class ClipboardViewModel : ObservableObject
 
             if (IsFavoritesTab)
             {
-                // English text
+                // text
                 foreach (var text in _clipboardService.Favorites)
                 {
                     Items.Add(new ClipboardItem(text, Preview(text), true));
@@ -80,7 +80,7 @@ public partial class ClipboardViewModel : ObservableObject
             }
             else
             {
-                // English text)
+                // text)
                 foreach (var text in _clipboardService.History)
                 {
                     var isFav = _clipboardService.IsFavorite(text);
@@ -90,22 +90,22 @@ public partial class ClipboardViewModel : ObservableObject
         });
     }
 
-    // ── English text ──────────────────────────────────────────────────────────────
+    // ── text ──────────────────────────────────────────────────────────────
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [RelayCommand]
     private void PasteItem(string text)
     {
         _clipboardService.PasteItem(text);
-        // Ctrl+V English text
+        // Ctrl+V text
         _inputService.HandleAction(new SendComboAction(["VK_CONTROL", "VK_V"]));
-        IsVisible = false; // English text
+        IsVisible = false; // text
     }
 
     /// <summary>
-    /// English text).
+    /// text).
     /// </summary>
     [RelayCommand]
     private void ToggleFavorite(string text)
@@ -114,7 +114,7 @@ public partial class ClipboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [RelayCommand]
     private void ClearHistory()
@@ -124,7 +124,7 @@ public partial class ClipboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [RelayCommand]
     private void TogglePanel()
@@ -133,16 +133,16 @@ public partial class ClipboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [RelayCommand]
     private void Close() => IsVisible = false;
 
-    // ── English text ──────────────────────────────────────────────────────────
+    // ── text ──────────────────────────────────────────────────────────
 
     private static string Preview(string text)
     {
-        // English text
+        // text
         var singleLine = text.Replace('\n', ' ').Replace('\r', ' ');
         return singleLine.Length <= 40 ? singleLine : singleLine[..37] + "...";
     }

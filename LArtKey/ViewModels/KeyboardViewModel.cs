@@ -10,7 +10,7 @@ using CommunityToolkit.Mvvm.Input;
 namespace LArtKey.ViewModels;
 
 /// <summary>
-/// [English text] English text.
+/// [text] text.
 /// </summary>
 public partial class KeyRowVm : ObservableObject
 {
@@ -30,17 +30,17 @@ public partial class KeyRowVm : ObservableObject
 }
 
 /// <summary>
-/// [English text] English text.
+/// [text] text.
 /// </summary>
 public record KeyColumnVm(double Gap, IReadOnlyList<KeyRowVm> Rows);
 
 /// <summary>
-/// [English text] English text.
+/// [text] text.
 /// </summary>
 public class KeySlotVm(KeySlot slot, AutoCompleteService autoComplete) : ObservableObject
 {
     public KeySlot Slot { get; } = slot;
-    // English text.
+    // text.
     public string StyleKey => Slot.StyleKey;
     public bool HasSoftAccentStyle => string.Equals(StyleKey, EditableKeySlotVm.SoftAccentStyleKey, StringComparison.Ordinal);
     public double Width  { get; } = slot.Width;
@@ -82,12 +82,12 @@ public class KeySlotVm(KeySlot slot, AutoCompleteService autoComplete) : Observa
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public string GetLabel(InputSubmode submode)
     {
         if (IsInputModeToggle)
-            return _autoCompleteComposeStateLabel ?? "English text";
+            return _autoCompleteComposeStateLabel ?? "Custom shortcut";
 
         if (submode == InputSubmode.QuietEnglish && Slot.EnglishLabel is { Length: > 0 } eng)
         {
@@ -204,11 +204,11 @@ public class KeySlotVm(KeySlot slot, AutoCompleteService autoComplete) : Observa
         return "";
     }
 
-    // English text.
+    // text.
     public string GetSubLabel(bool _) => GetSubLabel();
 
     /// <summary>
-    /// Caps LockEnglish text.
+    /// Caps Locktext.
     /// </summary>
     private bool ShouldUppercaseEnglishLabel()
     {
@@ -216,7 +216,7 @@ public class KeySlotVm(KeySlot slot, AutoCompleteService autoComplete) : Observa
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private bool HasAlphabeticEnglishLabel()
     {
@@ -241,14 +241,14 @@ public class KeySlotVm(KeySlot slot, AutoCompleteService autoComplete) : Observa
         {
             return _functionLayerState switch
             {
-                FunctionLayerState.OneShot => "Fn English text",
-                FunctionLayerState.Locked => "Fn English text",
-                _ => "Fn English text"
+                FunctionLayerState.OneShot => "Fn one-shot",
+                FunctionLayerState.Locked => "Fn locked",
+                _ => "Fn key"
             };
         }
 
         if (_functionLayerState != FunctionLayerState.Inactive && !string.IsNullOrWhiteSpace(DisplayLabel))
-            return $"{DisplayLabel} English text";
+            return $"{DisplayLabel} function key";
 
         if (Slot.Action is ToggleInputModeAction)
         {
@@ -271,14 +271,14 @@ public class KeySlotVm(KeySlot slot, AutoCompleteService autoComplete) : Observa
         {
             return _functionLayerState switch
             {
-                FunctionLayerState.OneShot => "Fn English text",
-                FunctionLayerState.Locked => "Fn English text",
-                _ => "Fn English text"
+                FunctionLayerState.OneShot => "Fn applies to the next key only.",
+                FunctionLayerState.Locked => "Fn layer is locked.",
+                _ => "Press once for Fn one-shot, twice to lock, three times to turn off."
             };
         }
 
-        if (IsSticky) return "English text";
-        if (IsLocked) return "English text";
+        if (IsSticky) return "Modifier is active for the next key.";
+        if (IsLocked) return "Modifier is locked.";
         return "";
     }
 
@@ -289,51 +289,51 @@ public class KeySlotVm(KeySlot slot, AutoCompleteService autoComplete) : Observa
         {
             return vk switch
             {
-                VirtualKeyCode.VK_SHIFT   => "English text",
-                VirtualKeyCode.VK_LSHIFT  => "English text",
-                VirtualKeyCode.VK_RSHIFT  => "English text",
-                VirtualKeyCode.VK_CONTROL => "English text",
-                VirtualKeyCode.VK_LCONTROL => "English text",
-                VirtualKeyCode.VK_RCONTROL => "English text",
-                VirtualKeyCode.VK_MENU    => "English text",
-                VirtualKeyCode.VK_LMENU   => "English text",
-                VirtualKeyCode.VK_RMENU   => "English text",
-                VirtualKeyCode.VK_RETURN  => "English text",
-                VirtualKeyCode.VK_SPACE   => "English text",
-                VirtualKeyCode.VK_TAB     => "English text",
-                VirtualKeyCode.VK_BACK    => "English text",
-                VirtualKeyCode.VK_DELETE  => "English text",
-                VirtualKeyCode.VK_INSERT  => "English text",
-                VirtualKeyCode.VK_HOME    => "English text",
-                VirtualKeyCode.VK_END     => "English text",
-                VirtualKeyCode.VK_LEFT    => "English text",
-                VirtualKeyCode.VK_RIGHT   => "English text",
-                VirtualKeyCode.VK_UP      => "English text",
-                VirtualKeyCode.VK_DOWN    => "English text",
-                VirtualKeyCode.VK_PRIOR   => "English text",
-                VirtualKeyCode.VK_NEXT    => "English text",
-                VirtualKeyCode.VK_ESCAPE  => "English text",
-                VirtualKeyCode.VK_CAPITAL => "English text",
-                VirtualKeyCode.VK_F1 => "F1 English text", VirtualKeyCode.VK_F2 => "F2 English text",
-                VirtualKeyCode.VK_F3 => "F3 English text", VirtualKeyCode.VK_F4 => "F4 English text",
-                VirtualKeyCode.VK_F5 => "F5 English text", VirtualKeyCode.VK_F6 => "F6 English text",
-                VirtualKeyCode.VK_F7 => "F7 English text", VirtualKeyCode.VK_F8 => "F8 English text",
-                VirtualKeyCode.VK_F9 => "F9 English text", VirtualKeyCode.VK_F10 => "F10 English text",
-                VirtualKeyCode.VK_F11 => "F11 English text", VirtualKeyCode.VK_F12 => "F12 English text",
-                VirtualKeyCode.VK_HANGUL => "English text",
-                VirtualKeyCode.VK_HANJA  => "English text",
+                VirtualKeyCode.VK_SHIFT   => "Shift key",
+                VirtualKeyCode.VK_LSHIFT  => "Left Shift key",
+                VirtualKeyCode.VK_RSHIFT  => "Right Shift key",
+                VirtualKeyCode.VK_CONTROL => "Control key",
+                VirtualKeyCode.VK_LCONTROL => "Left Control key",
+                VirtualKeyCode.VK_RCONTROL => "Right Control key",
+                VirtualKeyCode.VK_MENU    => "Alt key",
+                VirtualKeyCode.VK_LMENU   => "Left Alt key",
+                VirtualKeyCode.VK_RMENU   => "Right Alt key",
+                VirtualKeyCode.VK_RETURN  => "Enter key",
+                VirtualKeyCode.VK_SPACE   => "Space key",
+                VirtualKeyCode.VK_TAB     => "Tab key",
+                VirtualKeyCode.VK_BACK    => "Backspace key",
+                VirtualKeyCode.VK_DELETE  => "Delete key",
+                VirtualKeyCode.VK_INSERT  => "Insert key",
+                VirtualKeyCode.VK_HOME    => "Home key",
+                VirtualKeyCode.VK_END     => "End key",
+                VirtualKeyCode.VK_LEFT    => "Left arrow key",
+                VirtualKeyCode.VK_RIGHT   => "Right arrow key",
+                VirtualKeyCode.VK_UP      => "Up arrow key",
+                VirtualKeyCode.VK_DOWN    => "Down arrow key",
+                VirtualKeyCode.VK_PRIOR   => "Page Up key",
+                VirtualKeyCode.VK_NEXT    => "Page Down key",
+                VirtualKeyCode.VK_ESCAPE  => "Escape key",
+                VirtualKeyCode.VK_CAPITAL => "Caps Lock key",
+                VirtualKeyCode.VK_F1 => "F1 key", VirtualKeyCode.VK_F2 => "F2 key",
+                VirtualKeyCode.VK_F3 => "F3 key", VirtualKeyCode.VK_F4 => "F4 key",
+                VirtualKeyCode.VK_F5 => "F5 key", VirtualKeyCode.VK_F6 => "F6 key",
+                VirtualKeyCode.VK_F7 => "F7 key", VirtualKeyCode.VK_F8 => "F8 key",
+                VirtualKeyCode.VK_F9 => "F9 key", VirtualKeyCode.VK_F10 => "F10 key",
+                VirtualKeyCode.VK_F11 => "F11 key", VirtualKeyCode.VK_F12 => "F12 key",
+                VirtualKeyCode.VK_HANGUL => "Input language key",
+                VirtualKeyCode.VK_HANJA  => "IME conversion key",
                 _ => slot.Label,
             };
         }
 
         if (slot.Action is ToggleStickyAction { Vk: var stickyVk })
         {
-            return $"{stickyVk} English text";
+            return $"{stickyVk} sticky modifier key";
         }
 
         if (slot.Action is SwitchLayoutAction { Name: var layoutName })
         {
-            return $"{layoutName} English text";
+            return $"{layoutName} layout switch key";
         }
 
         return slot.Label;
@@ -341,8 +341,8 @@ public class KeySlotVm(KeySlot slot, AutoCompleteService autoComplete) : Observa
 }
 
 /// <summary>
-/// [English text] LArtKeyEnglish text.
-/// [English text] English text.
+/// [text] LArtKeytext.
+/// [text] text.
 /// </summary>
 public partial class KeyboardViewModel : ObservableObject
 {
@@ -357,7 +357,7 @@ public partial class KeyboardViewModel : ObservableObject
     private int _a11yFocusIndex = -1;
     private A11yFocusOwner _a11yFocusOwner = A11yFocusOwner.None;
 
-    // [English text] English text.
+    // [text] text.
     public A11yFocusOwner A11yFocusOwner
     {
         get => _a11yFocusOwner;
@@ -366,7 +366,7 @@ public partial class KeyboardViewModel : ObservableObject
 
     private readonly DispatcherTimer _capsLockTimer;
 
-    // L3: English text
+    // L3: text
     private DispatcherTimer? _scanTimer;
     private readonly List<ScanTargetVm> _scanTargets = [];
     private int _scanFocusIndex = -1;
@@ -376,14 +376,14 @@ public partial class KeyboardViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<KeyColumnVm> columns = [];
 
-    // English text.)
-    [ObservableProperty] private double maxRowUnits = 15.0; // English text
-    [ObservableProperty] private double maxRowCount = 14.0; // English text
-    [ObservableProperty] private double rowCount    = 5.0;  // English text)
+    // text.)
+    [ObservableProperty] private double maxRowUnits = 15.0; // text
+    [ObservableProperty] private double maxRowCount = 14.0; // text
+    [ObservableProperty] private double rowCount    = 5.0;  // text)
     public double KeyRowHeight => KeyUnit + 4.0;
     public double TotalRowUnits => Math.Max(1.0, GetSharedRowHeightMap().Values.Sum());
 
-    /// English text.
+    /// text.
     public double SuggestionChipHeight
     {
         get
@@ -394,7 +394,7 @@ public partial class KeyboardViewModel : ObservableObject
         }
     }
 
-    /// English text 100% English text.
+    /// text 100% text.
     public double SuggestionBarHeight => SuggestionChipHeight + 6.0;
 
     partial void OnColumnsChanged(ObservableCollection<KeyColumnVm> value)
@@ -411,10 +411,10 @@ public partial class KeyboardViewModel : ObservableObject
         OnPropertyChanged(nameof(SuggestionBarHeight));
     }
 
-    /// English text.
-    /// - MaxRowUnits = Σ(English text) + Σ(English text)
-    /// - MaxRowCount = Σ(English text)
-    /// - RowCount    = max(English text)
+    /// text.
+    /// - MaxRowUnits = Σ(text) + Σ(text)
+    /// - MaxRowCount = Σ(text)
+    /// - RowCount    = max(text)
     private void RecalculateLayoutMetrics()
     {
         if (Columns.Count == 0 || Columns.All(c => c.Rows.Count == 0))
@@ -461,7 +461,7 @@ public partial class KeyboardViewModel : ObservableObject
     private bool showElevatedWarning;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [ObservableProperty]
     private double keyUnit = 48.0;
@@ -506,7 +506,7 @@ public partial class KeyboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void LoadLayout(LayoutConfig layout)
     {
@@ -536,7 +536,7 @@ public partial class KeyboardViewModel : ObservableObject
         RefreshKeyLabels(_autoComplete.ActiveSubmode);
         ResetA11yNavigationState();
 
-        // L3: English text.
+        // L3: text.
         if (_configService.Current.SwitchScanEnabled)
             StartScan();
     }
@@ -595,7 +595,7 @@ public partial class KeyboardViewModel : ObservableObject
     public event Action? KeyTapped;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [RelayCommand]
     private void KeyPressed(KeySlot slot)
@@ -629,7 +629,7 @@ public partial class KeyboardViewModel : ObservableObject
         {
             _autoComplete.CancelComposition();
 
-            // English text.
+            // text.
             if (FocusTracker.LastFocused is { IsVisible: true } tb && !tb.IsKeyboardFocused)
                 System.Windows.Input.Keyboard.Focus(tb);
 
@@ -711,7 +711,7 @@ public partial class KeyboardViewModel : ObservableObject
         if (!_configService.Current.KeyboardA11yNavigationEnabled)
             return;
 
-        // English text.
+        // text.
         if (A11yFocusOwner == A11yFocusOwner.SwitchScan)
             StopScan();
         A11yFocusOwner = A11yFocusOwner.KeyboardNavigation;
@@ -736,7 +736,7 @@ public partial class KeyboardViewModel : ObservableObject
 
         SetA11yFocus(nextIndex);
 
-        // English text.
+        // text.
         if (_configService.Current.KeyboardA11yAnnounceFocus)
             AnnounceFocusedTarget();
     }
@@ -761,7 +761,7 @@ public partial class KeyboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text)
+    /// text)
     /// </summary>
     public void ClearA11yFocus()
     {
@@ -818,7 +818,7 @@ public partial class KeyboardViewModel : ObservableObject
                 ResetA11yNavigationState();
         }
 
-        // L3: English text
+        // L3: text
         if (propertyName is null
             or nameof(AppConfig.SwitchScanEnabled)
             or nameof(AppConfig.SwitchScanIntervalMs)
@@ -837,10 +837,10 @@ public partial class KeyboardViewModel : ObservableObject
         }
     }
 
-    // ── L3: English text ───────────────────────────────────────────
+    // ── L3: text ───────────────────────────────────────────
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void StartScan()
     {
@@ -858,13 +858,13 @@ public partial class KeyboardViewModel : ObservableObject
         _isRowSelectionPhase = true;
         _selectedRowIndex = -1;
 
-        // English text
+        // text
         SetScanFocus(0);
         AnnounceScanMove(_scanTargets[0].AccessibleName);
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void StopScan()
     {
@@ -890,7 +890,7 @@ public partial class KeyboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text "English text"English text.
+    /// text "Custom shortcut"text.
     /// </summary>
     public void SelectScanTarget()
     {
@@ -925,7 +925,7 @@ public partial class KeyboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// 2English text "English text" English text.
+    /// 2text "Custom shortcut" text.
     /// </summary>
     public void AdvanceScan()
     {
@@ -938,7 +938,7 @@ public partial class KeyboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void ReverseScan()
     {
@@ -951,7 +951,7 @@ public partial class KeyboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void ToggleScanPaused()
     {
@@ -1035,7 +1035,7 @@ public partial class KeyboardViewModel : ObservableObject
         foreach (var row in Columns.SelectMany(c => c.Rows))
         {
             int capturedRow = rowIndex;
-            string label = $"English text {capturedRow + 1}";
+            string label = $"Row {capturedRow + 1}";
             targets.Add(new ScanTargetVm
             {
                 DisplayText = label,
@@ -1104,7 +1104,7 @@ public partial class KeyboardViewModel : ObservableObject
     {
         if (_configService.Current.SwitchScanAnnounceMode == SwitchScanAnnounceMode.Off)
             return;
-        _liveRegion.Announce($"English text: {name}");
+        _liveRegion.Announce($"Current focus: {name}");
     }
 
     private static bool IsSeparatorKey(KeySlot slot) => slot.Action switch
@@ -1118,8 +1118,8 @@ public partial class KeyboardViewModel : ObservableObject
         RefreshKeyLabels(submode);
 
         _liveRegion.Announce(submode == InputSubmode.QuietEnglish
-            ? "English text"
-            : "English text");
+            ? "Custom shortcut"
+            : "Custom shortcut");
     }
 
     private void RefreshKeyLabels(InputSubmode submode)

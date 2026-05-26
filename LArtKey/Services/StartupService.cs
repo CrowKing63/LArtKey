@@ -4,12 +4,12 @@ using System.Diagnostics;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public class StartupService
 {
-    private const string RegPath = @"Software\Microsoft\Windows\CurrentVersion\Run"; // English text.
+    private const string RegPath = @"Software\Microsoft\Windows\CurrentVersion\Run"; // text.
     private const string AppName = "LArtKey";
 
     public bool IsEnabled
@@ -18,7 +18,7 @@ public class StartupService
         {
             using var key = Registry.CurrentUser.OpenSubKey(RegPath, writable: false);
             if (key?.GetValue(AppName) is not string rawValue) return false;
-            // English text("path")English text
+            // text("path")text
             var normalizedValue = rawValue.Trim('"');
             return normalizedValue.Equals(ExePath, StringComparison.OrdinalIgnoreCase);
         }
@@ -27,7 +27,7 @@ public class StartupService
     public void Enable()
     {
         using var key = Registry.CurrentUser.OpenSubKey(RegPath, writable: true)
-            ?? throw new InvalidOperationException("English text.");
+            ?? throw new InvalidOperationException("Done.");
         key.SetValue(AppName, $"\"{ExePath}\"");
     }
 
@@ -41,20 +41,20 @@ public class StartupService
     {
         get
         {
-            // single-file publish English text
+            // single-file publish text
             var processPath = Environment.ProcessPath;
             if (!string.IsNullOrEmpty(processPath))
                 return processPath;
 
-            // English text
+            // text
             try
             {
                 return Process.GetCurrentProcess().MainModule?.FileName
-                    ?? throw new InvalidOperationException("English text.");
+                    ?? throw new InvalidOperationException("Done.");
             }
             catch
             {
-                throw new InvalidOperationException("English text.");
+                throw new InvalidOperationException("Done.");
             }
         }
     }

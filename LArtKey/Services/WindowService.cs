@@ -5,13 +5,13 @@ using static LArtKey.Platform.Win32;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public class WindowService
 {
     /// <summary>
-    /// T-1.3: WS_EX_NOACTIVATE English text — English text.
+    /// T-1.3: WS_EX_NOACTIVATE text — text.
     /// </summary>
     public void ApplyNoActivate(IntPtr hwnd)
     {
@@ -21,16 +21,16 @@ public class WindowService
     }
 
     /// <summary>
-    /// T-1.4: English text).
+    /// T-1.4: text).
     /// </summary>
     public void ApplyBackground(Window window)
     {
-        // English text.
+        // text.
         window.Background = System.Windows.Media.Brushes.Transparent;
     }
 
     /// <summary>
-    /// T-1.8: English text — WPF Topmost + SetWindowPos English text.
+    /// T-1.8: text — WPF Topmost + SetWindowPos text.
     /// </summary>
     public void SetTopmost(Window window, bool topmost)
     {

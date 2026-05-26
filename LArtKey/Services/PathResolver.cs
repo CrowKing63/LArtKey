@@ -8,12 +8,12 @@ public static class PathResolver
         Path.GetDirectoryName(Environment.ProcessPath ?? "") ?? "";
     private static string? _overrideDataDir;
 
-    /// <summary>exe English text</summary>
+    /// <summary>exe text</summary>
     public static bool IsPortable =>
         File.Exists(Path.Combine(_exeDir, "config.json"));
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public static void OverrideDataDir(string? dataDir)
     {
@@ -32,9 +32,9 @@ public static class PathResolver
     public static string ConfigPath  => Path.Combine(DataDir, "config.json");
 
     /// <summary>
-    /// LArtKey.Tools English text.
-    /// [English text] English text.
-    /// [English text] English text.
+    /// LArtKey.Tools text.
+    /// [text] text.
+    /// [text] text.
     /// </summary>
     public static string ToolsExePath
     {
@@ -52,7 +52,7 @@ public static class PathResolver
                 return toolsSubDirectory;
             }
 
-            // English text.
+            // text.
             var projectRoot = Directory.GetParent(_exeDir)?.Parent?.Parent?.Parent?.FullName;
             if (!string.IsNullOrEmpty(projectRoot))
             {

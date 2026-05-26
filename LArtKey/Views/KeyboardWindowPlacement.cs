@@ -3,12 +3,12 @@ using System.Windows;
 namespace LArtKey.Views;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 internal static class KeyboardWindowPlacement
 {
-    // English text "English text" English text.
+    // text "text" text.
     internal const double DockTolerance = 24.0;
 
     internal enum VerticalAnchor
@@ -19,7 +19,7 @@ internal static class KeyboardWindowPlacement
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     internal static VerticalAnchor DetectVerticalAnchor(double top, double height, Rect workArea)
     {
@@ -36,7 +36,7 @@ internal static class KeyboardWindowPlacement
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     internal static double ComputeAnchoredTop(
         double currentTop,
@@ -61,7 +61,7 @@ internal static class KeyboardWindowPlacement
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     internal static double ComputePersistedTopForExpandedLaunch(
         double currentTop,

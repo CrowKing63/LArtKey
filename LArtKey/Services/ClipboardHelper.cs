@@ -5,22 +5,22 @@ using WpfClipboard = System.Windows.Clipboard;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public static class ClipboardHelper
 {
-    // ── English text ───────────────────────────────────
-    private const int CLIPBRD_E_CANT_OPEN  = unchecked((int)0x800401D0); // English text
+    // ── text ───────────────────────────────────
+    private const int CLIPBRD_E_CANT_OPEN  = unchecked((int)0x800401D0); // text
     private const int CLIPBRD_E_NOT_OPEN   = unchecked((int)0x800401D1);
     private const int CLIPBRD_E_CANT_EMPTY = unchecked((int)0x800401D2);
-    private const int CLIPBRD_E_BAD_DATA   = unchecked((int)0x800401D3); // English text
+    private const int CLIPBRD_E_BAD_DATA   = unchecked((int)0x800401D3); // text
     private const int DefaultMaxRetries = 3;
     private const int InitialDelayMs = 10;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static bool IsClipboardError(COMException ex)
     {
@@ -31,10 +31,10 @@ public static class ClipboardHelper
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
-    /// <param name="maxRetries">English text: 3)</param>
-    /// <returns>English text null</returns>
+    /// <param name="maxRetries">text: 3)</param>
+    /// <returns>text null</returns>
     public static string? GetTextWithRetry(int maxRetries = DefaultMaxRetries)
     {
         for (int attempt = 0; attempt < maxRetries; attempt++)
@@ -46,7 +46,7 @@ public static class ClipboardHelper
             }
             catch (COMException ex) when (IsClipboardError(ex))
             {
-                // CANT_OPENEnglish text, BAD_DATA English text)
+                // CANT_OPENtext, BAD_DATA text)
                 if (attempt < maxRetries - 1)
                     Thread.Sleep(InitialDelayMs << attempt); // 10ms → 20ms → 40ms
             }
@@ -55,10 +55,10 @@ public static class ClipboardHelper
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
-    /// <param name="text">English text</param>
-    /// <param name="maxRetries">English text: 3)</param>
+    /// <param name="text">text</param>
+    /// <param name="maxRetries">text: 3)</param>
     public static void SetTextWithRetry(string text, int maxRetries = DefaultMaxRetries)
     {
         for (int attempt = 0; attempt < maxRetries; attempt++)
@@ -77,10 +77,10 @@ public static class ClipboardHelper
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
-    /// <param name="maxRetries">English text: 3)</param>
-    /// <returns>English text false</returns>
+    /// <param name="maxRetries">text: 3)</param>
+    /// <returns>text false</returns>
     public static bool ContainsTextWithRetry(int maxRetries = DefaultMaxRetries)
     {
         for (int attempt = 0; attempt < maxRetries; attempt++)

@@ -10,8 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 namespace LArtKey.Tools;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public partial class HeaderShortcutEditorWindow : Window, INotifyPropertyChanged
 {
@@ -19,7 +19,7 @@ public partial class HeaderShortcutEditorWindow : Window, INotifyPropertyChanged
     private readonly string? _requestedHeaderButtonId;
     private string _editingId = "";
     private bool _isCreateMode;
-    private string _windowTitle = "English text";
+    private string _windowTitle = "Header shortcut";
     private string _iconText = "";
     private string _tooltipText = "";
     private string _accessibleNameText = "";
@@ -115,7 +115,7 @@ public partial class HeaderShortcutEditorWindow : Window, INotifyPropertyChanged
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void LoadFromConfig()
     {
@@ -132,7 +132,7 @@ public partial class HeaderShortcutEditorWindow : Window, INotifyPropertyChanged
         _isCreateMode = _isCreateMode || !_configService.Current.HeaderButtons.Any(button => button.Id == current.Id);
 
         _editingId = current.Id;
-        WindowTitle = _isCreateMode ? "English text" : "English text";
+        WindowTitle = _isCreateMode ? "New header shortcut" : "Edit header shortcut";
         IconText = current.EffectiveIconText;
         TooltipText = current.EffectiveTooltip;
         AccessibleNameText = current.EffectiveAccessibleName;
@@ -142,7 +142,7 @@ public partial class HeaderShortcutEditorWindow : Window, INotifyPropertyChanged
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void OnSave(object sender, RoutedEventArgs e)
     {
@@ -171,17 +171,17 @@ public partial class HeaderShortcutEditorWindow : Window, INotifyPropertyChanged
 
         _editingId = savedButton.Id;
         _isCreateMode = false;
-        WindowTitle = "English text";
+        WindowTitle = "Edit header shortcut";
 
         MessageBox.Show(
-            "English text.",
-            "English text",
+            "Header shortcut saved.",
+            "Header shortcut",
             MessageBoxButton.OK,
             MessageBoxImage.Information);
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static bool ValidateHeaderButtonLimits(
         IReadOnlyCollection<HeaderButtonConfig> buttons,
@@ -192,8 +192,8 @@ public partial class HeaderShortcutEditorWindow : Window, INotifyPropertyChanged
             && HeaderButtonConfig.CountCustomButtons(buttons, savedButton.Id) >= HeaderButtonConfig.MaxCustomButtonCount)
         {
             MessageBox.Show(
-                $"English text {HeaderButtonConfig.MaxCustomButtonCount}English text.",
-                "English text",
+                $"You can create up to {HeaderButtonConfig.MaxCustomButtonCount} custom header shortcuts.",
+                "Header shortcut limit",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
             return false;
@@ -206,10 +206,10 @@ public partial class HeaderShortcutEditorWindow : Window, INotifyPropertyChanged
         var visibleButtonsOnSide = HeaderButtonConfig.CountVisibleButtons(buttons, savedButton.Position, savedButton.Id);
         if (visibleButtonsOnSide >= maxVisibleButtons)
         {
-            var sideName = HeaderButtonConfig.NormalizePosition(savedButton.Position) == "Left" ? "English text" : "English text";
+            var sideName = HeaderButtonConfig.NormalizePosition(savedButton.Position) == "Left" ? "left" : "right";
             MessageBox.Show(
-                $"English text {sideName}English text {maxVisibleButtons}English text.\nEnglish text.",
-                "English text",
+                $"The {sideName} side can show up to {maxVisibleButtons} custom header shortcuts.\nHide another shortcut or move it to the other side.",
+                "Header shortcut limit",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
             return false;
@@ -221,7 +221,7 @@ public partial class HeaderShortcutEditorWindow : Window, INotifyPropertyChanged
     private HeaderButtonConfig BuildEditedButton()
     {
         var action = ActionBuilder.BuildAction() ?? new SendKeyAction("VK_A");
-        var tooltip = string.IsNullOrWhiteSpace(TooltipText) ? "English text" : TooltipText.Trim();
+        var tooltip = string.IsNullOrWhiteSpace(TooltipText) ? "Custom shortcut" : TooltipText.Trim();
         var accessibleName = string.IsNullOrWhiteSpace(AccessibleNameText) ? tooltip : AccessibleNameText.Trim();
 
         return new HeaderButtonConfig
@@ -231,7 +231,7 @@ public partial class HeaderShortcutEditorWindow : Window, INotifyPropertyChanged
             Visible = IsHeaderButtonVisible,
             Position = HeaderButtonConfig.NormalizePosition(SelectedPosition),
             DisplayMode = HeaderButtonDisplayMode.IconOnly,
-            IconText = string.IsNullOrWhiteSpace(IconText) ? "English text" : IconText.Trim(),
+            IconText = string.IsNullOrWhiteSpace(IconText) ? "A" : IconText.Trim(),
             Tooltip = tooltip,
             AccessibleName = accessibleName,
             CustomAction = CloneKeyAction(action)

@@ -15,12 +15,12 @@ using CommunityToolkit.Mvvm.Input;
 namespace LArtKey.ViewModels;
 
 /// <summary>
-/// [English text] LArtKeyEnglish text 'English text'English text.
-/// [English text] English text.
+/// [text] LArtKeytext 'text'text.
+/// [text] text.
 /// </summary>
 public partial class MainViewModel : ObservableObject
 {
-    private readonly ConfigService  _configService; // English text
+    private readonly ConfigService  _configService; // text
     private readonly LayoutService  _layoutService;
     private readonly ProfileService _profileService;
     private readonly AutoCompleteService _autoCompleteService;
@@ -29,9 +29,9 @@ public partial class MainViewModel : ObservableObject
     private readonly LiveRegionService _liveRegion;
     private readonly AiService _aiService;
 
-    // English text → English text)
+    // text → text)
     private readonly Dictionary<string, string> _displayToFileName = [];
-    // SwitchLayout English text
+    // SwitchLayout text
     private bool _isSwitching;
 
     public KeyboardViewModel       Keyboard    { get; }
@@ -46,7 +46,7 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<string> availableLayouts = [];
 
-    // T-9.5: English text
+    // T-9.5: text
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasUpdate))]
     [NotifyPropertyChangedFor(nameof(UpdateIndicatorTooltip))]
@@ -58,15 +58,15 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private string? updateInstallerUrl;
 
-    /// English text)
+    /// text)
     public bool HasUpdate => UpdateVersion is not null;
 
-    /// English text
+    /// text
     public string UpdateIndicatorTooltip => IsDownloading
-        ? $"English text... {DownloadProgress:P0}"
-        : $"English text {UpdateVersion} — English text";
+        ? $"Downloading... {DownloadProgress:P0}"
+        : $"Update {UpdateVersion} is available";
 
-    /// T-9.5: English text
+    /// T-9.5: text
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(UpdateIndicatorTooltip))]
     private bool isDownloading;
@@ -81,7 +81,7 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private string? updateStatusMessage;
 
-    /// T-5.1: English text)
+    /// T-5.1: text)
     public bool DwellEnabled
     {
         get => _configService.Current.DwellEnabled;
@@ -105,7 +105,7 @@ public partial class MainViewModel : ObservableObject
             if (!ok && value)
             {
                 System.Media.SystemSounds.Beep.Play();
-                _liveRegion.Announce("English text");
+                _liveRegion.Announce("Custom shortcut");
                 OnPropertyChanged(nameof(AutoCompleteEnabled));
                 return;
             }
@@ -116,13 +116,13 @@ public partial class MainViewModel : ObservableObject
             _autoCompleteService.ResetState();
             AutoComplete.IsVisible = _configService.Current.AutoCompleteEnabled;
 
-            _liveRegion.Announce(value ? "English text" : "English text");
+            _liveRegion.Announce(value ? "Custom shortcut" : "Custom shortcut");
         }
     }
 
     public bool CanToggleAutoComplete => !_inputService.IsElevated;
 
-    /// T-5.1: English text)
+    /// T-5.1: text)
     public int DwellTimeMs
     {
         get => _configService.Current.DwellTimeMs;
@@ -133,7 +133,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    /// T-10: English text)
+    /// T-10: text)
     public bool KeyRepeatEnabled
     {
         get => _configService.Current.KeyRepeatEnabled;
@@ -144,7 +144,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    /// T-10: English text)
+    /// T-10: text)
     public int KeyRepeatDelayMs
     {
         get => _configService.Current.KeyRepeatDelayMs;
@@ -155,7 +155,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    /// T-10: English text)
+    /// T-10: text)
     public int KeyRepeatIntervalMs
     {
         get => _configService.Current.KeyRepeatIntervalMs;
@@ -166,7 +166,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    /// L1: English text)
+    /// L1: text)
     public bool KeyboardA11yNavigationEnabled
     {
         get => _configService.Current.KeyboardA11yNavigationEnabled;
@@ -178,11 +178,11 @@ public partial class MainViewModel : ObservableObject
     }
 
     /// <summary>
-    /// [English text] English text.
+    /// [text] text.
     /// </summary>
     public A11yFocusOwner A11yFocusOwner => Keyboard.A11yFocusOwner;
 
-    /// L2: English text)
+    /// L2: text)
     public bool ReducedMotionEnabled
     {
         get => _configService.Current.ReducedMotionEnabled;
@@ -193,7 +193,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    /// L2: TTS English text)
+    /// L2: TTS text)
     public bool TtsOnHover
     {
         get => _configService.Current.TtsOnHover;
@@ -249,7 +249,7 @@ public partial class MainViewModel : ObservableObject
             Clipboard.IsVisible = false;
         };
 
-        // English text
+        // text
         RebuildHeaderButtons();
     }
 
@@ -290,14 +290,14 @@ public partial class MainViewModel : ObservableObject
         }
         AvailableLayouts = new ObservableCollection<string>(displayNames);
 
-        // English text
+        // text
         if (!string.IsNullOrEmpty(CurrentLayoutName))
             SwitchLayout(CurrentLayoutName);
     }
 
     public Task InitializeAsync()
     {
-        // T-7.1: English text → English text
+        // T-7.1: text → text
         _displayToFileName.Clear();
         var fileNames    = _layoutService.GetAvailableLayouts();
         var displayNames = new List<string>();
@@ -314,20 +314,20 @@ public partial class MainViewModel : ObservableObject
         if (!fileNames.Contains(defaultName) && fileNames.Count > 0)
         {
             var fallback = fileNames[0];
-            System.Diagnostics.Debug.WriteLine($"English text '{defaultName}'English text '{fallback}'(English text.");
+            System.Diagnostics.Debug.WriteLine($"text '{defaultName}'text '{fallback}'(text.");
             defaultName = fallback;
             _configService.Update(c => c.DefaultLayout = fallback, "DefaultLayout");
         }
         SwitchLayout(defaultName);
 
-        // L3: English text
+        // L3: text
         if (_configService.Current.SwitchScanEnabled)
             Keyboard.StartScan();
 
         return Task.CompletedTask;
     }
 
-    // T-7.1: English text → English text
+    // T-7.1: text → text
     partial void OnCurrentLayoutNameChanged(string value)
     {
         if (_isSwitching || string.IsNullOrEmpty(value)) return;
@@ -340,15 +340,15 @@ public partial class MainViewModel : ObservableObject
         _isSwitching = true;
         try
         {
-            // English text → English text)
+            // text → text)
             var fileName = _displayToFileName.TryGetValue(name, out var fn) ? fn : name;
 
-            // T-6.7: English text
+            // T-6.7: text
             var layout = _layoutService.TryLoad(fileName, ex =>
             {
                 App.LogError(ex);
 
-                // English text
+                // text
                 var fallbackDisplay = AvailableLayouts.FirstOrDefault(l => l != name);
                 if (fallbackDisplay is not null
                     && _displayToFileName.TryGetValue(fallbackDisplay, out var fbFile))
@@ -363,8 +363,8 @@ public partial class MainViewModel : ObservableObject
 
                 WpfApp.Current.Dispatcher.BeginInvoke(() =>
                     WpfMsgBox.Show(
-                        $"English text '{name}'English text.\n{ex.Message}\n\nEnglish text.",
-                        "English text",
+                        $"text '{name}'text.\n{ex.Message}\n\ntext.",
+                        "Custom shortcut",
                         WpfMsgBoxButton.OK,
                         WpfMsgBoxImage.Warning));
             });
@@ -373,7 +373,7 @@ public partial class MainViewModel : ObservableObject
             Keyboard.LoadLayout(layout);
             CurrentLayoutName = layout.Name;
 
-            // English text "ko"English text
+            // text "ko"text
             _autoCompleteService.ResetState();
         }
         finally
@@ -382,7 +382,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    // T-9.5: English text
+    // T-9.5: text
     [RelayCommand]
     private void DismissUpdate()
     {
@@ -399,7 +399,7 @@ public partial class MainViewModel : ObservableObject
             Process.Start(new ProcessStartInfo(UpdateUrl) { UseShellExecute = true });
     }
 
-    /// T-9.5: English text
+    /// T-9.5: text
     [RelayCommand]
     private async Task DownloadAndInstallUpdate()
     {
@@ -408,12 +408,12 @@ public partial class MainViewModel : ObservableObject
 
         try
         {
-            // English text
+            // text
             if (PathResolver.IsPortable)
             {
                 WpfMsgBox.Show(
-                    "English text.\nEnglish text.",
-                    "English text",
+                    "text.\ntext.",
+                    "Custom shortcut",
                     WpfMsgBoxButton.OK,
                     WpfMsgBoxImage.Information);
                 OpenReleasePage();
@@ -422,7 +422,7 @@ public partial class MainViewModel : ObservableObject
 
             IsDownloading = true;
             DownloadProgress = 0;
-            UpdateStatusMessage = $"English text {UpdateVersion} English text...";
+            UpdateStatusMessage = $"Downloading update {UpdateVersion}...";
 
             var downloadService = App.Services.GetRequiredService<DownloadService>();
             var tempDir = Path.GetTempPath();
@@ -437,12 +437,12 @@ public partial class MainViewModel : ObservableObject
                 progress);
 
             IsDownloading = false;
-            UpdateStatusMessage = "English text...";
+            UpdateStatusMessage = "Working...";
 
-            // English text
+            // text
             IsInstalling = true;
             var installerService = App.Services.GetRequiredService<InstallerService>();
-            // English text.
+            // text.
             await installerService.RunInstallerAsync(
                 installerPath,
                 autoRestart: true,
@@ -452,11 +452,11 @@ public partial class MainViewModel : ObservableObject
         {
             IsDownloading = false;
             IsInstalling = false;
-            UpdateStatusMessage = "English text";
+            UpdateStatusMessage = "Custom shortcut";
 
             WpfMsgBox.Show(
-                $"English text:\n{ex.Message}\n\nGitHub English text.",
-                "English text",
+                $"text:\n{ex.Message}\n\nGitHub text.",
+                "Custom shortcut",
                 WpfMsgBoxButton.OK,
                 WpfMsgBoxImage.Error);
 
@@ -469,7 +469,7 @@ public partial class MainViewModel : ObservableObject
     {
         IsDownloading = false;
         DownloadProgress = 0;
-        UpdateStatusMessage = "English text.";
+        UpdateStatusMessage = "Done.";
     }
 
     [RelayCommand]
@@ -482,38 +482,38 @@ public partial class MainViewModel : ObservableObject
     private void SendLanguageToggle()
     {
         _inputService.SendKeyPress(VirtualKeyCode.VK_HANGUL);
-        _liveRegion.Announce("OS IME English text");
+        _liveRegion.Announce("OS input language");
     }
 
     [RelayCommand]
     private void SendOsk()
     {
-        // English text.
+        // text.
         if (!_oskLauncher.TryLaunch())
         {
-            // English text.
+            // text.
             _inputService.SendCombo([VirtualKeyCode.VK_LWIN, VirtualKeyCode.VK_LCONTROL, VirtualKeyCode.VK_O]);
         }
 
-        _liveRegion.Announce("English text");
+        _liveRegion.Announce("Custom shortcut");
     }
 
-    // ── AI English text ───────────────────────────────────────────
+    // ── AI tool ───────────────────────────────────────────
 
-    /// AI English text
+    /// AI tool
     public bool AiEnabled => _configService.Current.AiEnabled;
 
-    /// AI English text
+    /// AI tool
     [ObservableProperty]
     private bool isAiProcessing;
 
     private CancellationTokenSource? _aiCts;
 
     /// <summary>
-    /// AI English text: Ctrl+C → API → Ctrl+V
+    /// AI tool: Ctrl+C → API → Ctrl+V
     /// </summary>
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void TryFocusLastExternalTarget()
     {
@@ -542,7 +542,7 @@ public partial class MainViewModel : ObservableObject
         string? originalClipboard = null;
         try
         {
-            // English text → English text
+            // text → text
             await Task.Yield();
             TryFocusLastExternalTarget();
             await Task.Delay(80, ct);
@@ -558,9 +558,9 @@ public partial class MainViewModel : ObservableObject
                 selectedText = ClipboardHelper.GetTextWithRetry());
 
             if (string.IsNullOrWhiteSpace(selectedText))
-            { _liveRegion.Announce("English text"); return; }
+            { _liveRegion.Announce("Custom shortcut"); return; }
 
-            _liveRegion.Announce("AI English text...");
+            _liveRegion.Announce("AI is processing...");
             var result = await _aiService.ProcessTextAsync(selectedText, prompt, ct);
 
             await WpfApp.Current.Dispatcher.InvokeAsync(() =>
@@ -568,11 +568,11 @@ public partial class MainViewModel : ObservableObject
             await Task.Delay(50, ct);
             _inputService.SendCombo([VirtualKeyCode.VK_CONTROL, VirtualKeyCode.VK_V]);
             await Task.Delay(100, ct);
-            _liveRegion.Announce("AI English text");
+            _liveRegion.Announce("AI tool");
         }
-        catch (AiServiceException ex) { _liveRegion.Announce($"AI English text: {ex.Message}"); }
-        catch (OperationCanceledException) { _liveRegion.Announce("AI English text"); }
-        catch (Exception ex) { _liveRegion.Announce("AI English text"); Debug.WriteLine($"[AI] {ex}"); }
+        catch (AiServiceException ex) { _liveRegion.Announce($"AI error: {ex.Message}"); }
+        catch (OperationCanceledException) { _liveRegion.Announce("AI tool"); }
+        catch (Exception ex) { _liveRegion.Announce("AI tool"); Debug.WriteLine($"[AI] {ex}"); }
         finally
         {
             if (originalClipboard is not null)
@@ -596,7 +596,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    // ── English text ─────────────────────────────────────────
+    // ── text ─────────────────────────────────────────
 
     [ObservableProperty] private ObservableCollection<HeaderButtonVm> headerButtonsLeft = [];
     [ObservableProperty] private ObservableCollection<HeaderButtonVm> headerButtonsRight = [];
@@ -675,9 +675,9 @@ public partial class MainViewModel : ObservableObject
         return new HeaderButtonVm
         {
             Id = config.Id,
-            Icon = string.IsNullOrWhiteSpace(config.IconText) ? "English text" : config.IconText,
+            Icon = string.IsNullOrWhiteSpace(config.IconText) ? "Custom shortcut" : config.IconText,
             Label = HeaderButtonConfig.GetDisplayName(config.Id),
-            ToolTip = string.IsNullOrWhiteSpace(config.Tooltip) ? "English text" : config.Tooltip,
+            ToolTip = string.IsNullOrWhiteSpace(config.Tooltip) ? "Custom shortcut" : config.Tooltip,
             AccessibleName = string.IsNullOrWhiteSpace(config.AccessibleName) ? config.Tooltip : config.AccessibleName,
             AccessibleHelp = BuildHeaderActionHelp(config.CustomAction, null),
             Command = new RelayCommand(() => ExecuteHeaderButtonAction(config.CustomAction)),
@@ -706,36 +706,36 @@ public partial class MainViewModel : ObservableObject
         {
             return builtInId switch
             {
-                HeaderButtonConfig.IdClipboard => "English text.",
-                HeaderButtonConfig.IdEmoji => "English text.",
-                HeaderButtonConfig.IdAutoComplete => "English text.",
-                HeaderButtonConfig.IdOsIme => "OS IMEEnglish text.",
-                HeaderButtonConfig.IdOsk => "English text.",
-                HeaderButtonConfig.IdSettings => "English text.",
-                HeaderButtonConfig.IdAi => "English text.",
+                HeaderButtonConfig.IdClipboard => "Done.",
+                HeaderButtonConfig.IdEmoji => "Done.",
+                HeaderButtonConfig.IdAutoComplete => "Done.",
+                HeaderButtonConfig.IdOsIme => "Switches the OS input language.",
+                HeaderButtonConfig.IdOsk => "Done.",
+                HeaderButtonConfig.IdSettings => "Done.",
+                HeaderButtonConfig.IdAi => "Done.",
                 _ => ""
             };
         }
 
         return action switch
         {
-            SendKeyAction sendKey => $"{sendKey.Vk} English text.",
-            SendComboAction sendCombo => $"{string.Join(" + ", sendCombo.Keys)} English text.",
-            ToggleStickyAction sticky => $"{sticky.Vk} English text.",
-            SwitchLayoutAction switchLayout => $"{switchLayout.Name} English text.",
-            RunAppAction runApp => $"{runApp.Path} English text.",
-            BoilerplateAction => "English text.",
-            ShellCommandAction => "English text.",
-            VolumeControlAction volume => $"English text {volume.Direction} English text.",
-            ClipboardPasteAction => "English text.",
-            ToggleInputModeAction => "LArtKey English text.",
-            ToggleFunctionLayerAction => "Fn English text.",
-            AiAction => "English text.",
+            SendKeyAction sendKey => $"{sendKey.Vk} text.",
+            SendComboAction sendCombo => $"{string.Join(" + ", sendCombo.Keys)} text.",
+            ToggleStickyAction sticky => $"{sticky.Vk} text.",
+            SwitchLayoutAction switchLayout => $"{switchLayout.Name} text.",
+            RunAppAction runApp => $"{runApp.Path} text.",
+            BoilerplateAction => "Done.",
+            ShellCommandAction => "Done.",
+            VolumeControlAction volume => $"text {volume.Direction} text.",
+            ClipboardPasteAction => "Done.",
+            ToggleInputModeAction => "LArtKey text.",
+            ToggleFunctionLayerAction => "Fn layer.",
+            AiAction => "Done.",
             _ => ""
         };
     }
 
-    // T-5.4: English text
+    // T-5.4: text
     private void OnForegroundAppChanged(string processName)
     {
         WpfApp.Current.Dispatcher.Invoke(() =>
@@ -751,7 +751,7 @@ public partial class MainViewModel : ObservableObject
     }
 }
 
-/// English text VM
+/// text VM
 public class HeaderButtonVm : ObservableObject
 {
     public string Id { get; init; } = "";

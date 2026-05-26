@@ -1,23 +1,23 @@
 namespace LArtKey.ViewModels;
 
 /// <summary>
-/// [English text][L3] English text.
-/// [English text] English text.
+/// [text][L3] text.
+/// [text] text.
 /// </summary>
 public sealed class ScanTargetVm
 {
-    // English text.
+    // text.
     public required string AccessibleName { get; init; }
 
-    // English text.
+    // text.
     public required Action Activate { get; init; }
 
-    // English text.
+    // text.
     public required Action<bool> SetScanFocused { get; init; }
 
-    // UIEnglish text.
+    // UItext.
     public required string DisplayText { get; init; }
 
-    // English text.
+    // text.
     public required string Kind { get; init; }
 }

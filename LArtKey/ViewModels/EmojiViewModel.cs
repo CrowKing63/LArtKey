@@ -7,7 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace LArtKey.ViewModels;
 
-/// T-8.3: English text
+/// T-8.3: text
 public record EmojiCategory(string Name, IReadOnlyList<string> Emoji);
 
 public partial class EmojiViewModel : ObservableObject
@@ -47,7 +47,7 @@ public partial class EmojiViewModel : ObservableObject
         }
         catch
         {
-            // English text
+            // text
         }
     }
 
@@ -55,7 +55,7 @@ public partial class EmojiViewModel : ObservableObject
     private void SendEmoji(string emoji)
     {
         _inputService.SendUnicode(emoji);
-        IsVisible = false; // English text
+        IsVisible = false; // text
     }
 
     [RelayCommand]
@@ -74,7 +74,7 @@ public partial class EmojiViewModel : ObservableObject
     private void Close() => IsVisible = false;
 }
 
-// JSON English text
+// JSON text
 public class EmojiData
 {
     public List<EmojiCategory> Categories { get; set; } = [];

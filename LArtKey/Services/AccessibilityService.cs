@@ -4,8 +4,8 @@ using LArtKey.Models;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public sealed class AccessibilityService : IDisposable
 {
@@ -20,7 +20,7 @@ public sealed class AccessibilityService : IDisposable
         _synth = new SpeechSynthesizer();
         _synth.SetOutputToDefaultAudioDevice();
 
-        // English text.
+        // text.
         try
         {
             var koVoice = _synth.GetInstalledVoices()
@@ -30,12 +30,12 @@ public sealed class AccessibilityService : IDisposable
         }
         catch
         {
-            // English text — English text
+            // text — text
         }
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void SpeakLabel(string? label)
     {
@@ -45,7 +45,7 @@ public sealed class AccessibilityService : IDisposable
         if (string.IsNullOrWhiteSpace(label))
             return;
 
-        // English text.
+        // text.
         if (label == _lastSpokenLabel && (DateTime.UtcNow - _lastSpokenTime).TotalMilliseconds < 500)
             return;
 
@@ -56,18 +56,18 @@ public sealed class AccessibilityService : IDisposable
         {
             int rate = Math.Clamp(_configService.Current.TtsRate, -5, 5);
             _synth.Rate = rate;
-            // English text.
+            // text.
             _synth.SpeakAsyncCancelAll();
             _synth.SpeakAsync(label);
         }
         catch
         {
-            // TTS English text — English text.
+            // TTS text — text.
         }
     }
 
     public void Dispose()
     {
-        try { _synth.Dispose(); } catch { /* English text */ }
+        try { _synth.Dispose(); } catch { /* text */ }
     }
 }

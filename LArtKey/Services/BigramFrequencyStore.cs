@@ -6,7 +6,7 @@ using System.Timers;
 
 namespace LArtKey.Services;
 
-/// (prev_word, next_word) → count English text + UnsafeRelaxedJsonEscaping.
+/// (prev_word, next_word) → count text + UnsafeRelaxedJsonEscaping.
 public class BigramFrequencyStore
 {
     private const int MaxPairs = 50000;
@@ -154,8 +154,8 @@ public class BigramFrequencyStore
     }
 
     /// <summary>
-    /// [English text] English text.
-    /// [English text] English text.
+    /// [text] text.
+    /// [text] text.
     /// </summary>
     public void SetPairCount(string prev, string next, int count)
     {
@@ -278,8 +278,8 @@ public class BigramFrequencyStore
     }
 
     /// <summary>
-    /// [English text] English text.
-    /// [English text] English text.
+    /// [text] text.
+    /// [text] text.
     /// </summary>
     public void ReloadFromDisk()
     {

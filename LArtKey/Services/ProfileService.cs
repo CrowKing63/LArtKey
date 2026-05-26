@@ -5,25 +5,25 @@ using LArtKey.Platform;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public class ProfileService : IDisposable
 {
     private static readonly uint OwnProcessId = (uint)Environment.ProcessId;
 
     private IntPtr _hook;
-    private Win32.WinEventDelegate? _delegateRef; // GC English text
+    private Win32.WinEventDelegate? _delegateRef; // GC text
 
     public event Action<string>? ForegroundAppChanged;
 
     /// <summary>
-    /// LArtKeyEnglish text.
-    /// [English text] English text.
+    /// LArtKeytext.
+    /// [text] text.
     /// </summary>
     public IntPtr LastExternalForegroundHwnd { get; private set; }
     
-    /// T-2.10b: English text
+    /// T-2.10b: text
     public event Action? ElevatedAppDetected;
 
     public void Start()
@@ -51,16 +51,16 @@ public class ProfileService : IDisposable
             using var proc = Process.GetProcessById((int)pid);
             ForegroundAppChanged?.Invoke(proc.ProcessName.ToLower() + ".exe");
             
-            // T-2.10b: English text
+            // T-2.10b: text
             if (IsProcessElevated((uint)pid))
             {
                 ElevatedAppDetected?.Invoke();
             }
         }
-        catch { /* English text */ }
+        catch { /* text */ }
     }
 
-    /// T-2.10b: English text
+    /// T-2.10b: text
     private static bool IsProcessElevated(uint processId)
     {
         IntPtr hProcess = Win32.OpenProcess(Win32.PROCESS_QUERY_INFORMATION, false, processId);
@@ -74,7 +74,7 @@ public class ProfileService : IDisposable
 
             try
             {
-                // TokenIntegrityLevel English text
+                // TokenIntegrityLevel text
                 uint dwLength = 0;
                 Win32.GetTokenInformation(hToken, Win32.TOKEN_INFORMATION_CLASS.TokenIntegrityLevel, IntPtr.Zero, 0, out dwLength);
                 
@@ -91,14 +91,14 @@ public class ProfileService : IDisposable
                     if (tokenLabel.Label.Sid == IntPtr.Zero)
                         return false;
 
-                    // SIDEnglish text
+                    // SIDtext
                     IntPtr pSubAuthority = Win32.GetSidSubAuthority(tokenLabel.Label.Sid, 0);
                     if (pSubAuthority == IntPtr.Zero)
                         return false;
 
                     int integrityLevel = Marshal.ReadInt32(pSubAuthority);
                     
-                    // SECURITY_MANDATORY_HIGH_RID (0x3000) English text
+                    // SECURITY_MANDATORY_HIGH_RID (0x3000) text
                     return integrityLevel >= 0x3000;
                 }
                 finally

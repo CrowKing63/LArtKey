@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="English text"
+        Title="Settings"
         Width="694" Height="780"
         MinWidth="600" MinHeight="640"
         WindowStartupLocation="Manual"
@@ -17,12 +17,12 @@
         <ResourceDictionary>
         <conv:BoolToVisibilityConverter x:Key="BoolToVis"/>
         <conv:InverseBoolToVisibilityConverter x:Key="InvBoolToVis"/>
-        <!-- English text. -->
+        <!-- text. -->
         <Style TargetType="Button" BasedOn="{StaticResource FluentButtonStyle}"/>
         <Style TargetType="TextBox" BasedOn="{StaticResource FluentTextBoxStyle}"/>
         <Style TargetType="ComboBox" BasedOn="{StaticResource FluentComboBoxStyle}"/>
         <Style TargetType="TabControl" BasedOn="{StaticResource FluentTabControlStyle}"/>
-        <!-- English text. -->
+        <!-- text. -->
         <Style TargetType="{x:Type ctrl:NumericAdjuster}">
             <Setter Property="ButtonBackground" Value="{DynamicResource SettingsHighlight}"/>
             <Setter Property="ButtonForeground" Value="{DynamicResource SettingsFg}"/>
@@ -57,13 +57,13 @@
             <DockPanel Grid.Row="0" Margin="0,0,0,12">
                 <Border Style="{StaticResource FluentCardBorderStyle}" Padding="12,10">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="English text" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource SettingsFg}"/>
+                        <TextBlock Text="Settings" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource SettingsFg}"/>
                         <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                            <TextBlock Text="{Binding CurrentVersion, StringFormat=English text {0}}" FontSize="11" Foreground="{DynamicResource SettingsFgSub}"/>
+                            <TextBlock Text="{Binding CurrentVersion, StringFormat=Version {0}}" FontSize="11" Foreground="{DynamicResource SettingsFgSub}"/>
                             <TextBlock Text=" | " FontSize="11" Foreground="{DynamicResource SettingsFgSub}" Margin="0,4"/>
                             <TextBlock>
                                 <Hyperlink NavigateUri="https://github.com/CrowKing63/LArtKey/wiki" RequestNavigate="Hyperlink_RequestNavigate">
-                                    <TextBlock Text="English text" Foreground="{DynamicResource SettingsFg}" TextDecorations="Underline"/>
+                                    <TextBlock Text="User guide" Foreground="{DynamicResource SettingsFg}" TextDecorations="Underline"/>
                                 </Hyperlink>
                             </TextBlock>
                         </StackPanel>
@@ -71,112 +71,112 @@
                 </Border>
             </DockPanel>
 
-            <!-- English text. -->
+            <!-- text. -->
             <TabControl x:Name="SettingsTabControl"
                         Grid.Row="1"
                         SelectionChanged="SettingsTabControl_SelectionChanged"
                         KeyboardNavigation.TabNavigation="Continue"
-                        AutomationProperties.Name="English text"
-                        AutomationProperties.HelpText="English text.">
+                        AutomationProperties.Name="Settings category tabs"
+                        AutomationProperties.HelpText="Choose appearance, header bar, behavior, accessibility, AI tools, or advanced settings.">
 
-                <TabItem Header="English text" AutomationProperties.Name="English text">
+                <TabItem Header="Appearance" AutomationProperties.Name="Appearance settings tab">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                         <StackPanel Margin="8,10,8,10">
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
+                            <TextBlock Text="Theme" Style="{StaticResource SectionTitleStyle}"/>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                                 <RadioButton x:Name="AppearanceFirstFocusable"
-                                             Content="English text"
+                                             Content="System"
                                              Foreground="{DynamicResource SettingsFg}"
                                              IsChecked="{Binding ThemeIsSystem}"
                                              Margin="0,0,12,0"
                                              KeyboardNavigation.TabIndex="10"
-                                             AutomationProperties.Name="English text"/>
-                                <RadioButton Content="English text" Foreground="{DynamicResource SettingsFg}" IsChecked="{Binding ThemeIsLight}" Margin="0,0,12,0" KeyboardNavigation.TabIndex="11" AutomationProperties.Name="English text"/>
-                                <RadioButton Content="English text" Foreground="{DynamicResource SettingsFg}" IsChecked="{Binding ThemeIsDark}" Margin="0,0,12,0" KeyboardNavigation.TabIndex="12" AutomationProperties.Name="English text"/>
-                                <RadioButton Content="English text" Foreground="{DynamicResource SettingsFg}" IsChecked="{Binding ThemeIsHighContrast}" KeyboardNavigation.TabIndex="13" AutomationProperties.Name="English text"/>
+                                             AutomationProperties.Name="System theme"/>
+                                <RadioButton Content="Light" Foreground="{DynamicResource SettingsFg}" IsChecked="{Binding ThemeIsLight}" Margin="0,0,12,0" KeyboardNavigation.TabIndex="11" AutomationProperties.Name="Light theme"/>
+                                <RadioButton Content="Dark" Foreground="{DynamicResource SettingsFg}" IsChecked="{Binding ThemeIsDark}" Margin="0,0,12,0" KeyboardNavigation.TabIndex="12" AutomationProperties.Name="Dark theme"/>
+                                <RadioButton Content="High contrast" Foreground="{DynamicResource SettingsFg}" IsChecked="{Binding ThemeIsHighContrast}" KeyboardNavigation.TabIndex="13" AutomationProperties.Name="High contrast theme"/>
                             </StackPanel>
 
-                            <CheckBox Content="English text"
+                            <CheckBox Content="Always on top"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding AlwaysOnTop}"
                                       Margin="0,0,0,16"
                                       KeyboardNavigation.TabIndex="14"
-                                      AutomationProperties.Name="English text"/>
+                                      AutomationProperties.Name="Always on top"/>
 
-                            <TextBlock Text="English text (%)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                            <TextBlock Text="Window size (%)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                             <ctrl:NumericAdjuster Value="{Binding WindowScale}" Minimum="60" Maximum="200" Step="5" DecimalPlaces="0"
-                                                  Margin="0,0,0,16" KeyboardNavigation.TabIndex="15" AutomationProperties.Name="English text"/>
+                                                  Margin="0,0,0,16" KeyboardNavigation.TabIndex="15" AutomationProperties.Name="Window size percentage"/>
 
-                            <TextBlock Text="English text (%)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                            <TextBlock Text="Key text size (%)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                             <ctrl:NumericAdjuster Value="{Binding KeyFontScalePercent}" Minimum="80" Maximum="220" Step="5" DecimalPlaces="0"
-                                                  Margin="0,0,0,16" KeyboardNavigation.TabIndex="16" AutomationProperties.Name="English text"/>
+                                                  Margin="0,0,0,16" KeyboardNavigation.TabIndex="16" AutomationProperties.Name="Key text size percentage"/>
 
-                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
-                            <TextBlock Text="1.0 = English text, 0.2 = 20%English text"
+                            <TextBlock Text="Opacity levels" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                            <TextBlock Text="1.0 = fully visible, 0.2 = 20% visible"
                                        Foreground="{DynamicResource SettingsFgSub}"
                                        FontSize="11"
                                        Margin="0,0,0,8"/>
 
-                            <CheckBox Content="English text"
+                            <CheckBox Content="Use active opacity"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding ActiveOpacityEnabled}"
                                       Margin="0,0,0,8"
                                       KeyboardNavigation.TabIndex="17"
-                                      AutomationProperties.Name="English text"/>
-                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
+                                      AutomationProperties.Name="Use active opacity"/>
+                            <TextBlock Text="Active opacity" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
                             <ctrl:NumericAdjuster Value="{Binding OpacityActive}" Minimum="0.1" Maximum="1.0" Step="0.05" DecimalPlaces="2"
                                                   IsEnabled="{Binding ActiveOpacityEnabled}"
-                                                  Margin="16,0,0,16" KeyboardNavigation.TabIndex="18" AutomationProperties.Name="English text"/>
+                                                  Margin="16,0,0,16" KeyboardNavigation.TabIndex="18" AutomationProperties.Name="Active opacity"/>
 
-                            <TextBlock Text="English text."
+                            <TextBlock Text="Idle opacity cannot be more opaque than active opacity; lowering active opacity also lowers the idle maximum."
                                        Foreground="{DynamicResource SettingsFgSub}"
                                        FontSize="11"
                                        Margin="16,0,0,8"
                                        TextWrapping="Wrap"/>
 
-                            <CheckBox Content="English text"
+                            <CheckBox Content="Fade when idle"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding IdleOpacityEnabled}"
                                       IsEnabled="{Binding CanUseIdleOpacity}"
                                       Margin="0,0,0,8"
                                       KeyboardNavigation.TabIndex="19"
-                                      AutomationProperties.Name="English text"/>
-                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
+                                      AutomationProperties.Name="Fade when idle"/>
+                            <TextBlock Text="Idle opacity" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
                             <ctrl:NumericAdjuster Value="{Binding OpacityIdle}" Minimum="0.1" Maximum="{Binding IdleOpacityMaximum}" Step="0.05" DecimalPlaces="2"
                                                   IsEnabled="{Binding CanEditIdleOpacity}"
-                                                  Margin="16,0,0,8" KeyboardNavigation.TabIndex="20" AutomationProperties.Name="English text"/>
+                                                  Margin="16,0,0,8" KeyboardNavigation.TabIndex="20" AutomationProperties.Name="Idle opacity"/>
 
-                            <TextBlock Text="English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
+                            <TextBlock Text="Idle delay (seconds)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
                             <ctrl:NumericAdjuster Value="{Binding FadeDelaySec}" Minimum="1" Maximum="30" Step="1" DecimalPlaces="0"
                                                   IsEnabled="{Binding CanEditIdleOpacity}"
-                                                  Margin="16,0,0,16" KeyboardNavigation.TabIndex="21" AutomationProperties.Name="English text"/>
+                                                  Margin="16,0,0,16" KeyboardNavigation.TabIndex="21" AutomationProperties.Name="Idle delay"/>
 
-                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
-                            <ComboBox ItemsSource="{Binding AvailableLayouts}" SelectedItem="{Binding SelectedLayout}" Height="30" Margin="0,0,0,8" KeyboardNavigation.TabIndex="22" AutomationProperties.Name="English text"/>
+                            <TextBlock Text="Default layout" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                            <ComboBox ItemsSource="{Binding AvailableLayouts}" SelectedItem="{Binding SelectedLayout}" Height="30" Margin="0,0,0,8" KeyboardNavigation.TabIndex="22" AutomationProperties.Name="Default layout selector"/>
 
-                            <Button Content="English text"
+                            <Button Content="Open layout editor"
                                     Command="{Binding OpenLayoutEditorCommand}"
                                     Style="{StaticResource SettingsActionButtonStyle}"
                                     Margin="0,0,0,8"
-                                    KeyboardNavigation.TabIndex="23" AutomationProperties.Name="English text"/>
+                                    KeyboardNavigation.TabIndex="23" AutomationProperties.Name="Open layout editor"/>
 
-                            <Button Content="English text"
+                            <Button Content="Open user dictionary editor"
                                     Command="{Binding OpenUserDictionaryEditorCommand}"
                                     Style="{StaticResource SettingsActionButtonStyle}"
                                     Margin="0,0,0,8"
-                                    KeyboardNavigation.TabIndex="24" AutomationProperties.Name="English text"
-                                    ToolTip="English text."/>
+                                    KeyboardNavigation.TabIndex="24" AutomationProperties.Name="Open user dictionary editor"
+                                    ToolTip="Review and edit words learned by prediction."/>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
 
-                <TabItem Header="English text" AutomationProperties.Name="English text">
+                <TabItem Header="Header bar" AutomationProperties.Name="Header bar settings tab">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                         <StackPanel Margin="8,10,8,10">
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <TextBlock Text="English text." Foreground="{DynamicResource SettingsFgSub}" FontSize="11"/>
-                            <TextBlock Text="English text → English text." Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,2"/>
-                            <TextBlock Text="English text." Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,8"/>
+                            <TextBlock Text="Built-in header buttons" Style="{StaticResource SectionTitleStyle}"/>
+                            <TextBlock Text="Control visibility, side, and order for built-in buttons." Foreground="{DynamicResource SettingsFgSub}" FontSize="11"/>
+                            <TextBlock Text="Collapse and close are always pinned to the right edge; from the far right they appear as close, then collapse." Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,2"/>
+                            <TextBlock Text="Double-click empty header space or the center drag handle to collapse or expand; timing follows Windows settings." Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,8"/>
                             <ItemsControl ItemsSource="{Binding BuiltInHeaderButtons}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -219,10 +219,10 @@
                                                     VerticalAlignment="Center">
                                                 <Button.Style>
                                                     <Style TargetType="Button" BasedOn="{StaticResource FluentSecondaryButtonStyle}">
-                                                        <Setter Property="Content" Value="◄ English text ►"/>
+                                                        <Setter Property="Content" Value="Move left"/>
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding Position}" Value="Left">
-                                                                <Setter Property="Content" Value="◄ English text ►"/>
+                                                                <Setter Property="Content" Value="Move right"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
@@ -236,8 +236,8 @@
                             </ItemsControl>
 
                             <Separator Background="{DynamicResource SettingsHighlight}" Margin="0,16,0,16"/>
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <TextBlock Text="English text." Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,8"/>
+                            <TextBlock Text="Custom shortcuts" Style="{StaticResource SectionTitleStyle}"/>
+                            <TextBlock Text="Show icon-only buttons and customize tooltips and accessible names." Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,8"/>
                             <ItemsControl ItemsSource="{Binding CustomHeaderButtons}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -283,21 +283,21 @@
                                                         VerticalAlignment="Center">
                                                     <Button.Style>
                                                         <Style TargetType="Button" BasedOn="{StaticResource FluentSecondaryButtonStyle}">
-                                                            <Setter Property="Content" Value="◄ English text ►"/>
+                                                            <Setter Property="Content" Value="Move left"/>
                                                             <Style.Triggers>
                                                                 <DataTrigger Binding="{Binding Position}" Value="Left">
-                                                                    <Setter Property="Content" Value="◄ English text ►"/>
+                                                                    <Setter Property="Content" Value="Move right"/>
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
                                                     </Button.Style>
                                                 </Button>
-                                                <Button Content="English text" Command="{Binding DataContext.EditCustomHeaderButtonCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Grid.Column="4" Margin="0,0,4,0" Padding="8,2" Style="{StaticResource FluentSecondaryButtonStyle}"/>
-                                                <Button Content="English text" Command="{Binding DataContext.DuplicateCustomHeaderButtonCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Grid.Column="5" Margin="0,0,4,0" Padding="8,2" Style="{StaticResource FluentSecondaryButtonStyle}"/>
+                                                <Button Content="Edit" Command="{Binding DataContext.EditCustomHeaderButtonCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Grid.Column="4" Margin="0,0,4,0" Padding="8,2" Style="{StaticResource FluentSecondaryButtonStyle}"/>
+                                                <Button Content="Duplicate" Command="{Binding DataContext.DuplicateCustomHeaderButtonCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Grid.Column="5" Margin="0,0,4,0" Padding="8,2" Style="{StaticResource FluentSecondaryButtonStyle}"/>
                                                 <Button Content="▲" Command="{Binding DataContext.MoveHeaderButtonUpCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Grid.Column="6" Margin="0,0,4,0" Padding="6,2" Style="{StaticResource FluentSecondaryButtonStyle}"/>
                                                 <StackPanel Grid.Column="7" Orientation="Horizontal">
                                                     <Button Content="▼" Command="{Binding DataContext.MoveHeaderButtonDownCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Margin="0,0,4,0" Padding="6,2" Style="{StaticResource FluentSecondaryButtonStyle}"/>
-                                                    <Button Content="English text" Command="{Binding DataContext.RemoveCustomHeaderButtonCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Padding="8,2" Style="{StaticResource FluentSecondaryButtonStyle}"/>
+                                                    <Button Content="Delete" Command="{Binding DataContext.RemoveCustomHeaderButtonCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Padding="8,2" Style="{StaticResource FluentSecondaryButtonStyle}"/>
                                                 </StackPanel>
                                             </Grid>
                                         </Border>
@@ -306,11 +306,11 @@
                             </ItemsControl>
 
                             <Separator Background="{DynamicResource SettingsHighlight}" Margin="0,16,0,16"/>
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <TextBlock Text="English text." Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,8"/>
+                            <TextBlock Text="Detailed editor" Style="{StaticResource SectionTitleStyle}"/>
+                            <TextBlock Text="Use the button below to add a new item. Use each row's Edit button to modify an existing item in the standalone editor." Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,8"/>
                             <TextBlock Text="{Binding HeaderButtonLimitSummary}" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" TextWrapping="Wrap" Margin="0,0,0,8"/>
                             <Button x:Name="TopBarFirstFocusable"
-                                    Content="English text"
+                                    Content="Add custom shortcut"
                                     Command="{Binding AddCustomHeaderButtonCommand}"
                                     Style="{StaticResource SettingsPrimaryButtonStyle}"
                                     HorizontalAlignment="Left"
@@ -320,12 +320,12 @@
                     </ScrollViewer>
                 </TabItem>
 
-                <TabItem Header="English text" AutomationProperties.Name="English text">
+                <TabItem Header="Behavior" AutomationProperties.Name="Behavior settings tab">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                         <StackPanel Margin="8,10,8,10">
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
+                            <TextBlock Text="Input / action" Style="{StaticResource SectionTitleStyle}"/>
 
-                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                            <TextBlock Text="Global hotkey" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                             <TextBox x:Name="BehaviorFirstFocusable"
                                      Text="{Binding GlobalHotkey, UpdateSourceTrigger=LostFocus}"
                                      Height="30" Margin="0,0,0,16"
@@ -333,194 +333,194 @@
                                      Background="{DynamicResource SettingsHighlight}" Foreground="{DynamicResource SettingsFg}"
                                      BorderBrush="{DynamicResource SettingsBorder}"
                                      KeyboardNavigation.TabIndex="30"
-                                     AutomationProperties.Name="English text"/>
+                                     AutomationProperties.Name="Global hotkey input"/>
 
-                            <CheckBox Content="Windows English text"
+                            <CheckBox Content="Start with Windows"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding RunOnStartup}"
                                       Margin="0,0,0,16"
                                       KeyboardNavigation.TabIndex="31"
-                                      AutomationProperties.Name="English text"/>
+                                      AutomationProperties.Name="Startup"/>
 
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <CheckBox Content="English text"
+                            <TextBlock Text="Close / hide" Style="{StaticResource SectionTitleStyle}"/>
+                            <CheckBox Content="Do not ask for close confirmation again"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding SkipCloseConfirm}"
                                       Margin="0,0,0,4"
                                       KeyboardNavigation.TabIndex="32"
-                                      AutomationProperties.Name="English text"/>
-                            <TextBlock Text="English text 'English text', English text."
+                                      AutomationProperties.Name="Do not ask for close confirmation again"/>
+                            <TextBlock Text="When checked, Close or Esc hides directly to the tray without confirmation. This stays in sync with the confirmation dialog and tray menu preference."
                                        Foreground="{DynamicResource SettingsFgSub}"
                                        FontSize="11"
                                        TextWrapping="Wrap"
                                        Margin="16,0,0,16"/>
 
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <CheckBox Content="English text"
+                            <TextBlock Text="Key repeat" Style="{StaticResource SectionTitleStyle}"/>
+                            <CheckBox Content="Enable key repeat"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding KeyRepeatEnabled}"
                                       Margin="0,0,0,4" KeyboardNavigation.TabIndex="33"/>
-                            <TextBlock Text="English text."
+                            <TextBlock Text="Repeat applies to SendKey-based keys. For text input mode, character-key repeat is limited to avoid composition conflicts; non-character keys such as arrows and Backspace can repeat."
                                        Foreground="{DynamicResource SettingsFgSub}"
                                        FontSize="11"
                                        TextWrapping="Wrap"
                                        Margin="0,0,0,8"/>
-                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
+                            <TextBlock Text="Initial delay" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
                             <ctrl:NumericAdjuster Value="{Binding KeyRepeatDelayMs}" Minimum="100" Maximum="1000" Step="50" DecimalPlaces="0"
                                                   IsEnabled="{Binding KeyRepeatEnabled}"
                                                   Margin="16,0,0,8" KeyboardNavigation.TabIndex="34"/>
 
-                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
+                            <TextBlock Text="Repeat interval" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
                             <ctrl:NumericAdjuster Value="{Binding KeyRepeatIntervalMs}" Minimum="20" Maximum="200" Step="10" DecimalPlaces="0"
                                                   IsEnabled="{Binding KeyRepeatEnabled}"
                                                   Margin="16,0,0,16" KeyboardNavigation.TabIndex="35"/>
 
                             <Separator Background="{DynamicResource SettingsHighlight}" Margin="0,0,0,16"/>
 
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <CheckBox Content="English text(Dwell Click)"
+                            <TextBlock Text="Dwell click" Style="{StaticResource SectionTitleStyle}"/>
+                            <CheckBox Content="Dwell click"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding DwellEnabled}"
                                       Margin="0,0,0,8" KeyboardNavigation.TabIndex="36"/>
-                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
+                            <TextBlock Text="Dwell time" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
                             <ctrl:NumericAdjuster Value="{Binding DwellTimeMs}" Minimum="200" Maximum="3000" Step="100" DecimalPlaces="0"
                                                   IsEnabled="{Binding DwellEnabled}"
                                                   Margin="16,0,0,16" KeyboardNavigation.TabIndex="37"/>
 
                             <Separator Background="{DynamicResource SettingsHighlight}" Margin="0,0,0,16"/>
 
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <CheckBox Content="English text"
+                            <TextBlock Text="Key sound" Style="{StaticResource SectionTitleStyle}"/>
+                            <CheckBox Content="Key click sound"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding SoundEnabled}"
                                       Margin="0,0,0,8" KeyboardNavigation.TabIndex="38"/>
                             <StackPanel Orientation="Horizontal" Margin="16,0,0,16" Visibility="{Binding SoundEnabled, Converter={StaticResource BoolToVis}}">
-                                <TextBlock Text="English text:" VerticalAlignment="Center" Margin="0,0,6,0" Foreground="{DynamicResource SettingsFgSub}"/>
+                                <TextBlock Text="Sound file:" VerticalAlignment="Center" Margin="0,0,6,0" Foreground="{DynamicResource SettingsFgSub}"/>
                                 <TextBlock VerticalAlignment="Center" Opacity="0.7" MaxWidth="220" Foreground="{DynamicResource SettingsFg}" TextTrimming="CharacterEllipsis" Text="{Binding SoundFilePath}"/>
-                                <Button Content="English text" Command="{Binding BrowseSoundFileCommand}" Margin="8,0,0,0" Padding="8,4" Height="32" KeyboardNavigation.TabIndex="39"
+                                <Button Content="Browse" Command="{Binding BrowseSoundFileCommand}" Margin="8,0,0,0" Padding="8,4" Height="32" KeyboardNavigation.TabIndex="39"
                                         Style="{StaticResource FluentSecondaryButtonStyle}"/>
-                                <Button Content="English text" Command="{Binding ResetSoundFileCommand}" Margin="4,0,0,0" Padding="8,4" Height="32" KeyboardNavigation.TabIndex="40"
+                                <Button Content="Reset" Command="{Binding ResetSoundFileCommand}" Margin="4,0,0,0" Padding="8,4" Height="32" KeyboardNavigation.TabIndex="40"
                                         Style="{StaticResource FluentSecondaryButtonStyle}"/>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
 
-                <TabItem Header="English text" AutomationProperties.Name="English text">
+                <TabItem Header="Accessibility" AutomationProperties.Name="Accessibility settings tab">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                         <StackPanel Margin="8,10,8,10">
-                            <TextBlock Text="English text(TTS)" Style="{StaticResource SectionTitleStyle}"/>
+                            <TextBlock Text="Voice feedback (TTS)" Style="{StaticResource SectionTitleStyle}"/>
                             <CheckBox x:Name="A11yFirstFocusable"
-                                      Content="English text"
+                                      Content="Read selected keys aloud"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding TtsEnabled}"
                                       Margin="0,0,0,8" KeyboardNavigation.TabIndex="50"/>
-                            <CheckBox Content="English text"
+                            <CheckBox Content="Read on hover"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding TtsOnHover}"
                                       IsEnabled="{Binding TtsEnabled}"
                                       Margin="16,0,0,8" KeyboardNavigation.TabIndex="51"/>
-                            <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
+                            <TextBlock Text="Speech rate" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
                             <ctrl:NumericAdjuster Value="{Binding TtsRate}" Minimum="-5" Maximum="5" Step="1" DecimalPlaces="0"
                                                   IsEnabled="{Binding TtsEnabled}"
                                                   Margin="16,0,0,16" KeyboardNavigation.TabIndex="52"/>
 
                             <Separator Background="{DynamicResource SettingsHighlight}" Margin="0,0,0,16"/>
 
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <CheckBox Content="English text"
+                            <TextBlock Text="Reduced motion" Style="{StaticResource SectionTitleStyle}"/>
+                            <CheckBox Content="Enable reduced motion"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding ReducedMotionEnabled}"
                                       Margin="0,0,0,16" KeyboardNavigation.TabIndex="53"/>
 
                             <Separator Background="{DynamicResource SettingsHighlight}" Margin="0,0,0,16"/>
 
-                            <TextBlock Text="English text)" Style="{StaticResource SectionTitleStyle}"/>
-                            <CheckBox Content="English text"
+                            <TextBlock Text="Focus navigation (keyboard)" Style="{StaticResource SectionTitleStyle}"/>
+                            <CheckBox Content="Enable focus navigation"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding KeyboardA11yNavigationEnabled}"
                                       Margin="0,0,0,8" KeyboardNavigation.TabIndex="54"/>
-                            <Button Content="English text"
+                            <Button Content="Open focus navigation settings"
                                     Command="{Binding OpenFocusA11ySettingsCommand}"
                                     Style="{StaticResource SettingsActionButtonStyle}"
                                     Margin="16,0,0,8"
                                     IsEnabled="{Binding KeyboardA11yNavigationEnabled}"
                                     KeyboardNavigation.TabIndex="55"/>
 
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <CheckBox Content="English text"
+                            <TextBlock Text="Switch scanning input" Style="{StaticResource SectionTitleStyle}"/>
+                            <CheckBox Content="Enable switch scanning input"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding SwitchScanEnabled}"
                                       Margin="0,0,0,8" KeyboardNavigation.TabIndex="56"/>
-                            <Button Content="English text"
+                            <Button Content="Open switch scan settings"
                                     Command="{Binding OpenSwitchScanSettingsCommand}"
                                     Style="{StaticResource SettingsActionButtonStyle}"
                                     Margin="16,0,0,8"
                                     IsEnabled="{Binding SwitchScanEnabled}"
                                     KeyboardNavigation.TabIndex="57"/>
-                            <TextBlock Text="LiveRegion English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
+                            <TextBlock Text="Live region announcement mode" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="16,0,0,4"/>
                             <ComboBox ItemsSource="{Binding SwitchScanAnnounceModes}" SelectedItem="{Binding SwitchScanAnnounceMode}" Margin="16,0,0,8" Height="30" KeyboardNavigation.TabIndex="58"/>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
 
-                <TabItem Header="AI English text" AutomationProperties.Name="AI English text">
+                <TabItem Header="AI tools" AutomationProperties.Name="AI tools settings tab">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                         <StackPanel Margin="8,10,8,10">
-                            <TextBlock Text="AI English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <CheckBox Content="AI English text ✨ English text)"
+                            <TextBlock Text="AI tool processing" Style="{StaticResource SectionTitleStyle}"/>
+                            <CheckBox Content="Enable AI tools (show ✨ in the header bar)"
                                       Foreground="{DynamicResource SettingsFg}"
                                       IsChecked="{Binding AiEnabled}"
                                       Margin="0,0,0,16"/>
                             
                             <StackPanel IsEnabled="{Binding AiEnabled}">
-                                <TextBlock Text="API English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                                <TextBlock Text="API endpoint URL (OpenAI compatible)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                                 <TextBox Text="{Binding AiEndpoint, UpdateSourceTrigger=LostFocus}" Height="30" Margin="0,0,0,16" Padding="8,4" Background="{DynamicResource SettingsHighlight}" Foreground="{DynamicResource SettingsFg}" BorderBrush="{DynamicResource SettingsBorder}"/>
 
-                                <TextBlock Text="API English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                                <TextBlock Text="API key (stored with Windows DPAPI; leave empty for local servers)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                                 <TextBox Text="{Binding AiApiKey, UpdateSourceTrigger=LostFocus}" Height="30" Margin="0,0,0,16" Padding="8,4" Background="{DynamicResource SettingsHighlight}" Foreground="{DynamicResource SettingsFg}" BorderBrush="{DynamicResource SettingsBorder}"/>
 
-                                <TextBlock Text="English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                                <TextBlock Text="Model name (for example: gpt-4o-mini, llama3)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                                 <TextBox Text="{Binding AiModel, UpdateSourceTrigger=LostFocus}" Height="30" Margin="0,0,0,16" Padding="8,4" Background="{DynamicResource SettingsHighlight}" Foreground="{DynamicResource SettingsFg}" BorderBrush="{DynamicResource SettingsBorder}"/>
 
-                                <TextBlock Text="English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                                <TextBlock Text="Default prompt (AI instruction)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                                 <TextBox Text="{Binding AiDefaultPrompt, UpdateSourceTrigger=LostFocus}" Height="60" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,8" Padding="8,4" Background="{DynamicResource SettingsHighlight}" Foreground="{DynamicResource SettingsFg}" BorderBrush="{DynamicResource SettingsBorder}"/>
-                                <Button Content="English text"
+                                <Button Content="Open long prompt editor"
                                         Command="{Binding OpenAiPromptEditorCommand}"
                                         Style="{StaticResource SettingsActionButtonStyle}"
                                         Margin="0,0,0,4"
                                         HorizontalAlignment="Left"
-                                        AutomationProperties.Name="AI English text"
-                                        ToolTip="English text."/>
-                                <TextBlock Text="English text."
+                                        AutomationProperties.Name="Open AI prompt editor"
+                                        ToolTip="Long prompts can be edited more comfortably in the standalone LArtKey.Tools editor."/>
+                                <TextBlock Text="Saved long prompts are reflected in the settings window immediately."
                                            Foreground="{DynamicResource SettingsFgSub}"
                                            FontSize="11"
                                            Margin="0,0,0,16"
                                            TextWrapping="Wrap"/>
 
-                                <TextBlock Text="English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                                <TextBlock Text="Timeout (seconds)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                                 <ctrl:NumericAdjuster Value="{Binding AiTimeoutSeconds}" Minimum="5" Maximum="300" Step="5" DecimalPlaces="0"
                                                       Margin="0,0,0,8"/>
-                                <Button Content="English text)"
+                                <Button Content="Test connection (short API request)"
                                         Command="{Binding TestAiConnectionCommand}"
                                         Style="{StaticResource SettingsActionButtonStyle}"
                                         Margin="0,0,0,16"
                                         HorizontalAlignment="Left"
-                                        ToolTip="English text."/>
+                                        ToolTip="Checks whether the endpoint, model, and API key are valid. Fill in the fields above first."/>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
 
-                <TabItem Header="English text" AutomationProperties.Name="English text">
+                <TabItem Header="Advanced" AutomationProperties.Name="Advanced settings tab">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                         <StackPanel Margin="8,10,8,10">
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
+                            <TextBlock Text="Updates" Style="{StaticResource SectionTitleStyle}"/>
 
                             <Border Background="{DynamicResource SettingsHighlight}" CornerRadius="6" Padding="12,8" Margin="0,0,0,8" Visibility="{Binding IsCheckingUpdate, Converter={StaticResource InvBoolToVis}}">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="AdvancedFirstFocusable" Text="{Binding UpdateStatusMessage}" TextWrapping="Wrap" FontSize="12" Foreground="{DynamicResource SettingsFg}" Focusable="True" KeyboardNavigation.TabIndex="70"/>
-                                    <TextBlock Text="{Binding LatestVersion, StringFormat=English text: {0}}" FontSize="11" Foreground="{DynamicResource SettingsFgSub}" Margin="0,4,0,0"
+                                    <TextBlock Text="{Binding LatestVersion, StringFormat=Latest version: {0}}" FontSize="11" Foreground="{DynamicResource SettingsFgSub}" Margin="0,4,0,0"
                                                Visibility="{Binding HasUpdateAvailable, Converter={StaticResource BoolToVis}}"/>
                                 </StackPanel>
                             </Border>
@@ -531,58 +531,58 @@
                                 <TextBlock Text="{Binding DownloadProgress, StringFormat={}{0:P0}}" FontSize="11" Foreground="{DynamicResource SettingsFgSub}"/>
                             </StackPanel>
 
-                            <TextBlock Text="English text." FontSize="12" Foreground="{DynamicResource SettingsFg}" FontWeight="SemiBold"
+                            <TextBlock Text="During installation, the app may close and restart automatically." FontSize="12" Foreground="{DynamicResource SettingsFg}" FontWeight="SemiBold"
                                        Visibility="{Binding IsInstalling, Converter={StaticResource BoolToVis}}" Margin="0,0,0,8"/>
 
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,16" Visibility="{Binding IsDownloading, Converter={StaticResource InvBoolToVis}}">
-                                <Button Content="English text" Command="{Binding CheckForUpdateCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="71"
+                                <Button Content="Check for updates" Command="{Binding CheckForUpdateCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="71"
                                         Margin="0,0,8,0"/>
-                                <Button Content="English text" Command="{Binding DownloadAndInstallFromSettingsCommand}" Style="{StaticResource SettingsPrimaryButtonStyle}" KeyboardNavigation.TabIndex="72"
+                                <Button Content="Auto install" Command="{Binding DownloadAndInstallFromSettingsCommand}" Style="{StaticResource SettingsPrimaryButtonStyle}" KeyboardNavigation.TabIndex="72"
                                         Margin="0,0,8,0"
                                         Visibility="{Binding HasUpdateAvailable, Converter={StaticResource BoolToVis}}"/>
                                 <Button Content="GitHub" Command="{Binding OpenReleasePageCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="73"
                                         Margin="0,0,8,0"
                                         Visibility="{Binding HasUpdateAvailable, Converter={StaticResource BoolToVis}}"/>
-                                <Button Content="English text" Command="{Binding CancelDownloadCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="74"
+                                <Button Content="Cancel" Command="{Binding CancelDownloadCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="74"
                                         Visibility="{Binding IsDownloading, Converter={StaticResource BoolToVis}}"/>
                             </StackPanel>
 
-                            <TextBlock Text="English text" Style="{StaticResource SectionTitleStyle}"/>
-                            <TextBlock Text="English text."
+                            <TextBlock Text="Profile layouts" Style="{StaticResource SectionTitleStyle}"/>
+                            <TextBlock Text="Profile mappings are managed in the standalone LArtKey.Tools app."
                                        Foreground="{DynamicResource SettingsFgSub}"
                                        FontSize="11"
                                        Margin="0,0,0,8"/>
-                            <Button Content="English text"
+                            <Button Content="Open profile mapping editor"
                                     Command="{Binding OpenProfileMappingEditorCommand}"
                                     Style="{StaticResource SettingsActionButtonStyle}"
                                     Margin="0,0,0,16"
                                     KeyboardNavigation.TabIndex="75"
-                                    AutomationProperties.Name="English text"
-                                    ToolTip="English text."/>
+                                    AutomationProperties.Name="Open profile mapping editor"
+                                    ToolTip="Edit process-name to layout-name mappings in a standalone editor."/>
 
                             <Separator Background="{DynamicResource SettingsHighlight}" Margin="0,0,0,16"/>
-                            <Button Content="English text"
+                            <Button Content="Open user settings data folder"
                                     Command="{Binding OpenUserSettingsFolderCommand}"
                                     Style="{StaticResource SettingsActionButtonStyle}" Margin="0,0,0,8" KeyboardNavigation.TabIndex="77"
-                                    ToolTip="English text."/>
+                                    ToolTip="Opens the folder containing layouts, user words, statistics, and other settings files."/>
 
                             <TextBlock TextWrapping="Wrap" FontSize="12" Foreground="{DynamicResource SettingsFg}" Opacity="0.75" Margin="0,0,0,4"
-                                       Text="English text."/>
-                            <Button Content="English text" Command="{Binding ResetWindowLayoutCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="78"
+                                       Text="Reset the window layout if the window position or size looks wrong. Prediction will be turned off and the app will restart."/>
+                            <Button Content="Reset window layout" Command="{Binding ResetWindowLayoutCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="78"
                                     Margin="0,0,0,16"/>
 
                             <Border Background="{DynamicResource AdminWarningBg}" CornerRadius="6" Padding="12,8" Margin="0,0,0,8" Visibility="{Binding IsRunningAsAdmin, Converter={StaticResource InvBoolToVis}}">
                                 <TextBlock TextWrapping="Wrap" FontSize="12" Foreground="{DynamicResource AdminWarningFg}"
-                                           Text="English text."/>
+                                           Text="If input is blocked in security software or administrator windows, restart as administrator."/>
                             </Border>
-                            <Button Content="English text" Command="{Binding RestartAsAdminCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="79"
+                            <Button Content="Restart as administrator" Command="{Binding RestartAsAdminCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="79"
                                     Visibility="{Binding IsRunningAsAdmin, Converter={StaticResource InvBoolToVis}}" Margin="0,0,0,8"/>
 
                             <Border Background="{DynamicResource AdminOkBg}" CornerRadius="6" Padding="12,8" Margin="0,0,0,8" Visibility="{Binding IsRunningAsAdmin, Converter={StaticResource BoolToVis}}">
                                 <TextBlock TextWrapping="Wrap" FontSize="12" Foreground="{DynamicResource AdminOkFg}"
-                                           Text="English text."/>
+                                           Text="LArtKey is currently running as administrator. For normal app compatibility, standard user mode is recommended."/>
                             </Border>
-                            <Button Content="English text" Command="{Binding RestartAsUserCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="80"
+                            <Button Content="Restart as standard user" Command="{Binding RestartAsUserCommand}" Style="{StaticResource SettingsActionButtonStyle}" KeyboardNavigation.TabIndex="80"
                                     Visibility="{Binding IsRunningAsAdmin, Converter={StaticResource BoolToVis}}" Margin="0,0,0,8"/>
                         </StackPanel>
                     </ScrollViewer>

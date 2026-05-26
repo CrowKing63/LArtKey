@@ -3,15 +3,15 @@ using System.Text.Json.Serialization;
 namespace LArtKey.Models;
 
 /// <summary>
-/// [English text] English text 'English text'English text.
-/// [English text] English text.
+/// [text] text 'text'text.
+/// [text] text.
 /// </summary>
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
 [JsonDerivedType(typeof(SendKeyAction),       "SendKey")]
 [JsonDerivedType(typeof(SendComboAction),     "SendCombo")]
 [JsonDerivedType(typeof(ToggleStickyAction),  "ToggleSticky")]
 [JsonDerivedType(typeof(SwitchLayoutAction),  "SwitchLayout")]
-// ── T-9.1 English text ──────────────────────────────────────────────────────
+// ── T-9.1 text ──────────────────────────────────────────────────────
 [JsonDerivedType(typeof(RunAppAction),        "RunApp")]
 [JsonDerivedType(typeof(BoilerplateAction),   "Boilerplate")]
 [JsonDerivedType(typeof(ShellCommandAction),  "ShellCommand")]
@@ -27,32 +27,32 @@ public record SendComboAction(List<string> Keys)     : KeyAction;
 public record ToggleStickyAction(string Vk)          : KeyAction;
 public record SwitchLayoutAction(string Name)        : KeyAction;
 
-// ── T-9.1 English text ────────────────────────────────────────────────────
+// ── T-9.1 text ────────────────────────────────────────────────────
 
-/// English text: "notepad.exe")
-/// Args: English text "")
+/// text: "notepad.exe")
+/// Args: text "")
 public record RunAppAction(string Path, string Args = "") : KeyAction;
 
-/// English text
+/// text
 public record BoilerplateAction(string Text) : KeyAction;
 
-/// English text
-/// Shell: "cmd" | "powershell" (English text "cmd")
-/// Hidden: true English text true)
+/// text
+/// Shell: "cmd" | "powershell" (text "cmd")
+/// Hidden: true text true)
 public record ShellCommandAction(string Command, string Shell = "cmd", bool Hidden = true) : KeyAction;
 
-/// English text
+/// text
 /// Direction: "up" | "down" | "mute"
-/// Step: English text 1~100 (English text 5)
+/// Step: text 1~100 (text 5)
 public record VolumeControlAction(string Direction, int Step = 5) : KeyAction;
 
-/// English text
+/// text
 public record ClipboardPasteAction(string Text) : KeyAction;
 
-/// "English text/A" English text.
+/// "text/A" text.
 public sealed record ToggleInputModeAction() : KeyAction;
 
 public sealed record ToggleFunctionLayerAction() : KeyAction;
 
-/// AI English text)
+/// AI tool)
 public record AiAction(string Prompt = "") : KeyAction;

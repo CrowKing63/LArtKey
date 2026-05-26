@@ -8,7 +8,7 @@ using WpfDialog = Microsoft.Win32;
 
 namespace LArtKey.ViewModels;
 
-/// string TwoWay English text)
+/// string TwoWay text)
 public partial class ObservableString : ObservableObject
 {
     [ObservableProperty] private string _value;
@@ -18,16 +18,16 @@ public partial class ObservableString : ObservableObject
     public override string ToString() => Value;
 }
 
-/// VK English text)
+/// VK text)
 public record VkCodeItem(string VkCode, string DisplayName);
 
-/// T-9.2: English text VM — ActionBuilderView English text
+/// T-9.2: text VM — ActionBuilderView text
 public partial class ActionBuilderViewModel : ObservableObject
 {
-    // ── VK English text → English text ─────────────────────────────────────────────────
+    // ── VK text → text ─────────────────────────────────────────────────
     public static Dictionary<string, string> KeyDisplayNameMap { get; } = new(StringComparer.OrdinalIgnoreCase)
     {
-        // English text
+        // text
         ["VK_A"] = "A", ["VK_B"] = "B", ["VK_C"] = "C", ["VK_D"] = "D",
         ["VK_E"] = "E", ["VK_F"] = "F", ["VK_G"] = "G", ["VK_H"] = "H",
         ["VK_I"] = "I", ["VK_J"] = "J", ["VK_K"] = "K", ["VK_L"] = "L",
@@ -35,31 +35,31 @@ public partial class ActionBuilderViewModel : ObservableObject
         ["VK_Q"] = "Q", ["VK_R"] = "R", ["VK_S"] = "S", ["VK_T"] = "T",
         ["VK_U"] = "U", ["VK_V"] = "V", ["VK_W"] = "W", ["VK_X"] = "X",
         ["VK_Y"] = "Y", ["VK_Z"] = "Z",
-        // English text
+        // text
         ["VK_0"] = "0", ["VK_1"] = "1", ["VK_2"] = "2", ["VK_3"] = "3",
         ["VK_4"] = "4", ["VK_5"] = "5", ["VK_6"] = "6", ["VK_7"] = "7",
         ["VK_8"] = "8", ["VK_9"] = "9",
-        // English text
+        // text
         ["VK_F1"] = "F1", ["VK_F2"] = "F2", ["VK_F3"] = "F3", ["VK_F4"] = "F4",
         ["VK_F5"] = "F5", ["VK_F6"] = "F6", ["VK_F7"] = "F7", ["VK_F8"] = "F8",
         ["VK_F9"] = "F9", ["VK_F10"] = "F10", ["VK_F11"] = "F11", ["VK_F12"] = "F12",
-        // English text
+        // text
         ["VK_RETURN"] = "Enter", ["VK_SPACE"] = "Space", ["VK_TAB"] = "Tab",
         ["VK_BACK"] = "Backspace", ["VK_ESCAPE"] = "Esc",
-        // English text
+        // text
         ["VK_SHIFT"] = "Shift", ["VK_CONTROL"] = "Ctrl", ["VK_MENU"] = "Alt",
         ["VK_LSHIFT"] = "LShift", ["VK_RSHIFT"] = "RShift",
         ["VK_LCONTROL"] = "LCtrl", ["VK_RCONTROL"] = "RCtrl",
         ["VK_LMENU"] = "LAlt", ["VK_RMENU"] = "RAlt",
         ["VK_LWIN"] = "Win", ["VK_RWIN"] = "RWin",
-        // English text
+        // text
         ["VK_LEFT"] = "←", ["VK_UP"] = "↑", ["VK_RIGHT"] = "→", ["VK_DOWN"] = "↓",
-        // English text
+        // text
         ["VK_HOME"] = "Home", ["VK_END"] = "End", ["VK_PRIOR"] = "PageUp", ["VK_NEXT"] = "PageDown",
         ["VK_INSERT"] = "Insert", ["VK_DELETE"] = "Delete",
-        // English text
-        ["VK_HANGUL"] = "English text", ["VK_HANJA"] = "English text", ["VK_CAPITAL"] = "CapsLock",
-        // English text
+        // text
+        ["VK_HANGUL"] = "InputLang", ["VK_HANJA"] = "IMEConvert", ["VK_CAPITAL"] = "CapsLock",
+        // text
         ["VK_NUMLOCK"] = "NumLock", ["VK_SCROLL"] = "ScrollLock",
         ["VK_OEM_3"] = "`", ["VK_SNAPSHOT"] = "Print", ["VK_OEM_5"] = "\\",
         ["VK_OEM_MINUS"] = "-", ["VK_OEM_PLUS"] = "=", ["VK_OEM_4"] = "[",
@@ -67,7 +67,7 @@ public partial class ActionBuilderViewModel : ObservableObject
         ["VK_OEM_PERIOD"] = ".", ["VK_OEM_2"] = "/", ["VK_OEM_COMMA"] = ",",
     };
 
-    // ── English text ─────────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────────
     public static IReadOnlyList<string> ActionTypes { get; } =
     [
         "SendKey", "SendCombo", "ToggleSticky", "SwitchLayout",
@@ -104,7 +104,7 @@ public partial class ActionBuilderViewModel : ObservableObject
             KeyDisplayNameMap.TryGetValue(vk, out var name) ? name : vk.Replace("VK_", "")))
         .ToList();
 
-    // ── English text ───────────────────────────────────────────────────────
+    // ── text ───────────────────────────────────────────────────────
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsSendKey))]
     [NotifyPropertyChangedFor(nameof(IsSendCombo))]
@@ -120,7 +120,7 @@ public partial class ActionBuilderViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(IsAi))]
     private string selectedActionType = "SendKey";
 
-    // ── Visibility English text ───────────────────────────────────────────────
+    // ── Visibility text ───────────────────────────────────────────────
     public bool IsSendKey              => SelectedActionType == "SendKey";
     public bool IsSendCombo            => SelectedActionType == "SendCombo";
     public bool IsToggleSticky         => SelectedActionType == "ToggleSticky";
@@ -134,12 +134,12 @@ public partial class ActionBuilderViewModel : ObservableObject
     public bool IsToggleFunctionLayer  => SelectedActionType == "ToggleFunctionLayer";
     public bool IsAi                   => SelectedActionType == "Ai";
 
-    // ── English text ─────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────
 
     // SendKey
     [ObservableProperty] private string sendKeyVk = "VK_A";
 
-    // SendCombo (English text)
+    // SendCombo (text)
     [ObservableProperty] private ObservableCollection<ObservableString> sendComboKeysCollection = 
         [new ObservableString("VK_CONTROL"), new ObservableString("VK_C")];
 
@@ -170,7 +170,7 @@ public partial class ActionBuilderViewModel : ObservableObject
     // Ai
     [ObservableProperty] private string aiPrompt = "";
 
-    // ── English text ───────────────────────────────────────────────
+    // ── text ───────────────────────────────────────────────
     public void LoadFromAction(KeyAction? action)
     {
         switch (action)
@@ -231,7 +231,7 @@ public partial class ActionBuilderViewModel : ObservableObject
         }
     }
 
-    // ── English text ────────────────────────────────────────
+    // ── text ────────────────────────────────────────
     public KeyAction? BuildAction() => SelectedActionType switch
     {
         "SendKey"      => new SendKeyAction(SendKeyVk.Trim()),
@@ -251,14 +251,14 @@ public partial class ActionBuilderViewModel : ObservableObject
         _                     => null
     };
 
-    // ── RunApp English text ───────────────────────────────────────────────────
+    // ── RunApp text ───────────────────────────────────────────────────
     [RelayCommand]
     private void BrowseApp()
     {
         var dlg = new WpfDialog.OpenFileDialog
         {
-            Filter = "English text|*.exe|English text|*.*",
-            Title  = "English text"
+            Filter = "Executable files|*.exe|All files|*.*",
+            Title  = "Choose an app"
         };
         if (dlg.ShowDialog() == true)
             AppPath = dlg.FileName;

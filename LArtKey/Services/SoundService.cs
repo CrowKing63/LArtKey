@@ -4,8 +4,8 @@ using System.Windows.Media;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public class SoundService : IDisposable
 {
@@ -13,7 +13,7 @@ public class SoundService : IDisposable
     private bool _enabled;
 
     /// <summary>
-    /// English text)
+    /// text)
     /// </summary>
     public void Configure(bool enabled, string? customPath)
     {
@@ -30,12 +30,12 @@ public class SoundService : IDisposable
 
         _player = new MediaPlayer { Volume = 1.0 };
         _player.Open(new Uri(path, UriKind.Absolute));
-        // English text.
+        // text.
         _player.MediaOpened += (_, _) => _player.Position = TimeSpan.Zero;
     }
 
     /// <summary>
-    /// English text
+    /// text
     /// </summary>
     private static string? ResolvePath(string? customPath)
     {
@@ -56,12 +56,12 @@ public class SoundService : IDisposable
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void Play()
     {
         if (!_enabled || _player == null) return;
-        _player.Position = TimeSpan.Zero; // English text
+        _player.Position = TimeSpan.Zero; // text
         _player.Play();
     }
 

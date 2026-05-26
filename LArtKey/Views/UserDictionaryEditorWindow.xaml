@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:vm="clr-namespace:LArtKey.ViewModels"
         mc:Ignorable="d"
-        Title="English text"
+        Title="User dictionary editor"
         Width="800" Height="600"
         MinWidth="600" MinHeight="450"
         WindowStartupLocation="Manual"
@@ -13,13 +13,13 @@
         d:DataContext="{d:DesignInstance vm:UserDictionaryEditorViewModel}">
 
     <Window.Resources>
-        <!-- English text. -->
+        <!-- text. -->
         <Style TargetType="Button" BasedOn="{StaticResource FluentButtonStyle}"/>
         <Style TargetType="TextBox" BasedOn="{StaticResource FluentTextBoxStyle}"/>
         <Style TargetType="ComboBox" BasedOn="{StaticResource FluentComboBoxStyle}"/>
         <Style TargetType="DataGrid" BasedOn="{StaticResource FluentDataGridStyle}"/>
 
-        <!-- English text. -->
+        <!-- text. -->
         <Style x:Key="DarkBtn" TargetType="Button" BasedOn="{StaticResource FluentSecondaryButtonStyle}"/>
         <Style x:Key="AccentBtn" TargetType="Button" BasedOn="{StaticResource FluentPrimaryButtonStyle}"/>
         <Style x:Key="DangerBtn" TargetType="Button" BasedOn="{StaticResource FluentDangerButtonStyle}"/>
@@ -34,10 +34,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- ── English text ── -->
+        <!-- ── text ── -->
         <Border Grid.Row="0" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="16,10">
             <Grid>
-                <TextBlock Text="English text"
+                <TextBlock Text="User dictionary editor"
                            Foreground="{DynamicResource SettingsFg}"
                            FontSize="14" FontWeight="SemiBold"
                            VerticalAlignment="Center"/>
@@ -46,20 +46,20 @@
                         Background="Transparent" Foreground="{DynamicResource SettingsFgSub}"
                         BorderThickness="0" Cursor="Hand" Padding="8,2"
                         Click="CloseButton_Click"
-                        ToolTip="English text (Esc)"
-                        AutomationProperties.Name="English text"/>
+                        ToolTip="Close (Esc)"
+                        AutomationProperties.Name="Close"/>
             </Grid>
         </Border>
 
-        <!-- ── English text ── -->
+        <!-- ── text ── -->
         <Border Grid.Row="1" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,6">
             <StackPanel Orientation="Horizontal">
-                <RadioButton Content="English text"
+                <RadioButton Content="Word"
                              Foreground="{DynamicResource SettingsFg}"
                              IsChecked="{Binding IsWordTabSelected, Mode=TwoWay}"
                              Margin="0,0,12,0" Padding="6,3"
                              GroupName="MainTab"/>
-                <RadioButton Content="English text"
+                <RadioButton Content="Bigram"
                              Foreground="{DynamicResource SettingsFg}"
                              IsChecked="{Binding IsBigramTabSelected, Mode=TwoWay}"
                              Padding="6,3"
@@ -67,7 +67,7 @@
             </StackPanel>
         </Border>
 
-        <!-- ── English text ── -->
+        <!-- ── text ── -->
         <Grid Grid.Row="2" Visibility="{Binding WordTabVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -75,15 +75,15 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- English text -->
+            <!-- text -->
             <Border Grid.Row="0" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,6">
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="English text"
+                    <RadioButton Content="English"
                                  Foreground="{DynamicResource SettingsFg}"
                                  IsChecked="{Binding IsPrimaryTabActive, Mode=TwoWay}"
                                  Margin="0,0,12,0" Padding="6,3"
                                  GroupName="DictTab"/>
-                    <RadioButton Content="English text"
+                    <RadioButton Content="English"
                                  Foreground="{DynamicResource SettingsFg}"
                                  IsChecked="{Binding IsEnglishTabActive, Mode=TwoWay}"
                                  Padding="6,3"
@@ -91,7 +91,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- English text -->
+            <!-- text -->
             <Border Grid.Row="1" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,8">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -99,47 +99,47 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- English text. -->
+                    <!-- text. -->
                     <WrapPanel Grid.Column="0" VerticalAlignment="Center" ItemHeight="28">
-                        <TextBlock Text="English text:" Foreground="{DynamicResource SettingsFgSub}"
+                        <TextBlock Text="Search:" Foreground="{DynamicResource SettingsFgSub}"
                                    VerticalAlignment="Center" Margin="0,0,6,0"/>
                         <TextBox Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged, Delay=150}"
                                  Style="{StaticResource InputBox}"
                                  Width="190" Height="26" Margin="0,0,10,0"
-                                 AutomationProperties.Name="English text"/>
-                        <TextBlock Text="English text:" Foreground="{DynamicResource SettingsFgSub}"
+                                 AutomationProperties.Name="Word search input"/>
+                        <TextBlock Text="Add:" Foreground="{DynamicResource SettingsFgSub}"
                                    VerticalAlignment="Center" Margin="0,0,6,0"/>
                         <TextBox Text="{Binding NewWord, UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource InputBox}"
                                  Width="150" Height="26" Margin="0,0,4,0"
-                                 ToolTip="English text"
-                                 AutomationProperties.Name="English text"/>
+                                 ToolTip="Word to add"
+                                 AutomationProperties.Name="Word to add"/>
                         <TextBox Text="{Binding NewWordFrequency, UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource InputBox}"
                                  Width="70" Height="26" Margin="0,0,4,0"
-                                 ToolTip="English text"
-                                 AutomationProperties.Name="English text"/>
-                        <Button Content="+ English text"
+                                 ToolTip="Word frequency"
+                                 AutomationProperties.Name="Word frequency input"/>
+                        <Button Content="+ Add"
                                 Command="{Binding AddWordCommand}"
                                 Style="{StaticResource AccentBtn}"
-                                AutomationProperties.Name="English text"/>
+                                AutomationProperties.Name="Add word button"/>
                     </WrapPanel>
 
-                    <!-- English text -->
+                    <!-- text -->
                     <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                        <Button Content="English text"
+                        <Button Content="Remove selection"
                                 Command="{Binding RemoveSelectedCommand}"
                                 Style="{StaticResource DarkBtn}"
-                                ToolTip="English text"/>
-                        <Button Content="English text"
+                                ToolTip="Deletes checked words"/>
+                        <Button Content="Delete all"
                                 Command="{Binding ClearAllCommand}"
                                 Style="{StaticResource DangerBtn}"
-                                ToolTip="English text"/>
+                                ToolTip="Deletes all user words on the current tab"/>
                     </StackPanel>
                 </Grid>
             </Border>
 
-            <!-- English text -->
+            <!-- text -->
             <DataGrid Grid.Row="2"
                       ItemsSource="{Binding FilteredWords}"
                       AutoGenerateColumns="False"
@@ -161,11 +161,11 @@
                     <DataGridCheckBoxColumn Header="✓"
                                             Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}"
                                             Width="36"/>
-                    <DataGridTextColumn Header="English text"
+                    <DataGridTextColumn Header="Word"
                                         Binding="{Binding Word}"
                                         Width="*"
                                         IsReadOnly="True"/>
-                    <DataGridTemplateColumn Header="English text" Width="100">
+                    <DataGridTemplateColumn Header="Frequency" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBox Text="{Binding Frequency, UpdateSourceTrigger=LostFocus}"
@@ -188,7 +188,7 @@
                                         BorderThickness="0"
                                         Cursor="Hand"
                                         FontSize="11"
-                                        ToolTip="English text"/>
+                                        ToolTip="Remove this word"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -196,7 +196,7 @@
             </DataGrid>
         </Grid>
 
-        <!-- ── English text ── -->
+        <!-- ── text ── -->
         <Grid Grid.Row="2" Visibility="{Binding BigramTabVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -205,10 +205,10 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- English text -->
+            <!-- text -->
             <Border Grid.Row="0" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,6">
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="English text"
+                    <RadioButton Content="English"
                                  Foreground="{DynamicResource SettingsFg}"
                                  IsChecked="{Binding IsPrimaryTabActive, Mode=TwoWay}"
                                  Margin="0,0,12,0" Padding="6,3"
@@ -222,35 +222,35 @@
             </Border>
             <Border Grid.Row="1" Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,8" Padding="12,8">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}"
+                    <TextBlock Text="Previous" Foreground="{DynamicResource SettingsFgSub}"
                                VerticalAlignment="Center" Margin="0,0,6,0"/>
                     <TextBox Text="{Binding NewBigramPrev, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource InputBox}"
                              Width="140" Height="26" Margin="0,0,8,0"
-                             ToolTip="English text"
-                             AutomationProperties.Name="English text"/>
-                    <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}"
+                             ToolTip="Bigram previous word"
+                             AutomationProperties.Name="Bigram previous word input"/>
+                    <TextBlock Text="Next" Foreground="{DynamicResource SettingsFgSub}"
                                VerticalAlignment="Center" Margin="0,0,6,0"/>
                     <TextBox Text="{Binding NewBigramNext, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource InputBox}"
                              Width="140" Height="26" Margin="0,0,8,0"
-                             ToolTip="English text"
-                             AutomationProperties.Name="English text"/>
-                    <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}"
+                             ToolTip="Bigram next word"
+                             AutomationProperties.Name="Bigram next word input"/>
+                    <TextBlock Text="Frequency" Foreground="{DynamicResource SettingsFgSub}"
                                VerticalAlignment="Center" Margin="0,0,6,0"/>
                     <TextBox Text="{Binding NewBigramCount, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource InputBox}"
                              Width="70" Height="26" Margin="0,0,8,0"
-                             ToolTip="English text"
-                             AutomationProperties.Name="English text"/>
-                    <Button Content="+ English text"
+                             ToolTip="Bigram frequency"
+                             AutomationProperties.Name="Bigram frequency input"/>
+                    <Button Content="+ Add"
                             Command="{Binding AddBigramPairCommand}"
                             Style="{StaticResource AccentBtn}"
-                            AutomationProperties.Name="English text"/>
+                            AutomationProperties.Name="Add bigram button"/>
                 </StackPanel>
             </Border>
 
-            <!-- English text -->
+            <!-- text -->
             <DataGrid Grid.Row="2"
                       ItemsSource="{Binding BigramRows}"
                       SelectedItem="{Binding SelectedBigramRow}"
@@ -270,13 +270,13 @@
                       FontSize="12"
                       Margin="0,0,0,8">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="English text" Binding="{Binding Prev}" Width="*"/>
-                    <DataGridTextColumn Header="English text" Binding="{Binding Next}" Width="*"/>
-                    <DataGridTextColumn Header="English text" Binding="{Binding Count}" Width="80"/>
+                    <DataGridTextColumn Header="Previous word" Binding="{Binding Prev}" Width="*"/>
+                    <DataGridTextColumn Header="Next word" Binding="{Binding Next}" Width="*"/>
+                    <DataGridTextColumn Header="Frequency" Binding="{Binding Count}" Width="80"/>
                     <DataGridTemplateColumn Header="" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="English text"
+                                <Button Content="Delete"
                                         Command="{Binding DataContext.RemoveBigramPairCommand,
                                             RelativeSource={RelativeSource AncestorType=Window}}"
                                         CommandParameter="{Binding}"
@@ -287,21 +287,21 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <!-- English text -->
+            <!-- text -->
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
-                <Button Content="English text"
+                <Button Content="Delete the selected previous word"
                         Command="{Binding RemoveBigramsByPrevCommand}"
                         CommandParameter="{Binding SelectedBigramRow}"
                         Style="{StaticResource DarkBtn}"
-                        AutomationProperties.Name="English text"/>
-                <Button Content="English text"
+                        AutomationProperties.Name="Delete all next words for the selected previous word"/>
+                <Button Content="Clear all"
                         Command="{Binding ClearAllBigramsCommand}"
                         Style="{StaticResource DangerBtn}"
-                        AutomationProperties.Name="English text"/>
+                        AutomationProperties.Name="Delete all bigram data"/>
             </StackPanel>
         </Grid>
 
-        <!-- ── English text ── -->
+        <!-- ── text ── -->
         <Border Grid.Row="3" Style="{StaticResource FluentCardBorderStyle}" Padding="12,8">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -313,10 +313,10 @@
                            Foreground="{DynamicResource SettingsFgSub}" FontSize="11"
                            VerticalAlignment="Center"/>
                 <Button Grid.Column="1"
-                        Content="English text"
+                        Content="Close"
                         Click="CloseButton_Click"
                         Style="{StaticResource DarkBtn}"
-                        AutomationProperties.Name="English text"/>
+                        AutomationProperties.Name="Close"/>
             </Grid>
         </Border>
     </Grid>

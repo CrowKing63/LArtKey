@@ -4,20 +4,20 @@ using System.Text;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] Windows DPAPI(Data Protection API)English text.
-/// [English text] English text.
-/// [English text] Windows English text.
+/// [text] Windows DPAPI(Data Protection API)text.
+/// [text] text.
+/// [text] Windows text.
 /// </summary>
 public static class SecureStorage
 {
-    // English text.
+    // text.
     private static readonly byte[] Entropy = Encoding.UTF8.GetBytes("LArtKey.SecureStorage");
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
-    /// <param name="plainText">English text</param>
-    /// <returns>English text</returns>
+    /// <param name="plainText">text</param>
+    /// <returns>text</returns>
     public static string Encrypt(string plainText)
     {
         if (string.IsNullOrEmpty(plainText)) return "";
@@ -29,10 +29,10 @@ public static class SecureStorage
     }
 
     /// <summary>
-    /// DPAPIEnglish text.
+    /// DPAPItext.
     /// </summary>
-    /// <param name="base64Encrypted">English text</param>
-    /// <returns>English text</returns>
+    /// <param name="base64Encrypted">text</param>
+    /// <returns>text</returns>
     public static string Decrypt(string base64Encrypted)
     {
         if (string.IsNullOrEmpty(base64Encrypted)) return "";
@@ -46,12 +46,12 @@ public static class SecureStorage
         }
         catch (CryptographicException)
         {
-            // English text
+            // text
             return "";
         }
         catch (FormatException)
         {
-            // Base64 English text)
+            // Base64 text)
             return "";
         }
     }

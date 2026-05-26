@@ -12,9 +12,9 @@
             BorderThickness="0,0,0,1"
             Padding="8">
         <StackPanel>
-            <!-- English text -->
+            <!-- text -->
             <Grid Margin="0,0,0,4">
-                <TextBlock Text="English text"
+                <TextBlock Text="Emoji"
                            FontSize="11" Opacity="0.6"
                            VerticalAlignment="Center"
                            Foreground="{DynamicResource PanelFg}"/>
@@ -28,7 +28,7 @@
                         FontSize="11" Padding="0"/>
             </Grid>
 
-            <!-- English text -->
+            <!-- text -->
             <ScrollViewer HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Disabled"
                           Margin="0,0,0,6">
@@ -65,7 +65,7 @@
                 </ItemsControl>
             </ScrollViewer>
 
-            <!-- English text -->
+            <!-- text -->
             <ScrollViewer MaxHeight="120"
                           VerticalScrollBarVisibility="Auto">
                 <ItemsControl ItemsSource="{Binding SelectedCategory.Emoji}">

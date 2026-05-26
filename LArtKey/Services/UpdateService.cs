@@ -5,12 +5,12 @@ using System.Text.Json;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
+/// [text] text.
 /// </summary>
 public class UpdateService
 {
     private const string ApiUrl =
-        "https://api.github.com/repos/CrowKing63/LArtKey/releases/latest"; // English text.
+        "https://api.github.com/repos/CrowKing63/LArtKey/releases/latest"; // text.
 
     public async Task<(bool HasUpdate, string Version, string Url, string InstallerUrl)> CheckAsync()
     {
@@ -29,7 +29,7 @@ public class UpdateService
                           ?? new Version(0, 1, 0);
             var remote  = Version.Parse(tag.TrimStart('v'));
 
-            // T-9.5: English text
+            // T-9.5: text
             var installerUrl = ExtractInstallerUrl(doc.RootElement);
 
             return (remote > current, tag, url, installerUrl);
@@ -40,7 +40,7 @@ public class UpdateService
         }
     }
 
-    /// <summary>GitHub English text</summary>
+    /// <summary>GitHub text</summary>
     private static string ExtractInstallerUrl(JsonElement root)
     {
         try
@@ -59,7 +59,7 @@ public class UpdateService
         }
         catch
         {
-            // English text
+            // text
         }
         return string.Empty;
     }

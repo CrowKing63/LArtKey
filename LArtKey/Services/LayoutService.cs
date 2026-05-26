@@ -5,13 +5,13 @@ using LArtKey.Models;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public class LayoutService
 {
-    private readonly string _layoutsDir; // English text.
-    private readonly Dictionary<string, LayoutConfig> _cache = []; // English text.
+    private readonly string _layoutsDir; // text.
+    private readonly Dictionary<string, LayoutConfig> _cache = []; // text.
 
     public event Action? LayoutsChanged;
 
@@ -39,7 +39,7 @@ public class LayoutService
 
         var path = Path.Combine(_layoutsDir, $"{name}.json");
         if (!File.Exists(path))
-            throw new FileNotFoundException($"English text: {path}");
+            throw new FileNotFoundException($"Layout file not found: {path}");
 
         string json;
         try
@@ -48,26 +48,26 @@ public class LayoutService
         }
         catch (IOException ex)
         {
-            throw new InvalidDataException($"English text: {name}", ex);
+            throw new InvalidDataException($"Could not read layout: {name}", ex);
         }
 
         LayoutConfig layout;
         try
         {
             layout = JsonSerializer.Deserialize<LayoutConfig>(json, JsonOptions.Default)
-                ?? throw new InvalidDataException($"English text null: {name}");
+                ?? throw new InvalidDataException($"Layout file is empty or invalid: {name}");
         }
         catch (JsonException ex)
         {
-            // T-6.7: English text JSON → English text
-            throw new InvalidDataException($"English text: {name} — {ex.Message}", ex);
+            // T-6.7: text JSON → text
+            throw new InvalidDataException($"Invalid layout JSON: {name} — {ex.Message}", ex);
         }
 
         _cache[name] = layout;
         return layout;
     }
 
-    /// <summary>T-6.7: English text)</summary>
+    /// <summary>T-6.7: text)</summary>
     public LayoutConfig? TryLoad(string name, Action<Exception>? onError = null)
     {
         try { return Load(name); }
@@ -78,7 +78,7 @@ public class LayoutService
         }
     }
 
-    /// <summary>T-9.2: English text</summary>
+    /// <summary>T-9.2: text</summary>
     public void Save(string name, LayoutConfig config)
     {
         var path = Path.Combine(_layoutsDir, name + ".json");
@@ -88,7 +88,7 @@ public class LayoutService
         LayoutsChanged?.Invoke();
     }
 
-    /// <summary>English text</summary>
+    /// <summary>text</summary>
     public bool Delete(string name)
     {
         var path = Path.Combine(_layoutsDir, name + ".json");
@@ -99,12 +99,12 @@ public class LayoutService
         return true;
     }
 
-    /// <summary>config English text</summary>
+    /// <summary>config text</summary>
     public void InvalidateCache() => _cache.Clear();
 
     /// <summary>
-    /// [English text] English text.
-    /// [English text] English text.
+    /// [text] text.
+    /// [text] text.
     /// </summary>
     public void NotifyExternalLayoutsChanged()
     {

@@ -3,8 +3,8 @@ using System.Windows;
 namespace LArtKey.Views;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public partial class CloseToTrayConfirmWindow : Window
 {
@@ -12,12 +12,12 @@ public partial class CloseToTrayConfirmWindow : Window
     {
         InitializeComponent();
 
-        // English text.
+        // text.
         Loaded += (_, _) => CancelButtonElement.Focus();
     }
 
     /// <summary>
-    /// English text "English text"English text.
+    /// text "text"text.
     /// </summary>
     public bool DontAskAgain => DontAskAgainCheckBox.IsChecked == true;
 

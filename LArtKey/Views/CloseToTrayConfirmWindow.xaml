@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="LArtKey English text"
+        Title="Confirm hiding LArtKey"
         Width="430"
         Height="360"
         MinWidth="400"
@@ -28,12 +28,12 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0">
-                <TextBlock Text="English text?"
+                <TextBlock Text="Hide the keyboard window to the tray?"
                            FontSize="18"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource SettingsFg}"
                            Margin="0,0,0,8"/>
-                <TextBlock Text="English text."
+                <TextBlock Text="When using full-screen apps, it may be harder to bring the window back after it disappears."
                            TextWrapping="Wrap"
                            FontSize="12"
                            Foreground="{DynamicResource SettingsFgSub}"/>
@@ -45,36 +45,36 @@
                           HorizontalScrollBarVisibility="Disabled"
                           CanContentScroll="True">
                 <StackPanel>
-                    <TextBlock Text="English text"
+                    <TextBlock Text="How to show it again"
                                FontSize="12"
                                FontWeight="SemiBold"
                                Foreground="{DynamicResource SettingsFg}"
                                Margin="0,0,0,8"/>
-                    <TextBlock Text="• English text"
+                    <TextBlock Text="• Double-click the tray icon"
                                TextWrapping="Wrap"
                                FontSize="12"
                                Foreground="{DynamicResource SettingsFgSub}"
                                Margin="0,0,0,4"/>
-                    <TextBlock Text="• English text"
+                    <TextBlock Text="• Use Show/Hide in the tray menu"
                                TextWrapping="Wrap"
                                FontSize="12"
                                Foreground="{DynamicResource SettingsFgSub}"
                                Margin="0,0,0,4"/>
-                    <TextBlock Text="• English text"
+                    <TextBlock Text="• Use the global hotkey"
                                TextWrapping="Wrap"
                                FontSize="12"
                                Foreground="{DynamicResource SettingsFgSub}"
                                Margin="0,0,0,4"/>
-                    <TextBlock Text="• LArtKeyEnglish text"
+                    <TextBlock Text="• Run LArtKey again to restore the existing window"
                                TextWrapping="Wrap"
                                FontSize="12"
                                Foreground="{DynamicResource SettingsFgSub}"
                                Margin="0,0,0,12"/>
 
                     <CheckBox x:Name="DontAskAgainCheckBox"
-                              Content="English text"
+                              Content="Do not ask again"
                               Foreground="{DynamicResource SettingsFg}"
-                              AutomationProperties.Name="English text"/>
+                              AutomationProperties.Name="Do not ask again"/>
                 </StackPanel>
             </ScrollViewer>
 
@@ -87,22 +87,22 @@
 
                 <Button x:Name="CancelButtonElement"
                         Grid.Column="1"
-                        Content="English text"
+                        Content="Cancel"
                         Width="110"
                         Height="36"
                         Margin="0,0,8,0"
                         IsCancel="True"
                         IsDefault="True"
                         Click="CancelButton_Click"
-                        AutomationProperties.Name="English text"/>
+                        AutomationProperties.Name="Cancel tray hide"/>
                 <Button Grid.Column="2"
-                        Content="English text"
+                        Content="Hide to tray"
                         Width="130"
                         Height="36"
                         Click="HideToTrayButton_Click"
                         Background="{DynamicResource SettingsHighlight}"
                         Foreground="{DynamicResource SettingsFg}"
-                        AutomationProperties.Name="English text"/>
+                        AutomationProperties.Name="Hide to tray"/>
             </Grid>
         </Grid>
     </Border>

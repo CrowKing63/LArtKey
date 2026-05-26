@@ -16,8 +16,8 @@ using WpfRect = System.Windows.Shapes.Rectangle;
 namespace LArtKey.Views;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public partial class KeyboardView : System.Windows.Controls.UserControl
 {
@@ -32,7 +32,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     private bool _isDragHandlePressed;
     private WpfPoint _dragHandlePressPoint;
     
-    // English text.
+    // text.
     private const double CollapsedWindowHeight = 28.0;
 
     public KeyboardView()
@@ -95,11 +95,11 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
         }
     }
 
-    // English text.
+    // text.
     private void OnWindowSizeChanged(object sender, SizeChangedEventArgs e)
         => UpdateKeyUnit(e.NewSize.Width);
 
-    // English text.
+    // text.
     private void KeyboardBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
         if (DataContext is MainViewModel vm)
@@ -112,35 +112,35 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     private void KeyboardBorder_SizeChanged(object sender, SizeChangedEventArgs e)
         => UpdateKeyUnit(Window.GetWindow(this)?.Width ?? ActualWidth);
 
-    // ── UI English text) ──────────────────────────
+    // ── UI text) ──────────────────────────
 
-    // English text.
+    // text.
     private const double MinKeyUnit = 28.0;
     private const double MaxKeyUnit = 80.0;
 
-    // English text.
-    private const double KbHorizontalPad = 12.0; // English text
-    private const double KbVerticalPad   = 8.0;  // English text.
+    // text.
+    private const double KbHorizontalPad = 12.0; // text
+    private const double KbVerticalPad   = 8.0;  // text.
     private const double KeyMargin       = 4.0;
 
-    // English text.
+    // text.
     private const double BaseKeyUnit  = 50.0;
 
-    // English text.
+    // text.
     private const double HeaderHeight = 28.0;
     private const double SuggestionChipHeightRatio = 0.62;
     private const double EdgeDockMargin = 8.0;
 
-    // English text(%)English text.
+    // text(%)text.
     private const int    MinScale     = 60;
     private const int    MaxScale     = 200;
 
-    // English text.
+    // text.
     private const double AbsMinWindowWidth  = 400.0;
     private const double AbsMinWindowHeight = 180.0;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void UpdateKeyUnit(double windowWidth)
     {
@@ -163,7 +163,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private (double Width, double Height) ComputeBaseSize()
     {
@@ -194,7 +194,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void ApplyScale()
     {
@@ -214,7 +214,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text "English text Top"English text.
+    /// text "text Top"text.
     /// </summary>
     public double GetPersistedTopForExpandedLaunch()
     {
@@ -234,7 +234,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private double ComputeSuggestionBarHeight(double keyUnit)
     {
@@ -245,7 +245,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private double GetExpandedWindowHeight()
     {
@@ -256,7 +256,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void HeaderBlankArea_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
@@ -268,7 +268,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void DragHandle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
@@ -290,7 +290,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void DragHandle_MouseMove(object sender, WpfMouseEventArgs e)
     {
@@ -315,7 +315,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void DragHandle_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
@@ -328,7 +328,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void DragHandle_LostMouseCapture(object sender, WpfMouseEventArgs e)
     {
@@ -341,13 +341,13 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text(▼)/English text(▲) English text.
+    /// text(▼)/text(▲) text.
     /// </summary>
     private void CollapseButton_Click(object sender, RoutedEventArgs e)
         => ToggleCollapsedState();
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void ToggleCollapsedState()
     {
@@ -371,7 +371,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static bool IsHeaderInteractiveElement(DependencyObject? source)
     {
@@ -398,7 +398,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static void CaptureAndClearTopAnimation(Window window)
     {
@@ -408,7 +408,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void RefreshVerticalAnchor(Window window)
     {
@@ -419,7 +419,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
             currentHeight,
             workArea);
 
-        // English text.
+        // text.
         _verticalAnchorGap = _verticalAnchor switch
         {
             KeyboardWindowPlacement.VerticalAnchor.Bottom => Math.Max(0, workArea.Bottom - (window.Top + currentHeight)),
@@ -429,7 +429,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static double GetCurrentWindowHeight(Window window)
     {
@@ -439,7 +439,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void ApplyWindowHeight(Window window, double targetHeight, bool animate = false)
     {
@@ -464,7 +464,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private double? GetAnchorGapOverride()
     {
@@ -476,11 +476,11 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void AnimateWindowHeight(Window window, double targetTop, double targetHeight)
     {
-        // OS English text
+        // OS text
         bool reduceMotion = !SystemParameters.ClientAreaAnimation
             || (_configService?.Current.ReducedMotionEnabled == true);
 
@@ -525,15 +525,15 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
         window.BeginAnimation(Window.HeightProperty, heightAnim);
     }
 
-    // ── English text ─────────────────────────────────────────────
-    // English text.
+    // ── text ─────────────────────────────────────────────
+    // text.
     private void EdgeLeftBtn_Click(object sender, RoutedEventArgs e)  => MoveToScreenEdge("Left");
     private void EdgeRightBtn_Click(object sender, RoutedEventArgs e) => MoveToScreenEdge("Right");
     private void EdgeUpBtn_Click(object sender, RoutedEventArgs e)    => MoveToScreenEdge("Up");
     private void EdgeDownBtn_Click(object sender, RoutedEventArgs e)  => MoveToScreenEdge("Down");
 
     /// <summary>
-    /// English text).
+    /// text).
     /// </summary>
     private void MoveToScreenEdge(string direction)
     {
@@ -558,7 +558,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
         }
     }
 
-    // English text.
+    // text.
     private void DragHandle_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
     {
         if (DragPill is not WpfRect pill) return;
@@ -590,7 +590,7 @@ public partial class KeyboardView : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// [English text] English text.
+    /// [text] text.
     /// </summary>
     private void AnnounceLiveRegion()
     {

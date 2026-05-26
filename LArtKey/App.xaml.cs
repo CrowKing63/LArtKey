@@ -11,29 +11,29 @@ using LArtKey.Models;
 namespace LArtKey;
 
 /// <summary>
-/// [English text] LArtKey English text.
-/// [English text] English text.
+/// [text] LArtKey text.
+/// [text] text.
 /// </summary>
 public partial class App : System.Windows.Application
 {
-    public static IServiceProvider Services { get; private set; } = null!; // English text
+    public static IServiceProvider Services { get; private set; } = null!; // text
     private ConfigService? _configService;
 
-    // T-6.6: English text
+    // T-6.6: text
     private static readonly long _startTick = Environment.TickCount64;
 
-    // English text)
+    // text)
     private static Mutex? _instanceMutex;
 
-    // English text.
+    // text.
     private static EventWaitHandle? _restoreWindowEvent;
 
-    // English text.
+    // text.
     private static RegisteredWaitHandle? _restoreWindowWaitHandle;
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        // English text
+        // text
         const string mutexName = "LArtKey_SingleInstance_Mutex";
         _instanceMutex = new Mutex(initiallyOwned: true, name: mutexName, out bool createdNew);
         if (!createdNew)
@@ -45,13 +45,13 @@ public partial class App : System.Windows.Application
             return;
         }
 
-        // English text.
+        // text.
         _restoreWindowEvent = new EventWaitHandle(
             initialState: false,
             mode: EventResetMode.AutoReset,
             name: "LArtKey_RestoreWindow_Event");
-        // T-6.7: English text)
-        // [English text] English text COMException(0x800401D0~0x800401D3)English text
+        // T-6.7: text)
+        // [text] text COMException(0x800401D0~0x800401D3)text
         static bool IsClipboardComError(System.Runtime.InteropServices.COMException ex)
             => ex.ErrorCode >= unchecked((int)0x800401D0) && ex.ErrorCode <= unchecked((int)0x800401D3);
 
@@ -61,7 +61,7 @@ public partial class App : System.Windows.Application
         {
             args.Handled = true;
 
-            // English text)
+            // text)
             if (args.Exception is System.Runtime.InteropServices.COMException comEx
                 && IsClipboardComError(comEx))
             {
@@ -73,8 +73,8 @@ public partial class App : System.Windows.Application
             if (_shownErrors.Add(key))
             {
                 System.Windows.MessageBox.Show(
-                    $"English text:\n{args.Exception.Message}\n\nEnglish text: lartkey-error.log",
-                    "LArtKey English text",
+                    $"Unexpected error:\n{args.Exception.Message}\n\nDetails: lartkey-error.log",
+                    "LArtKey error",
                     System.Windows.MessageBoxButton.OK,
                     System.Windows.MessageBoxImage.Error);
             }
@@ -84,7 +84,7 @@ public partial class App : System.Windows.Application
         {
             if (args.ExceptionObject is Exception ex)
             {
-                // English text
+                // text
                 if (ex is System.Runtime.InteropServices.COMException comEx
                     && IsClipboardComError(comEx))
                 {
@@ -98,7 +98,7 @@ public partial class App : System.Windows.Application
         {
             var services = new ServiceCollection();
 
-            // English text
+            // text
             services.AddSingleton<ConfigService>();
             services.AddSingleton<LayoutService>();
             services.AddSingleton<ILayoutRepository, LayoutRepository>();
@@ -113,13 +113,13 @@ public partial class App : System.Windows.Application
             services.AddSingleton<SoundService>();
             services.AddSingleton<ClipboardService>();
             services.AddSingleton<UpdateService>();
-            // T-9.5: English text
+            // T-9.5: text
             services.AddSingleton<DownloadService>();
             services.AddSingleton<InstallerService>();
             services.AddSingleton<OskLauncherService>();
-            // L2: English text
+            // L2: text
             services.AddSingleton<AccessibilityService>();
-            // T-9.3: English text
+            // T-9.3: text
             services.AddSingleton<Func<string, WordFrequencyStore>>(_ => lang => new WordFrequencyStore(lang));
             services.AddSingleton<Func<string, BigramFrequencyStore>>(_ => lang => new BigramFrequencyStore(lang));
             services.AddSingleton<EnglishDictionary>();
@@ -128,9 +128,9 @@ public partial class App : System.Windows.Application
             services.AddSingleton<EnglishInputModule>();
             services.AddSingleton<IInputLanguageModule>(sp => sp.GetRequiredService<EnglishInputModule>());
             services.AddSingleton<AutoCompleteService>();
-            // 08: English text
+            // 08: text
             services.AddSingleton<LiveRegionService>();
-            // AI English text
+            // AI tool
             services.AddSingleton<AiService>();
             services.AddSingleton<ToolsReloadSignalService>();
 
@@ -140,39 +140,39 @@ public partial class App : System.Windows.Application
             services.AddSingleton<ClipboardViewModel>();
             services.AddSingleton<SettingsViewModel>();
             services.AddSingleton<MainViewModel>();
-            // T-9.3: English text ViewModel
+            // T-9.3: text ViewModel
             services.AddSingleton<SuggestionBarViewModel>();
-            // English text
+            // text
             services.AddSingleton<MainWindow>();
 
             Services = services.BuildServiceProvider();
 
-            // English text
+            // text
             var themeService = Services.GetRequiredService<ThemeService>();
             var config       = Services.GetRequiredService<ConfigService>();
             themeService.Apply(config.Current.Theme);
 
-            // English text
+            // text
             _configService = config;
             _configService.ConfigChanged += OnConfigChanged;
             UpdateScaledFontSize();
 
-            // T-5.3: English text
+            // T-5.3: text
             var profileService = Services.GetRequiredService<ProfileService>();
             profileService.Start();
 
-            // T-2.10b: ProfileService → InputService English text
+            // T-2.10b: ProfileService → InputService text
             var inputService = Services.GetRequiredService<InputService>();
             profileService.ElevatedAppDetected += () => inputService.NotifyElevatedApp();
 
-            // 06: English text OFF
+            // 06: text OFF
             if (inputService.IsElevated && config.Current.AutoCompleteEnabled)
             {
                 config.Current.AutoCompleteEnabled = false;
                 config.Save();
             }
 
-            // English text
+            // text
             if (!inputService.IsElevated)
             {
                 var targetMode = config.Current.AutoCompleteEnabled ? InputMode.Unicode : InputMode.VirtualKey;
@@ -184,13 +184,13 @@ public partial class App : System.Windows.Application
 
             RegisterRestoreWindowHandler();
 
-            // LArtKey.ToolsEnglish text.
+            // LArtKey.Toolstext.
             _ = Services.GetRequiredService<ToolsReloadSignalService>();
 
-            // L1: English text
+            // L1: text
             Services.GetRequiredService<AccessibilityNavigationService>().Start();
 
-            // T-9.5: English text)
+            // T-9.5: text)
             _ = Task.Run(async () =>
             {
                 var updateSvc = Services.GetRequiredService<UpdateService>();
@@ -207,11 +207,11 @@ public partial class App : System.Windows.Application
                 }
             });
 
-            // T-6.6: English text)
+            // T-6.6: text)
             var elapsed = Environment.TickCount64 - _startTick;
             Debug.WriteLine($"[LArtKey] Startup time: {elapsed}ms");
 
-            // T-6.6: English text
+            // T-6.6: text
             var memMb = GC.GetTotalMemory(false) / (1024.0 * 1024.0);
             Debug.WriteLine($"[LArtKey] Initial managed memory: {memMb:F1} MB");
         }
@@ -233,17 +233,17 @@ public partial class App : System.Windows.Application
             if (Services.GetService<InputService>() is { } inputService)
                 ModifierSafety.PrepareForAppExit(inputService, "App.OnExit");
         }
-        catch { /* English text. */ }
+        catch { /* text. */ }
 
-        // TASK-05: English text Flush)
+        // TASK-05: text Flush)
         try
         {
             Services.GetService<EnglishDictionary>()?.Flush();
             Services.GetService<EnglishDictionary>()?.Flush();
         }
-        catch { /* Flush English text) */ }
+        catch { /* Flush text) */ }
 
-        // English text
+        // text
         if (Services is IDisposable d) d.Dispose();
 
         _restoreWindowWaitHandle?.Unregister(null);
@@ -251,7 +251,7 @@ public partial class App : System.Windows.Application
         _restoreWindowEvent?.Dispose();
         _restoreWindowEvent = null;
 
-        // English text
+        // text
         _instanceMutex?.ReleaseMutex();
         _instanceMutex?.Dispose();
         _instanceMutex = null;
@@ -259,7 +259,7 @@ public partial class App : System.Windows.Application
         base.OnExit(e);
     }
 
-    // L1: English text
+    // L1: text
     private void OnConfigChanged(string? propertyName)
     {
         if (propertyName == nameof(AppConfig.KeyFontScalePercent))
@@ -286,8 +286,8 @@ public partial class App : System.Windows.Application
         }
     }
 
-    // T-6.7: English text
-    // [English text] English text(%AppData%\LArtKey) English text.
+    // T-6.7: text
+    // [text] text(%AppData%\LArtKey) text.
     internal static void LogError(Exception ex)
     {
         try
@@ -297,11 +297,11 @@ public partial class App : System.Windows.Application
             File.AppendAllText(logPath,
                 $"[{DateTime.Now:u}] {ex}\n\n");
         }
-        catch { /* English text — English text */ }
+        catch { /* text — text */ }
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static void SignalExistingInstanceToRestore()
     {
@@ -312,12 +312,12 @@ public partial class App : System.Windows.Application
         }
         catch (WaitHandleCannotBeOpenedException)
         {
-            // English text.
+            // text.
         }
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void RegisterRestoreWindowHandler()
     {

@@ -19,8 +19,8 @@ using CommunityToolkit.Mvvm.Input;
 namespace LArtKey.ViewModels;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public partial class SettingsViewModel : ObservableObject
 {
@@ -41,8 +41,8 @@ public partial class SettingsViewModel : ObservableObject
     private LArtKey.Views.SwitchScanSettingsWindow? _switchScanSettingsWindow;
     private LArtKey.Views.FocusA11ySettingsWindow? _focusA11ySettingsWindow;
 
-    // ── English text) ───────────────────────
-    // English text.
+    // ── text) ───────────────────────
+    // text.
 
     [ObservableProperty] private string themeMode      = "system";
     [ObservableProperty] private bool   alwaysOnTop    = true;
@@ -58,16 +58,16 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty] private int    windowScale    = 100;
     [ObservableProperty] private bool   skipCloseConfirm = false;
 
-    // T-8.1: English text
+    // T-8.1: text
     [ObservableProperty] private bool runOnStartup;
 
-    // T-8.2: English text
+    // T-8.2: text
     [ObservableProperty] private bool soundEnabled;
     [ObservableProperty] private string soundFilePath = "";
 
 
 
-    // T-10: English text
+    // T-10: text
     [ObservableProperty]
     private bool keyRepeatEnabled;
     [ObservableProperty]
@@ -75,11 +75,11 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     private int keyRepeatIntervalMs;
 
-    // L1: English text
+    // L1: text
     [ObservableProperty]
     private int keyFontScalePercent = 100;
 
-    // L1: English text
+    // L1: text
     [ObservableProperty]
     private bool keyboardA11yNavigationEnabled;
     [ObservableProperty]
@@ -89,7 +89,7 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     private string keyboardA11yExitKey = "VK_ESCAPE";
 
-    // L2: English text
+    // L2: text
     [ObservableProperty]
     private bool ttsEnabled;
     [ObservableProperty]
@@ -97,11 +97,11 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     private int ttsRate;
 
-    // L2: English text
+    // L2: text
     [ObservableProperty]
     private bool reducedMotionEnabled;
 
-    // L3: English text
+    // L3: text
     [ObservableProperty]
     private bool switchScanEnabled;
     [ObservableProperty]
@@ -139,10 +139,10 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     private SwitchScanAnnounceMode switchScanAnnounceMode = SwitchScanAnnounceMode.SelectionOnly;
 
-    // T-9.5: English text
+    // T-9.5: text
     [ObservableProperty] private string currentVersion = "";
 
-    // ── AI English text ──────────────────────────────────────────────
+    // ── AI tool ──────────────────────────────────────────────
     [ObservableProperty] private bool aiEnabled;
     [ObservableProperty] private string aiEndpoint = "";
     [ObservableProperty] private string aiApiKey = "";
@@ -150,7 +150,7 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty] private string aiDefaultPrompt = "";
     [ObservableProperty] private int aiTimeoutSeconds;
 
-    // ── English text ─────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────
     [ObservableProperty]
     private ObservableCollection<HeaderButtonConfig> headerButtons = [];
 
@@ -161,28 +161,28 @@ public partial class SettingsViewModel : ObservableObject
         HeaderButtons.Where(button => button.Kind == HeaderButtonKind.Custom);
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public int CustomHeaderButtonCount =>
         HeaderButtons.Count(button => button.Kind == HeaderButtonKind.Custom);
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public bool CanAddMoreCustomHeaderButtons =>
         CustomHeaderButtonCount < HeaderButtonConfig.MaxCustomButtonCount;
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public string HeaderButtonLimitSummary =>
-        $"English text {HeaderButtonConfig.MaxCustomButtonCount}English text {HeaderButtonConfig.MaxVisibleButtonsLeft}English text.";
+        $"Custom shortcuts: up to {HeaderButtonConfig.MaxCustomButtonCount}; visible left side: up to {HeaderButtonConfig.MaxVisibleButtonsLeft}.";
 
-    // T-5.12: English text
+    // T-5.12: text
     public bool IsRunningAsAdmin { get; } = System.Security.Principal.WindowsIdentity.GetCurrent() is { } identity
         && new System.Security.Principal.WindowsPrincipal(identity).IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator);
 
-    // T-9.5: English text
+    // T-9.5: text
     [ObservableProperty] private bool isCheckingUpdate;
     [ObservableProperty] private bool isDownloading;
     [ObservableProperty] private double downloadProgress;
@@ -193,14 +193,14 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty] private string updateInstallerUrl = "";
     [ObservableProperty] private string updateReleaseUrl = "";
 
-    // T-8.5: English text
+    // T-8.5: text
     [ObservableProperty]
     private ObservableCollection<ProfileEntry> profiles = [];
 
     [ObservableProperty]
     private ObservableCollection<string> availableLayouts = [];
 
-     // English text (Theme)
+     // text (Theme)
      public bool ThemeIsSystem { get => ThemeMode == "system"; set { if (value) ThemeMode = "system"; } }
      public bool ThemeIsLight  { get => ThemeMode == "Light";  set { if (value) ThemeMode = "Light";  } }
      public bool ThemeIsDark   { get => ThemeMode == "Dark";   set { if (value) ThemeMode = "Dark";   } }
@@ -209,7 +209,7 @@ public partial class SettingsViewModel : ObservableObject
      public bool CanUseIdleOpacity => ActiveOpacityEnabled;
      public bool CanEditIdleOpacity => ActiveOpacityEnabled && IdleOpacityEnabled;
 
-    // ── English text ──────────────────────────────────────────────────────────────
+    // ── text ──────────────────────────────────────────────────────────────
 
     public SettingsViewModel(
         ConfigService        configService,
@@ -235,7 +235,7 @@ public partial class SettingsViewModel : ObservableObject
         _aiService      = aiService;
         _configService.ConfigChanged += OnConfigChanged;
 
-        // T-9.5: English text
+        // T-9.5: text
         var asmVersion = Assembly.GetExecutingAssembly().GetName().Version;
         CurrentVersion = asmVersion?.ToString(3) ?? "0.1.0";
 
@@ -253,7 +253,7 @@ public partial class SettingsViewModel : ObservableObject
             return;
         }
 
-        // English text.
+        // text.
         LoadFromConfig();
     }
 
@@ -264,7 +264,7 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void ClampIdleOpacityIfNeeded(bool saveIfChanged)
     {
@@ -304,30 +304,30 @@ public partial class SettingsViewModel : ObservableObject
             WindowScale    = c.Window.Scale;
             SkipCloseConfirm = !c.AskBeforeHideToTray;
 
-            // T-8.1: English text
+            // T-8.1: text
             RunOnStartup = _startupService.IsEnabled;
 
-            // T-8.2: English text
+            // T-8.2: text
             SoundEnabled = c.SoundEnabled;
             SoundFilePath = c.SoundFilePath ?? "";
 
 
 
-             // T-10: English text
+             // T-10: text
              KeyRepeatEnabled = c.KeyRepeatEnabled;
              KeyRepeatDelayMs = c.KeyRepeatDelayMs;
              KeyRepeatIntervalMs = c.KeyRepeatIntervalMs;
 
-             // L1: English text
+             // L1: text
              KeyFontScalePercent = c.KeyFontScalePercent;
 
-             // L1: English text
+             // L1: text
              KeyboardA11yNavigationEnabled = c.KeyboardA11yNavigationEnabled;
              KeyboardA11yNavigationScope = c.KeyboardA11yNavigationScope;
              KeyboardA11yAnnounceFocus = c.KeyboardA11yAnnounceFocus;
              KeyboardA11yExitKey = c.KeyboardA11yExitKey;
 
-             // L2/L3 English text
+             // L2/L3 text
              TtsEnabled = c.TtsEnabled;
              TtsOnHover = c.TtsOnHover;
              TtsRate = c.TtsRate;
@@ -349,7 +349,7 @@ public partial class SettingsViewModel : ObservableObject
              SwitchScanSuggestionPriority = c.SwitchScanSuggestionPriority;
              SwitchScanAnnounceMode = c.SwitchScanAnnounceMode;
 
-             // AI English text
+             // AI tool
              AiEnabled = c.AiEnabled;
              AiEndpoint = c.AiEndpoint;
              AiApiKey = SecureStorage.Decrypt(c.AiApiKeyEncrypted);
@@ -357,12 +357,12 @@ public partial class SettingsViewModel : ObservableObject
              AiDefaultPrompt = c.AiDefaultPrompt;
              AiTimeoutSeconds = c.AiTimeoutSeconds <= 0 ? 30 : c.AiTimeoutSeconds;
 
-             // English text
+             // text
              HeaderButtons = new ObservableCollection<HeaderButtonConfig>(
                  c.HeaderButtons.Select(CloneHeaderButtonConfig));
              RaiseHeaderButtonCollectionChanged();
 
-            // T-8.5: English text
+            // T-8.5: text
             Profiles = new ObservableCollection<ProfileEntry>(
                 c.Profiles.Select(p => new ProfileEntry(p.Key, p.Value)));
             foreach (var p in Profiles) SubscribeToProfileChanges(p);
@@ -377,11 +377,11 @@ public partial class SettingsViewModel : ObservableObject
             _isLoading = false;
         }
 
-        // T-8.2: _isLoading English text _isLoading=true English text)
+        // T-8.2: _isLoading text _isLoading=true text)
         _soundService.Configure(SoundEnabled, string.IsNullOrEmpty(SoundFilePath) ? null : SoundFilePath);
     }
 
-    // ── English text ───────────────────────────────────────────────
+    // ── text ───────────────────────────────────────────────
 
     partial void OnThemeModeChanged(string value)
     {
@@ -497,7 +497,7 @@ public partial class SettingsViewModel : ObservableObject
         _configService.Update(c => c.Window.Scale = clamped, "Window.Scale");
     }
 
-    // ── T-8.1: English text ────────────────────────────────────────────────────
+    // ── T-8.1: text ────────────────────────────────────────────────────
 
     partial void OnRunOnStartupChanged(bool value)
     {
@@ -507,7 +507,7 @@ public partial class SettingsViewModel : ObservableObject
         _configService.Update(c => c.RunOnStartup = value);
     }
 
-    // ── T-8.2: English text ──────────────────────────────────────────────
+    // ── T-8.2: text ──────────────────────────────────────────────
 
     partial void OnSoundEnabledChanged(bool value)
     {
@@ -524,12 +524,12 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [RelayCommand]
     private void BrowseSoundFile()
     {
-        var dlg = new WpfDialog.OpenFileDialog { Filter = "WAV English text|*.wav|English text|*.*" };
+        var dlg = new WpfDialog.OpenFileDialog { Filter = "WAV files|*.wav|All files|*.*" };
         if (dlg.ShowDialog() == true)
         {
             SoundFilePath = dlg.FileName;
@@ -546,7 +546,7 @@ public partial class SettingsViewModel : ObservableObject
         _configService.Update(c => c.SoundFilePath = null);
     }
 
-    // T-10: English text
+    // T-10: text
     partial void OnKeyRepeatEnabledChanged(bool value)
     {
         if (_isLoading) return;
@@ -565,7 +565,7 @@ public partial class SettingsViewModel : ObservableObject
          _configService.Update(c => c.KeyRepeatIntervalMs = value);
      }
 
-     // L1: English text
+     // L1: text
      partial void OnKeyFontScalePercentChanged(int value)
      {
          if (_isLoading) return;
@@ -574,7 +574,7 @@ public partial class SettingsViewModel : ObservableObject
          _configService.Update(c => c.KeyFontScalePercent = clamped, "KeyFontScalePercent");
      }
 
-     // L1: English text
+     // L1: text
      partial void OnKeyboardA11yNavigationEnabledChanged(bool value)
      {
          if (_isLoading) return;
@@ -601,7 +601,7 @@ public partial class SettingsViewModel : ObservableObject
          _configService.Update(c => c.KeyboardA11yExitKey = normalized, "KeyboardA11yExitKey");
      }
 
-     // L2: English text
+     // L2: text
      partial void OnTtsEnabledChanged(bool value)
      {
          if (_isLoading) return;
@@ -622,14 +622,14 @@ public partial class SettingsViewModel : ObservableObject
          _configService.Update(c => c.TtsRate = clamped);
      }
 
-     // L2: English text
+     // L2: text
      partial void OnReducedMotionEnabledChanged(bool value)
      {
          if (_isLoading) return;
          _configService.Update(c => c.ReducedMotionEnabled = value);
      }
 
-     // L3: English text
+     // L3: text
      partial void OnSwitchScanEnabledChanged(bool value)
      {
          if (_isLoading) return;
@@ -734,7 +734,7 @@ public partial class SettingsViewModel : ObservableObject
          _configService.Update(c => c.SwitchScanAnnounceMode = value);
      }
 
-    // ── T-8.5: English text ────────────────────────────────────────
+    // ── T-8.5: text ────────────────────────────────────────
 
     [RelayCommand]
     private void AddProfile()
@@ -742,7 +742,7 @@ public partial class SettingsViewModel : ObservableObject
         var entry = new ProfileEntry("", "");
         SubscribeToProfileChanges(entry);
         Profiles.Add(entry);
-        // English text)
+        // text)
         SaveProfiles();
     }
 
@@ -779,11 +779,11 @@ public partial class SettingsViewModel : ObservableObject
                 .ToDictionary(p => p.ProcessName.ToLower(), p => p.LayoutName));
     }
 
-    // ── AI English text ────────────────────────────────
+    // ── AI tool ────────────────────────────────
     partial void OnAiEnabledChanged(bool value)
     {
         if (_isLoading) return;
-        // English text ✨ English text.
+        // text ✨ text.
         _configService.Update(c => c.AiEnabled = value, nameof(AppConfig.AiEnabled));
     }
     partial void OnAiEndpointChanged(string value) { if (_isLoading) return; _configService.Update(c => c.AiEndpoint = value); }
@@ -798,22 +798,22 @@ public partial class SettingsViewModel : ObservableObject
         _configService.Update(c => c.AiTimeoutSeconds = clamped);
     }
 
-    /// <summary>English text.</summary>
+    /// <summary>text.</summary>
     [RelayCommand]
     private async Task TestAiConnection()
     {
         try
         {
             var msg = await _aiService.TestConnectionAsync();
-            WpfMsgBox.Show(msg, "AI English text", WpfMsgBoxButton.OK, WpfMsgBoxImage.Information);
+            WpfMsgBox.Show(msg, "AI tool", WpfMsgBoxButton.OK, WpfMsgBoxImage.Information);
         }
         catch (AiServiceException ex)
         {
-            WpfMsgBox.Show(ex.Message, "AI English text", WpfMsgBoxButton.OK, WpfMsgBoxImage.Warning);
+            WpfMsgBox.Show(ex.Message, "AI tool", WpfMsgBoxButton.OK, WpfMsgBoxImage.Warning);
         }
         catch (Exception ex)
         {
-            WpfMsgBox.Show($"English text: {ex.Message}", "AI English text", WpfMsgBoxButton.OK, WpfMsgBoxImage.Error);
+            WpfMsgBox.Show($"Error: {ex.Message}", "AI tool", WpfMsgBoxButton.OK, WpfMsgBoxImage.Error);
         }
     }
 
@@ -854,7 +854,7 @@ public partial class SettingsViewModel : ObservableObject
             return HeaderButtonConfig.GetDisplayName(item.Id);
         }
 
-        return string.IsNullOrWhiteSpace(item.Tooltip) ? "English text" : item.Tooltip;
+        return string.IsNullOrWhiteSpace(item.Tooltip) ? "Custom shortcut" : item.Tooltip;
     }
 
     public string DescribeHeaderButton(HeaderButtonConfig item) => GetHeaderButtonDisplayName(item);
@@ -870,17 +870,17 @@ public partial class SettingsViewModel : ObservableObject
         {
             SendKeyAction sendKey => sendKey.Vk,
             SendComboAction sendCombo => string.Join(" + ", sendCombo.Keys),
-            ToggleStickyAction sticky => $"{sticky.Vk} English text",
-            SwitchLayoutAction switchLayout => $"{switchLayout.Name} English text",
+            ToggleStickyAction sticky => $"{sticky.Vk} text",
+            SwitchLayoutAction switchLayout => $"{switchLayout.Name} text",
             RunAppAction runApp => runApp.Path,
-            BoilerplateAction => "English text",
-            ShellCommandAction => "English text",
-            VolumeControlAction volume => $"English text {volume.Direction}",
-            ClipboardPasteAction => "English text",
-            ToggleInputModeAction => "English text",
-            ToggleFunctionLayerAction => "Fn English text",
-            AiAction => "AI English text",
-            _ => "English text"
+            BoilerplateAction => "Custom shortcut",
+            ShellCommandAction => "Custom shortcut",
+            VolumeControlAction volume => $"text {volume.Direction}",
+            ClipboardPasteAction => "Custom shortcut",
+            ToggleInputModeAction => "Custom shortcut",
+            ToggleFunctionLayerAction => "Fn layer",
+            AiAction => "AI tool",
+            _ => "Custom shortcut"
         };
     }
 
@@ -894,14 +894,14 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private bool TryValidateHeaderButtonLayout()
     {
         var leftVisibleCount = HeaderButtonConfig.CountVisibleButtons(HeaderButtons, "Left");
         if (leftVisibleCount > HeaderButtonConfig.MaxVisibleButtonsLeft)
         {
-            ShowHeaderButtonSideLimitMessage("English text", HeaderButtonConfig.MaxVisibleButtonsLeft);
+            ShowHeaderButtonSideLimitMessage("Custom shortcut", HeaderButtonConfig.MaxVisibleButtonsLeft);
             RestoreHeaderButtonsFromConfig();
             return false;
         }
@@ -909,7 +909,7 @@ public partial class SettingsViewModel : ObservableObject
         var rightVisibleCount = HeaderButtonConfig.CountVisibleButtons(HeaderButtons, "Right");
         if (rightVisibleCount > HeaderButtonConfig.MaxVisibleButtonsRight)
         {
-            ShowHeaderButtonSideLimitMessage("English text", HeaderButtonConfig.MaxVisibleButtonsRight);
+            ShowHeaderButtonSideLimitMessage("Custom shortcut", HeaderButtonConfig.MaxVisibleButtonsRight);
             RestoreHeaderButtonsFromConfig();
             return false;
         }
@@ -918,7 +918,7 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void RestoreHeaderButtonsFromConfig()
     {
@@ -928,19 +928,19 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static void ShowHeaderButtonSideLimitMessage(string sideName, int maxCount)
     {
         WpfMsgBox.Show(
-            $"English text {sideName}English text {maxCount}English text.\nEnglish text.",
-            "English text",
+            $"The {sideName} side can show up to {maxCount} custom header shortcuts.\nHide another shortcut or move it to the other side.",
+            "Custom shortcut",
             WpfMsgBoxButton.OK,
             WpfMsgBoxImage.Information);
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private bool EnsureCanAddCustomHeaderButton()
     {
@@ -948,8 +948,8 @@ public partial class SettingsViewModel : ObservableObject
             return true;
 
         WpfMsgBox.Show(
-            $"English text {HeaderButtonConfig.MaxCustomButtonCount}English text.",
-            "English text",
+            $"You can create up to {HeaderButtonConfig.MaxCustomButtonCount} custom header shortcuts.",
+            "Custom shortcut",
             WpfMsgBoxButton.OK,
             WpfMsgBoxImage.Information);
         return false;
@@ -984,7 +984,7 @@ public partial class SettingsViewModel : ObservableObject
         if (item is null) return;
         item.Position = string.Equals(item.Position, "Left", StringComparison.OrdinalIgnoreCase) ? "Right" : "Left";
 
-        // HeaderButtonConfigEnglish text.
+        // HeaderButtonConfigtext.
         HeaderButtons = new ObservableCollection<HeaderButtonConfig>(
             HeaderButtons.Select(CloneHeaderButtonConfig));
         RaiseHeaderButtonCollectionChanged();
@@ -1029,8 +1029,8 @@ public partial class SettingsViewModel : ObservableObject
 
         var copy = CloneHeaderButtonConfig(item);
         copy.Id = HeaderButtonConfig.CreateCustomDefault().Id;
-        copy.Tooltip = string.IsNullOrWhiteSpace(copy.Tooltip) ? "English text" : $"{copy.Tooltip} English text";
-        copy.AccessibleName = string.IsNullOrWhiteSpace(copy.AccessibleName) ? copy.Tooltip : $"{copy.AccessibleName} English text";
+        copy.Tooltip = string.IsNullOrWhiteSpace(copy.Tooltip) ? "Custom shortcut" : $"{copy.Tooltip} text";
+        copy.AccessibleName = string.IsNullOrWhiteSpace(copy.AccessibleName) ? copy.Tooltip : $"{copy.AccessibleName} text";
 
         var index = HeaderButtons.IndexOf(item);
         if (index < 0)
@@ -1053,7 +1053,7 @@ public partial class SettingsViewModel : ObservableObject
         SaveHeaderButtons();
     }
 
-    // ── English text) ──────────────────────────────────────────────
+    // ── text) ──────────────────────────────────────────────
 
     [RelayCommand]
     private void OpenSettings()
@@ -1072,7 +1072,7 @@ public partial class SettingsViewModel : ObservableObject
     internal void OnSettingsWindowClosed() => _settingsWindow = null;
 
     /// <summary>
-    /// [English text] English text.
+    /// [text] text.
     /// </summary>
     private static void ShowAuxiliaryWindow(Window window)
     {
@@ -1088,7 +1088,7 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
-    /// [English text] English text.
+    /// [text] text.
     /// </summary>
     [RelayCommand]
     private void OpenSwitchScanSettings()
@@ -1108,7 +1108,7 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
-    /// [English text] English text.
+    /// [text] text.
     /// </summary>
     [RelayCommand]
     private void OpenFocusA11ySettings()
@@ -1127,10 +1127,10 @@ public partial class SettingsViewModel : ObservableObject
         ShowAuxiliaryWindow(_focusA11ySettingsWindow);
     }
 
-    // ── T-9.4: English text ──────────────────────────────────────────
+    // ── T-9.4: text ──────────────────────────────────────────
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [RelayCommand]
     private void OpenLayoutEditor()
@@ -1138,10 +1138,10 @@ public partial class SettingsViewModel : ObservableObject
         LaunchTools("layout");
     }
 
-    // ── ac-editor 03: English text ─────────────────────────────
+    // ── ac-editor 03: text ─────────────────────────────
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [RelayCommand]
     private void OpenUserDictionaryEditor()
@@ -1150,7 +1150,7 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [RelayCommand]
     private void OpenProfileMappingEditor()
@@ -1159,7 +1159,7 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
-    /// AI English text.
+    /// AI tool.
     /// </summary>
     [RelayCommand]
     private void OpenAiPromptEditor()
@@ -1168,7 +1168,7 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static void LaunchTools(string? toolName, string? extraArguments = null)
     {
@@ -1176,9 +1176,9 @@ public partial class SettingsViewModel : ObservableObject
         if (!File.Exists(toolsExePath))
         {
             WpfMsgBox.Show(
-                "English text.\n" +
-                "English text.",
-                "English text",
+                "text.\n" +
+                "Done.",
+                "Custom shortcut",
                 WpfMsgBoxButton.OK,
                 WpfMsgBoxImage.Warning);
             return;
@@ -1186,7 +1186,7 @@ public partial class SettingsViewModel : ObservableObject
 
         try
         {
-            // English text.
+            // text.
             var toolArgument = string.IsNullOrWhiteSpace(toolName) ? "" : $"--tool {toolName}";
             var extraArgument = string.IsNullOrWhiteSpace(extraArguments) ? "" : extraArguments.Trim();
             var dataDirArgument = $"--data-dir \"{PathResolver.DataDir}\"";
@@ -1200,7 +1200,7 @@ public partial class SettingsViewModel : ObservableObject
                 UseShellExecute = true
             });
 
-            // English text.
+            // text.
             if (process is not null)
             {
                 _ = Task.Run(() =>
@@ -1213,8 +1213,8 @@ public partial class SettingsViewModel : ObservableObject
                     WpfApp.Current.Dispatcher.BeginInvoke(() =>
                     {
                         WpfMsgBox.Show(
-                            $"English text.\n\nEnglish text: {toolsExePath}\nEnglish text.",
-                            "English text",
+                            $"text.\n\ntext: {toolsExePath}\ntext.",
+                            "Custom shortcut",
                             WpfMsgBoxButton.OK,
                             WpfMsgBoxImage.Error);
                     });
@@ -1224,14 +1224,14 @@ public partial class SettingsViewModel : ObservableObject
         catch (Exception ex)
         {
             WpfMsgBox.Show(
-                $"English text: {ex.Message}",
-                "English text",
+                $"Error: {ex.Message}",
+                "Custom shortcut",
                 WpfMsgBoxButton.OK,
                 WpfMsgBoxImage.Error);
         }
     }
 
-    // ── English text ──────────────────────────────────────
+    // ── text ──────────────────────────────────────
 
     [RelayCommand]
     private void OpenUserSettingsFolder()
@@ -1247,11 +1247,11 @@ public partial class SettingsViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            WpfMsgBox.Show($"English text: {ex.Message}", "English text", WpfMsgBoxButton.OK, WpfMsgBoxImage.Error);
+            WpfMsgBox.Show($"Error: {ex.Message}", "Custom shortcut", WpfMsgBoxButton.OK, WpfMsgBoxImage.Error);
         }
     }
 
-    // ── T-5.12: English text ──────────────────────────────────────
+    // ── T-5.12: text ──────────────────────────────────────
 
     [RelayCommand]
     private void ResetWindowLayout()
@@ -1300,7 +1300,7 @@ public partial class SettingsViewModel : ObservableObject
         }
         catch (Win32Exception)
         {
-            // English text
+            // text
         }
     }
 
@@ -1338,17 +1338,17 @@ public partial class SettingsViewModel : ObservableObject
         });
     }
 
-    // ── T-9.5: English text ───────────────────────────────────
+    // ── T-9.5: text ───────────────────────────────────
 
-    /// <summary>GitHubEnglish text</summary>
+    /// <summary>GitHubtext</summary>
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     [RelayCommand]
     private async Task CheckForUpdate()
     {
         IsCheckingUpdate = true;
-        UpdateStatusMessage = "English text...";
+        UpdateStatusMessage = "Working...";
         HasUpdateAvailable = false;
 
         try
@@ -1357,8 +1357,8 @@ public partial class SettingsViewModel : ObservableObject
 
             if (string.IsNullOrEmpty(version))
             {
-                UpdateStatusMessage = "English text)";
-                ShowUpdateMessage("English text.\nEnglish text.");
+                UpdateStatusMessage = "text)";
+                ShowUpdateMessage("text.\ntext.");
                 return;
             }
 
@@ -1369,19 +1369,19 @@ public partial class SettingsViewModel : ObservableObject
             if (hasUpdate)
             {
                 HasUpdateAvailable = true;
-                UpdateStatusMessage = $"English text {version}English text!";
+                UpdateStatusMessage = $"Version {version} is available!";
             }
             else
             {
                 HasUpdateAvailable = false;
-                UpdateStatusMessage = "English text.";
-                ShowUpdateMessage($"English text.\nEnglish text: {CurrentVersion}");
+                UpdateStatusMessage = "Done.";
+                ShowUpdateMessage($"text.\ntext: {CurrentVersion}");
             }
         }
         catch (Exception ex)
         {
-            UpdateStatusMessage = "English text";
-            ShowUpdateMessage($"English text:\n{ex.Message}");
+            UpdateStatusMessage = "Custom shortcut";
+            ShowUpdateMessage($"text:\n{ex.Message}");
         }
         finally
         {
@@ -1389,20 +1389,20 @@ public partial class SettingsViewModel : ObservableObject
         }
     }
 
-    /// <summary>English text → English text → English text)</summary>
+    /// <summary>text → text → text)</summary>
     [RelayCommand]
     private async Task DownloadAndInstallFromSettings()
     {
         if (string.IsNullOrEmpty(UpdateInstallerUrl))
         {
-            ShowUpdateMessage("English text.\nGitHub English text.");
+            ShowUpdateMessage("text.\nGitHub text.");
             OpenReleasePage();
             return;
         }
 
         if (PathResolver.IsPortable)
         {
-            ShowUpdateMessage("English text.\nGitHub English text.");
+            ShowUpdateMessage("text.\nGitHub text.");
             OpenReleasePage();
             return;
         }
@@ -1413,7 +1413,7 @@ public partial class SettingsViewModel : ObservableObject
 
             IsDownloading = true;
             DownloadProgress = 0;
-            UpdateStatusMessage = $"{LatestVersion} English text...";
+            UpdateStatusMessage = $"Downloading {LatestVersion}...";
 
             var tempDir = Path.GetTempPath();
             var installerFileName = $"LArtKey-Setup-{LatestVersion}.exe";
@@ -1428,32 +1428,32 @@ public partial class SettingsViewModel : ObservableObject
                 _downloadCts.Token);
 
             IsDownloading = false;
-            UpdateStatusMessage = "English text...";
+            UpdateStatusMessage = "Working...";
 
-            // English text
+            // text
             var result = WpfMsgBox.Show(
-                $"LArtKey {LatestVersion} English text.\n\nEnglish text.\n\nEnglish text?",
-                "English text",
+                $"LArtKey {LatestVersion} has been downloaded.\n\nThe app may close and restart during installation.\n\nInstall now?",
+                "Custom shortcut",
                 WpfMsgBoxButton.YesNo,
                 WpfMsgBoxImage.Question);
 
             if (result != WpfMsgBoxResult.Yes)
             {
-                UpdateStatusMessage = "English text.";
+                UpdateStatusMessage = "Done.";
                 try { File.Delete(installerPath); } catch { }
                 return;
             }
 
-            // English text
+            // text
             IsInstalling = true;
 
-            // 1. English text.
+            // 1. text.
             _installerService.StartInstaller(
                 installerPath,
                 autoRestart: true,
                 requestElevation: false);
 
-            // 2. English text)
+            // 2. text)
             if (WpfApp.Current.MainWindow is MainWindow mw)
                 mw.IsShuttingDown = true;
 
@@ -1461,15 +1461,15 @@ public partial class SettingsViewModel : ObservableObject
         }
         catch (OperationCanceledException)
         {
-            UpdateStatusMessage = "English text";
+            UpdateStatusMessage = "Custom shortcut";
         }
         catch (Exception ex)
         {
             IsDownloading = false;
             IsInstalling = false;
-            UpdateStatusMessage = "English text";
+            UpdateStatusMessage = "Custom shortcut";
 
-            ShowUpdateMessage($"English text:\n{ex.Message}\n\nGitHubEnglish text.");
+            ShowUpdateMessage($"text:\n{ex.Message}\n\nGitHubtext.");
             OpenReleasePage();
         }
         finally
@@ -1496,11 +1496,11 @@ public partial class SettingsViewModel : ObservableObject
 
     private static void ShowUpdateMessage(string message)
     {
-        WpfMsgBox.Show(message, "English text", WpfMsgBoxButton.OK, WpfMsgBoxImage.Information);
+        WpfMsgBox.Show(message, "Custom shortcut", WpfMsgBoxButton.OK, WpfMsgBoxImage.Information);
     }
 }
 
-/// T-8.5: English text
+/// T-8.5: text
 public partial class ProfileEntry : ObservableObject
 {
     [ObservableProperty] private string processName = "";

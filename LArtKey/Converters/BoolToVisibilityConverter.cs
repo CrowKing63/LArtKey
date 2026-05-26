@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace LArtKey.Converters;
 
-/// <summary>bool English text</summary>
+/// <summary>bool text</summary>
 public class BoolToVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

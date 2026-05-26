@@ -11,11 +11,11 @@ public class LiveRegionServiceTests
         var received = new List<string>();
         service.Announced += msg => received.Add(msg);
 
-        service.Announce("English text A");
-        service.Announce("English text A");
+        service.Announce("sample text A");
+        service.Announce("sample text A");
 
         Assert.Single(received);
-        Assert.Equal("English text A", received[0]);
+        Assert.Equal("sample text A", received[0]);
     }
 
     [Fact]
@@ -25,8 +25,8 @@ public class LiveRegionServiceTests
         var received = new List<string>();
         service.Announced += msg => received.Add(msg);
 
-        service.Announce("English text A");
-        service.Announce("English text B");
+        service.Announce("sample text A");
+        service.Announce("sample text B");
 
         Assert.Equal(2, received.Count);
     }

@@ -6,7 +6,7 @@ using System.Timers;
 
 namespace LArtKey.Services;
 
-/// T-9.3: English text — English text
+/// T-9.3: text — text
 public class WordFrequencyStore
 {
     private const int MaxWords = 5000;
@@ -19,20 +19,20 @@ public class WordFrequencyStore
         WriteIndented = true
     };
 
-    // English text
+    // text
     private readonly System.Timers.Timer _debounceTimer;
     private readonly object _saveLock = new();
     private bool _pending;
 
     public Exception? LastSaveError { get; private set; }
 
-    /// English text
+    /// text
     public int Count
     {
         get { lock (_saveLock) { return _freq.Count; } }
     }
 
-    /// English text
+    /// text
     public bool Contains(string word)
     {
         lock (_saveLock) { return _freq.ContainsKey(word); }
@@ -43,7 +43,7 @@ public class WordFrequencyStore
     {
     }
 
-    /// English text
+    /// text
     public WordFrequencyStore(string baseDir, string languageCode)
     {
         _filePath = Path.Combine(baseDir, $"user-words.{languageCode}.json");
@@ -52,7 +52,7 @@ public class WordFrequencyStore
         _debounceTimer.Elapsed += (_, _) => FlushIfPending();
     }
 
-    /// English text)
+    /// text)
     public void RecordWord(string word)
     {
         if (string.IsNullOrWhiteSpace(word)) return;
@@ -66,7 +66,7 @@ public class WordFrequencyStore
         ScheduleSave();
     }
 
-    /// English text. <=0 English text.
+    /// text. <=0 text.
     public void SetFrequency(string word, int frequency)
     {
         if (string.IsNullOrWhiteSpace(word)) return;
@@ -88,7 +88,7 @@ public class WordFrequencyStore
         ScheduleSave();
     }
 
-    /// English text.
+    /// text.
     public IReadOnlyList<(string Word, int Frequency)> GetAllWords()
     {
         lock (_saveLock)
@@ -101,14 +101,14 @@ public class WordFrequencyStore
         }
     }
 
-    /// English text).
+    /// text).
     public void Clear()
     {
         lock (_saveLock) { _freq.Clear(); }
         ScheduleSave();
     }
 
-    /// English text.
+    /// text.
     public bool RemoveWord(string word)
     {
         if (string.IsNullOrWhiteSpace(word)) return false;
@@ -122,7 +122,7 @@ public class WordFrequencyStore
         return removed;
     }
 
-    /// prefix English text)
+    /// prefix text)
     public IReadOnlyList<string> GetSuggestions(string prefix, int count = 20)
     {
         if (string.IsNullOrEmpty(prefix)) return [];
@@ -138,7 +138,7 @@ public class WordFrequencyStore
         }
     }
 
-    /// English text)
+    /// text)
     public IReadOnlyList<string> GetSuggestionsByChoseong(char choseong, int count = 20)
     {
         lock (_saveLock)
@@ -175,7 +175,7 @@ public class WordFrequencyStore
         if (shouldSave) Save();
     }
 
-    /// English text — English text
+    /// text — text
     public void Flush()
     {
         _debounceTimer.Stop();
@@ -208,7 +208,7 @@ public class WordFrequencyStore
         {
             if (!File.Exists(_filePath))
             {
-                // English text)
+                // text)
                 Directory.CreateDirectory(Path.GetDirectoryName(_filePath)!);
                 File.WriteAllText(_filePath, "{}");
             }
@@ -219,8 +219,8 @@ public class WordFrequencyStore
     }
 
     /// <summary>
-    /// [English text] English text.
-    /// [English text] English text.
+    /// [text] text.
+    /// [text] text.
     /// </summary>
     public void ReloadFromDisk()
     {

@@ -3,19 +3,19 @@ using LArtKey.Platform;
 
 namespace LArtKey.Services;
 
-/// T-5.7 / T-5.8: English text
+/// T-5.7 / T-5.8: text
 /// <summary>
-/// [English text] English text.
-/// [English text] English text "Ctrl+Alt+K" English text.
+/// [text] text.
+/// [text] text "Ctrl+Alt+K" text.
 /// </summary>
 public class HotkeyService : IDisposable
 {
-    private const int HOTKEY_ID = 9001; // English text.
+    private const int HOTKEY_ID = 9001; // text.
     private HwndSource? _source;
 
     public event Action? HotkeyPressed;
 
-    // ── English text ────────────────────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────────────────────
 
     public void Register(IntPtr hwnd, uint modifiers, uint vk)
     {
@@ -33,7 +33,7 @@ public class HotkeyService : IDisposable
         Register(hwnd, mods, vk);
     }
 
-    // ── WndProc English text ──────────────────────────────────────────────────────────
+    // ── WndProc text ──────────────────────────────────────────────────────────
 
     private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
@@ -45,7 +45,7 @@ public class HotkeyService : IDisposable
         return IntPtr.Zero;
     }
 
-    // ── T-5.8: "Ctrl+Alt+K" English text ──────────────────────────────────────
+    // ── T-5.8: "Ctrl+Alt+K" text ──────────────────────────────────────
 
     public static (uint modifiers, uint vk) ParseHotkey(string hotkey)
     {
@@ -62,7 +62,7 @@ public class HotkeyService : IDisposable
         return (mods, vk);
     }
 
-    // ── English text ────────────────────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────────────────────
 
     public void Dispose()
     {

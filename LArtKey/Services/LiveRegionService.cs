@@ -9,7 +9,7 @@ public sealed class LiveRegionService
     private static readonly TimeSpan DuplicateWindow = TimeSpan.FromMilliseconds(500);
 
     /// <summary>
-    /// [English text] English text.
+    /// [text] text.
     /// </summary>
     public void Announce(string message)
     {

@@ -2,15 +2,15 @@ namespace LArtKey.Models;
 
 public enum VirtualKeyCode : ushort
 {
-    // English text (0x41~0x5A)
+    // text (0x41~0x5A)
     VK_A = 0x41, VK_B, VK_C, VK_D, VK_E, VK_F, VK_G,
     VK_H, VK_I, VK_J, VK_K, VK_L, VK_M, VK_N,
     VK_O, VK_P, VK_Q, VK_R, VK_S, VK_T, VK_U,
     VK_V, VK_W, VK_X, VK_Y, VK_Z,
-    // English text (0x30~0x39)
+    // text (0x30~0x39)
     VK_0 = 0x30, VK_1, VK_2, VK_3, VK_4,
     VK_5, VK_6, VK_7, VK_8, VK_9,
-    // English text
+    // text
     VK_BACK    = 0x08, VK_TAB    = 0x09, VK_RETURN  = 0x0D,
     VK_SHIFT   = 0x10, VK_CONTROL = 0x11, VK_MENU   = 0x12, // Alt
     VK_PAUSE   = 0x13, VK_CAPITAL = 0x14,
@@ -23,12 +23,12 @@ public enum VirtualKeyCode : ushort
     VK_LSHIFT  = 0xA0, VK_RSHIFT  = 0xA1,
     VK_LCONTROL = 0xA2, VK_RCONTROL = 0xA3,
     VK_LMENU   = 0xA4, VK_RMENU   = 0xA5,
-    // English text
+    // text
     VK_F1 = 0x70, VK_F2, VK_F3, VK_F4, VK_F5, VK_F6,
     VK_F7, VK_F8, VK_F9, VK_F10, VK_F11, VK_F12,
-    // English text
+    // text
     VK_HANGUL = 0x15, VK_HANJA = 0x19,
-    // OEM English text
+    // OEM text
     VK_OEM_1      = 0xBA, VK_OEM_PLUS   = 0xBB, VK_OEM_COMMA  = 0xBC,
     VK_OEM_MINUS  = 0xBD, VK_OEM_PERIOD = 0xBE, VK_OEM_2      = 0xBF,
     VK_OEM_3      = 0xC0, VK_OEM_4      = 0xDB, VK_OEM_5      = 0xDC,

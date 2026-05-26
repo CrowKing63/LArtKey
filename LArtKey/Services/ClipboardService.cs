@@ -6,50 +6,50 @@ using LArtKey.Models;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public class ClipboardService : IDisposable
 {
-    // ── English text ──────────────────────────────────────────────────────────────
-    private const int MaxHistory = 50;   // English text
-    private const int MaxFavorites = 10; // English text
+    // ── text ──────────────────────────────────────────────────────────────
+    private const int MaxHistory = 50;   // text
+    private const int MaxFavorites = 10; // text
 
-    // ── English text ────────────────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────────────────
     public event Action? HistoryChanged;
     public event Action? FavoritesChanged;
 
-    // ── English text ──────────────────────────────────────────────────────────────
-    // English text
+    // ── text ──────────────────────────────────────────────────────────────
+    // text
     public IReadOnlyList<string> History => _history;
     public IReadOnlyList<string> Favorites => _favorites;
 
-    // ── English text ──────────────────────────────────────────────────────────────
+    // ── text ──────────────────────────────────────────────────────────────
     private readonly List<string> _history = [];
     private readonly List<string> _favorites = [];
     private readonly DispatcherTimer _pollTimer;
     private string? _lastClipboard;
 
-    // English text (PathResolver.DataDir + clipboard_history.json)
+    // text (PathResolver.DataDir + clipboard_history.json)
     private static string SavePath => Path.Combine(PathResolver.DataDir, "clipboard_history.json");
 
     public ClipboardService()
     {
-        // English text
+        // text
         Load();
 
-        // English text)
+        // text)
         _pollTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
         _pollTimer.Tick += OnPollTick;
         _pollTimer.Start();
     }
 
-    // ── English text ─────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────
 
     private void OnPollTick(object? sender, EventArgs e)
     {
-        // English text)
+        // text)
         if (!ClipboardHelper.ContainsTextWithRetry()) return;
         var current = ClipboardHelper.GetTextWithRetry();
         if (current == null || current == _lastClipboard) return;
@@ -57,10 +57,10 @@ public class ClipboardService : IDisposable
         AddToHistory(current);
     }
 
-    // ── English text ─────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void AddToHistory(string text)
     {
@@ -73,7 +73,7 @@ public class ClipboardService : IDisposable
     }
 
     /// <summary>
-    /// English text).
+    /// text).
     /// </summary>
     public void PromoteItem(string text)
     {
@@ -85,18 +85,18 @@ public class ClipboardService : IDisposable
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void PasteItem(string text)
     {
-        // English text)
+        // text)
         ClipboardHelper.SetTextWithRetry(text);
-        _lastClipboard = text; // English text
-        PromoteItem(text);     // English text
+        _lastClipboard = text; // text
+        PromoteItem(text);     // text
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void ClearHistory()
     {
@@ -106,10 +106,10 @@ public class ClipboardService : IDisposable
         Save();
     }
 
-    // ── English text ─────────────────────────────────────────────────────
+    // ── text ─────────────────────────────────────────────────────
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void AddFavorite(string text)
     {
@@ -122,7 +122,7 @@ public class ClipboardService : IDisposable
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void RemoveFavorite(string text)
     {
@@ -132,7 +132,7 @@ public class ClipboardService : IDisposable
     }
 
     /// <summary>
-    /// English text).
+    /// text).
     /// </summary>
     public void ToggleFavorite(string text)
     {
@@ -143,14 +143,14 @@ public class ClipboardService : IDisposable
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public bool IsFavorite(string text) => _favorites.Contains(text);
 
-    // ── English text ────────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────────
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void Save()
     {
@@ -167,11 +167,11 @@ public class ClipboardService : IDisposable
             File.WriteAllText(SavePath,
                 JsonSerializer.Serialize(data, JsonOptions.Default));
         }
-        catch { /* English text) */ }
+        catch { /* text) */ }
     }
 
     /// <summary>
-    /// JSON English text.
+    /// JSON text.
     /// </summary>
     private void Load()
     {
@@ -190,21 +190,21 @@ public class ClipboardService : IDisposable
         }
         catch
         {
-            // English text
+            // text
         }
     }
 
-    // ── English text ──────────────────────────────────────────────────────────────
+    // ── text ──────────────────────────────────────────────────────────────
 
     public void Dispose()
     {
         _pollTimer.Stop();
-        Save(); // English text
+        Save(); // text
     }
 }
 
 /// <summary>
-/// English text.
+/// text.
 /// </summary>
 file class ClipboardData
 {

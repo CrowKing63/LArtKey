@@ -3,7 +3,7 @@ using LArtKey.Models;
 namespace LArtKey.Services.InputLanguage;
 
 /// <summary>
-/// Handles English text input, word prediction, and learned bigram context for LArtKey.
+/// Handles text input, word prediction, and learned bigram context for LArtKey.
 /// </summary>
 public sealed class EnglishInputModule : IInputLanguageModule
 {

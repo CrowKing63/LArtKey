@@ -7,8 +7,8 @@ using WpfApp = System.Windows.Application;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public sealed class AccessibilityNavigationService : IDisposable
 {
@@ -61,7 +61,7 @@ public sealed class AccessibilityNavigationService : IDisposable
         if (!IsMainWindowVisible())
             return Win32.CallNextHookEx(_hookHandle, nCode, wParam, lParam);
 
-        // L3: English text.
+        // L3: text.
         if (_configService.Current.SwitchScanEnabled)
         {
             if (TryMapSwitchScanAction(vk, out var action))
@@ -88,7 +88,7 @@ public sealed class AccessibilityNavigationService : IDisposable
                     });
                 }
 
-                // English text.
+                // text.
                 return (IntPtr)1;
             }
         }
@@ -125,7 +125,7 @@ public sealed class AccessibilityNavigationService : IDisposable
                 }
             }
 
-            // English text.
+            // text.
             return (IntPtr)1;
         }
 
@@ -180,7 +180,7 @@ public sealed class AccessibilityNavigationService : IDisposable
         return false;
     }
 
-    // [English text] English text.
+    // [text] text.
     private static bool MatchesConfiguredKey(string keyName, uint vk)
     {
         if (string.IsNullOrWhiteSpace(keyName))

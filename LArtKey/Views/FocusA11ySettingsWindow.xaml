@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="English text"
+        Title="Focus visibility settings"
         Width="560" Height="460"
         MinWidth="500" MinHeight="400"
         WindowStartupLocation="Manual"
         Background="{DynamicResource SettingsBg}"
         d:DataContext="{d:DesignInstance vm:SettingsViewModel}">
     <Window.Resources>
-        <!-- English text. -->
+        <!-- text. -->
         <Style TargetType="Button" BasedOn="{StaticResource FluentButtonStyle}"/>
         <Style TargetType="TextBox" BasedOn="{StaticResource FluentTextBoxStyle}"/>
         <Style TargetType="ComboBox" BasedOn="{StaticResource FluentComboBoxStyle}"/>
@@ -24,12 +24,12 @@
         <StackPanel>
             <Border Style="{StaticResource FluentCardBorderStyle}" Margin="0,0,0,12">
                 <StackPanel>
-                    <TextBlock Text="English text"
+                    <TextBlock Text="Focus visibility settings"
                                FontSize="16"
                                FontWeight="SemiBold"
                                Foreground="{DynamicResource SettingsFg}"
                                Margin="0,0,0,6"/>
-                    <TextBlock Text="English text."
+                    <TextBlock Text="Adjust keyboard navigation behavior and focus announcements."
                                FontSize="11"
                                Foreground="{DynamicResource SettingsFgSub}"/>
                 </StackPanel>
@@ -41,30 +41,30 @@
                                FontSize="11"
                                Foreground="{DynamicResource SettingsFgSub}"
                                Margin="0,0,0,4"
-                               Text="English text."/>
+                               Text="Accessibility settings for navigating screen elements and announcing the current position."/>
                     <TextBlock TextWrapping="Wrap"
                                FontSize="11"
                                Foreground="{DynamicResource SettingsFgSub}"
                                Margin="0,0,0,12"
-                               Text="Tab, Shift+Tab, Enter, Space English text."/>
+                               Text="Works with Tab, Shift+Tab, Enter, and Space."/>
 
-                    <TextBlock Text="English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                    <TextBlock Text="Navigation scope" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                     <ComboBox ItemsSource="{Binding KeyboardA11yNavigationScopes}"
                               SelectedItem="{Binding KeyboardA11yNavigationScope}"
                               Margin="0,0,0,8"/>
 
-                    <TextBlock Text="English text (VK_English text)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                    <TextBlock Text="Navigation exit key (VK name)" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
                     <TextBox Text="{Binding KeyboardA11yExitKey, UpdateSourceTrigger=PropertyChanged}"
                              Margin="0,0,0,12"/>
 
-                    <TextBlock Text="LiveRegion English text" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
-                    <CheckBox Content="English text"
+                    <TextBlock Text="Live region announcements" Foreground="{DynamicResource SettingsFgSub}" FontSize="11" Margin="0,0,0,4"/>
+                    <CheckBox Content="Announce current focus when it moves"
                               Foreground="{DynamicResource SettingsFg}"
                               IsChecked="{Binding KeyboardA11yAnnounceFocus}"/>
                 </StackPanel>
             </Border>
 
-            <Button Content="English text"
+            <Button Content="Close"
                     Height="34"
                     HorizontalAlignment="Right"
                     Width="110"
@@ -73,7 +73,7 @@
                     Foreground="{DynamicResource SettingsFg}"
                     BorderThickness="0"
                     Cursor="Hand"
-                    AutomationProperties.Name="English text"/>
+                    AutomationProperties.Name="Close focus visibility settings"/>
         </StackPanel>
     </Border>
 </Window>

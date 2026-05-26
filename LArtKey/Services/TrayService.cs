@@ -8,12 +8,12 @@ using Application = System.Windows.Application;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public class TrayService : IDisposable
 {
-    private readonly LayoutService _layoutService; // English text
+    private readonly LayoutService _layoutService; // text
     private readonly MainViewModel _mainViewModel;
     private readonly UpdateService _updateService;
     private readonly InputService _inputService;
@@ -66,7 +66,7 @@ public class TrayService : IDisposable
             Visible = true,
         };
 
-        // English text)
+        // text)
         try
         {
             var iconPath = System.IO.Path.Combine(
@@ -86,23 +86,23 @@ public class TrayService : IDisposable
         _notifyIcon.DoubleClick     += (_, _) => ToggleVisibility();
     }
 
-    // ── English text ────────────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────────────
 
     private ContextMenuStrip BuildContextMenu()
     {
         var menu = new ContextMenuStrip();
 
-        // T-9.5: English text
+        // T-9.5: text
         var asmVersion = Assembly.GetExecutingAssembly().GetName().Version;
         var versionText = $"LArtKey v{asmVersion?.ToString(3) ?? "0.1.0"}";
         var versionItem = new ToolStripMenuItem(versionText) { Enabled = false };
         menu.Items.Add(versionItem);
 
         menu.Items.Add(new ToolStripSeparator());
-        menu.Items.Add("English text", null, (_, _) => ToggleVisibility());
+        menu.Items.Add("Show / hide", null, (_, _) => ToggleVisibility());
 
-        // English text "English text"English text.
-        var skipCloseConfirmItem = new ToolStripMenuItem("English text")
+        // text "text"text.
+        var skipCloseConfirmItem = new ToolStripMenuItem("Hide to tray without confirmation")
         {
             Checked = !_configService.Current.AskBeforeHideToTray,
             CheckOnClick = false
@@ -110,11 +110,11 @@ public class TrayService : IDisposable
         skipCloseConfirmItem.Click += (_, _) => ToggleCloseConfirmPreference();
         menu.Items.Add(skipCloseConfirmItem);
 
-        // T-5.11: English text
-        var layoutMenu = new ToolStripMenuItem("English text");
+        // T-5.11: text
+        var layoutMenu = new ToolStripMenuItem("Layouts");
         foreach (var name in _layoutService.GetAvailableLayouts())
         {
-            var itemName = name; // English text
+            var itemName = name; // text
             var item = new ToolStripMenuItem(itemName);
             item.Click += (_, _) =>
                 Application.Current.Dispatcher.Invoke(() =>
@@ -125,13 +125,13 @@ public class TrayService : IDisposable
 
         menu.Items.Add(new ToolStripSeparator());
 
-        // T-9.5: English text
-        menu.Items.Add("English text", null, async (_, _) => await CheckForUpdateFromTray());
+        // T-9.5: text
+        menu.Items.Add("Check for updates", null, async (_, _) => await CheckForUpdateFromTray());
 
-        menu.Items.Add("English text", null, (_, _) =>
+        menu.Items.Add("Settings", null, (_, _) =>
             Application.Current.Dispatcher.Invoke(() =>
                 _mainViewModel.Settings.OpenSettingsCommand.Execute(null)));
-        menu.Items.Add("English text", null, (_, _) =>
+        menu.Items.Add("Exit", null, (_, _) =>
             Application.Current.Dispatcher.Invoke(() =>
             {
                 if (Application.Current.MainWindow is MainWindow mw)
@@ -142,7 +142,7 @@ public class TrayService : IDisposable
         return menu;
     }
 
-    // ── T-9.5: English text ──────────────────────────────────────
+    // ── T-9.5: text ──────────────────────────────────────
 
     private async Task CheckForUpdateFromTray()
     {
@@ -152,7 +152,7 @@ public class TrayService : IDisposable
 
             if (string.IsNullOrEmpty(version))
             {
-                _notifyIcon.ShowBalloonTip(3000, "LArtKey", "English text.", ToolTipIcon.Warning);
+                _notifyIcon.ShowBalloonTip(3000, "LArtKey", "Could not read the latest release information.", ToolTipIcon.Warning);
                 return;
             }
 
@@ -160,11 +160,11 @@ public class TrayService : IDisposable
             {
                 _notifyIcon.ShowBalloonTip(
                     5000,
-                    "LArtKey English text",
-                    $"English text {version}English text!\nEnglish text.",
+                    "LArtKey update",
+                    $"Version {version} is available.\nOpen settings or GitHub Releases to install it.",
                     ToolTipIcon.Info);
 
-                // English text
+                // text
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     _mainViewModel.UpdateVersion = version;
@@ -174,16 +174,16 @@ public class TrayService : IDisposable
             }
             else
             {
-                _notifyIcon.ShowBalloonTip(3000, "LArtKey", "English text.", ToolTipIcon.Info);
+                _notifyIcon.ShowBalloonTip(3000, "LArtKey", "LArtKey is up to date.", ToolTipIcon.Info);
             }
         }
         catch (Exception ex)
         {
-            _notifyIcon.ShowBalloonTip(3000, "LArtKey", $"English text: {ex.Message}", ToolTipIcon.Error);
+            _notifyIcon.ShowBalloonTip(3000, "LArtKey", $"Update check failed: {ex.Message}", ToolTipIcon.Error);
         }
     }
 
-    // ── English text ──────────────────────────────────────────────────────────
+    // ── text ──────────────────────────────────────────────────────────
 
     public void ToggleVisibility()
     {
@@ -202,10 +202,10 @@ public class TrayService : IDisposable
         });
     }
 
-    // ── English text ────────────────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────────────────
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     public void ShowWindowFromExternalActivation()
     {
@@ -232,7 +232,7 @@ public class TrayService : IDisposable
     }
 
     /// <summary>
-    /// English text = English text = English text.
+    /// text = text = text.
     /// </summary>
     private void ToggleCloseConfirmPreference()
     {

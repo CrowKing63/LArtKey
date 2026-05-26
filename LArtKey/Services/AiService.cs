@@ -9,15 +9,15 @@ using LArtKey.Models;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] OpenAI-compatible Chat APIEnglish text.
-/// [English text] English text.
-/// [English text] OpenAI, Ollama, LM Studio, llama.cpp English text.
+/// [text] OpenAI-compatible Chat APItext.
+/// [text] text.
+/// [text] OpenAI, Ollama, LM Studio, llama.cpp text.
 /// </summary>
 public class AiService : IDisposable
 {
     private readonly ConfigService _configService;
     private readonly HttpClient _httpClient;
-    // English text.
+    // text.
     private const string OutputOnlyGuardrail =
         "Final answer must contain only the transformed result text. No explanation, no preface, no quotes, no markdown, no labels.";
 
@@ -28,37 +28,37 @@ public class AiService : IDisposable
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
-    /// <param name="inputText">English text</param>
-    /// <param name="prompt">English text)</param>
-    /// <param name="ct">English text</param>
-    /// <returns>AIEnglish text</returns>
-    /// <exception cref="AiServiceException">API English text</exception>
+    /// <param name="inputText">text</param>
+    /// <param name="prompt">text)</param>
+    /// <param name="ct">text</param>
+    /// <returns>AItext</returns>
+    /// <exception cref="AiServiceException">API text</exception>
     public async Task<string> ProcessTextAsync(string inputText, string prompt = "", CancellationToken ct = default)
     {
         var config = _configService.Current;
 
-        // English text
+        // text
         if (string.IsNullOrWhiteSpace(config.AiEndpoint))
-            throw new AiServiceException("AI English text → AI English text.");
+            throw new AiServiceException("AI endpoint is missing. Check AI tools settings.");
 
         var endpoint = NormalizeChatCompletionsEndpoint(config.AiEndpoint);
         if (string.IsNullOrWhiteSpace(config.AiModel))
-            throw new AiServiceException("English text → AI English text.");
+            throw new AiServiceException("AI model or prompt is missing. Check AI tools settings.");
 
-        // English text > English text)
+        // text > text)
         var basePrompt = string.IsNullOrWhiteSpace(prompt)
             ? config.AiDefaultPrompt
             : prompt;
 
         if (string.IsNullOrWhiteSpace(basePrompt))
-            throw new AiServiceException("English text → AI English text.");
+            throw new AiServiceException("AI model or prompt is missing. Check AI tools settings.");
 
-        // English text.
+        // text.
         var systemPrompt = BuildSystemPromptWithGuardrail(basePrompt);
 
-        // English text (OpenAI-compatible Chat Completions)
+        // text (OpenAI-compatible Chat Completions)
         var requestBody = new ChatCompletionRequest
         {
             Model = config.AiModel.Trim(),
@@ -72,7 +72,7 @@ public class AiService : IDisposable
         var json = JsonSerializer.Serialize(requestBody, AiJsonOptions.Default);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        // API English text)
+        // API text)
         var apiKey = SecureStorage.Decrypt(config.AiApiKeyEncrypted);
         using var request = new HttpRequestMessage(HttpMethod.Post, endpoint)
         {
@@ -82,7 +82,7 @@ public class AiService : IDisposable
         if (!string.IsNullOrWhiteSpace(apiKey))
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
-        // English text
+        // text
         using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
         timeoutCts.CancelAfter(TimeSpan.FromSeconds(Math.Max(5, config.AiTimeoutSeconds)));
 
@@ -95,7 +95,7 @@ public class AiService : IDisposable
                 var errorBody = await response.Content.ReadAsStringAsync(ct);
                 Debug.WriteLine($"[AiService] HTTP {(int)response.StatusCode}: {errorBody}");
                 throw new AiServiceException(
-                    $"AI API English text (HTTP {(int)response.StatusCode}): {TruncateErrorMessage(errorBody)}");
+                    $"AI API request failed (HTTP {(int)response.StatusCode}): {TruncateErrorMessage(errorBody)}");
             }
 
             var responseJson = await response.Content.ReadAsStringAsync(ct);
@@ -106,39 +106,39 @@ public class AiService : IDisposable
             }
             catch (JsonException ex)
             {
-                Debug.WriteLine($"[AiService] JSON English text: {ex.Message}");
-                throw new AiServiceException($"AI English text. ({TruncateErrorMessage(ex.Message)})");
+                Debug.WriteLine($"[AiService] JSON parse failed: {ex.Message}");
+                throw new AiServiceException($"AI response could not be parsed. ({TruncateErrorMessage(ex.Message)})");
             }
 
             var result = chatResponse?.Choices?.FirstOrDefault()?.Message?.Content;
             if (string.IsNullOrEmpty(result))
-                throw new AiServiceException("AIEnglish text.");
+                throw new AiServiceException("AI response was empty.");
 
             return result.Trim();
         }
         catch (OperationCanceledException) when (timeoutCts.IsCancellationRequested && !ct.IsCancellationRequested)
         {
-            throw new AiServiceException($"AI API English text {config.AiTimeoutSeconds}English text.");
+            throw new AiServiceException($"AI API request failed {config.AiTimeoutSeconds}text.");
         }
         catch (HttpRequestException ex)
         {
-            Debug.WriteLine($"[AiService] English text: {ex.Message}");
-            throw new AiServiceException($"AI English text: {ex.Message}");
+            Debug.WriteLine($"[AiService] Request failed: {ex.Message}");
+            throw new AiServiceException($"AI Request failed: {ex.Message}");
         }
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
-    /// <returns>English text</returns>
+    /// <returns>text</returns>
     public async Task<string> TestConnectionAsync(CancellationToken ct = default)
     {
         var result = await ProcessTextAsync("Hello", "Respond with only the word 'OK'.", ct);
-        return $"English text: {TruncateErrorMessage(result)}";
+        return $"Connection test result: {TruncateErrorMessage(result)}";
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static string NormalizeChatCompletionsEndpoint(string raw)
     {
@@ -152,14 +152,14 @@ public class AiService : IDisposable
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static string BuildSystemPromptWithGuardrail(string basePrompt)
     {
         return $"{basePrompt.Trim()}\n\n{OutputOnlyGuardrail}";
     }
 
-    /// English text.
+    /// text.
     private static string TruncateErrorMessage(string msg)
     {
         const int maxLen = 200;
@@ -173,7 +173,7 @@ public class AiService : IDisposable
 }
 
 /// <summary>
-/// AI English text.
+/// AI response could not be parsed.
 /// </summary>
 public class AiServiceException : Exception
 {
@@ -182,7 +182,7 @@ public class AiServiceException : Exception
 
 // ── OpenAI-compatible Chat API DTO ──────────────────────────────────────────
 
-/// English text
+/// text
 file class ChatCompletionRequest
 {
     [JsonPropertyName("model")]
@@ -191,12 +191,12 @@ file class ChatCompletionRequest
     [JsonPropertyName("messages")]
     public List<ChatMessage> Messages { get; set; } = [];
 
-    // streamEnglish text.
+    // streamtext.
     [JsonPropertyName("stream")]
     public bool Stream { get; set; } = false;
 }
 
-/// English text
+/// text
 file class ChatMessage
 {
     [JsonPropertyName("role")]
@@ -206,21 +206,21 @@ file class ChatMessage
     public string Content { get; set; } = "";
 }
 
-/// English text
+/// text
 file class ChatCompletionResponse
 {
     [JsonPropertyName("choices")]
     public List<ChatChoice>? Choices { get; set; }
 }
 
-/// English text
+/// text
 file class ChatChoice
 {
     [JsonPropertyName("message")]
     public ChatMessage? Message { get; set; }
 }
 
-/// AI English text
+/// AI tool
 file static class AiJsonOptions
 {
     public static readonly JsonSerializerOptions Default = new()

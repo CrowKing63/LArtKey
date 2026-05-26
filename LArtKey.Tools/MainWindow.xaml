@@ -4,14 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="LArtKey English text"
+        Title="LArtKey Tools"
         Width="720"
         Height="560"
         MinWidth="620"
         MinHeight="500"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <!-- English text. -->
+        <!-- text. -->
         <Style TargetType="Button" BasedOn="{StaticResource FluentButtonStyle}">
             <Setter Property="Padding" Value="16,12" />
         </Style>
@@ -35,14 +35,14 @@
                        Margin="0,0,0,8"
                        FontSize="24"
                        FontWeight="SemiBold"
-                       Text="LArtKey English text"
-                       AutomationProperties.Name="English text" />
+                       Text="LArtKey editing tools"
+                       AutomationProperties.Name="Tools window title" />
 
             <TextBlock Grid.Row="1"
                        Margin="0,0,0,16"
-                       Text="English text."
+                       Text="Choose a tool below to start editing. All edits happen in a separate, safer window away from the main keyboard."
                        TextWrapping="Wrap"
-                       AutomationProperties.Name="English text" />
+                       AutomationProperties.Name="Tools help text" />
 
             <Border Grid.Row="2"
                     Style="{StaticResource FluentCardBorderStyle}"
@@ -51,78 +51,78 @@
                     <TextBlock Margin="0,0,0,10"
                                FontSize="16"
                                FontWeight="SemiBold"
-                               Text="English text"
-                               AutomationProperties.Name="English text" />
+                               Text="Choose a tool"
+                               AutomationProperties.Name="Tool selection section title" />
 
                     <Button x:Name="LayoutEditorButton"
                             Margin="0,0,0,8"
                             HorizontalAlignment="Stretch"
                             TabIndex="0"
-                            Content="English text"
+                            Content="Open layout editor"
                             Click="OnOpenLayoutEditor"
-                            AutomationProperties.Name="English text"
-                            AutomationProperties.HelpText="English text." />
+                            AutomationProperties.Name="Open layout editor button"
+                            AutomationProperties.HelpText="Opens the editor for names and key labels." />
                     <TextBlock Margin="2,0,0,10"
                                Foreground="{DynamicResource SettingsFgSub}"
-                               Text="English text."
+                               Text="Review and edit key placement and labels."
                                TextWrapping="Wrap"
-                               AutomationProperties.Name="English text" />
+                               AutomationProperties.Name="Layout editor description" />
 
                     <Button x:Name="UserDictionaryEditorButton"
                             Margin="0,0,0,8"
                             HorizontalAlignment="Stretch"
                             TabIndex="1"
-                            Content="English text"
+                            Content="Open user dictionary editor"
                             Click="OnOpenUserDictionaryEditor"
-                            AutomationProperties.Name="English text"
-                            AutomationProperties.HelpText="English text." />
+                            AutomationProperties.Name="Open user dictionary editor button"
+                            AutomationProperties.HelpText="Opens the editor for English word and bigram data." />
                     <TextBlock Margin="2,0,0,10"
                                Foreground="{DynamicResource SettingsFgSub}"
-                               Text="English text."
+                               Text="Add, edit, and delete word and bigram data."
                                TextWrapping="Wrap"
-                               AutomationProperties.Name="English text" />
+                               AutomationProperties.Name="User dictionary editor description" />
 
                     <Button x:Name="ProfileMappingEditorButton"
                             Margin="0,0,0,8"
                             HorizontalAlignment="Stretch"
                             TabIndex="2"
-                            Content="English text"
+                            Content="Open profile mapping editor"
                             Click="OnOpenProfileMappingEditor"
-                            AutomationProperties.Name="English text"
-                            AutomationProperties.HelpText="English text." />
+                            AutomationProperties.Name="Open profile mapping editor button"
+                            AutomationProperties.HelpText="Opens the editor for app-specific layout mappings." />
                     <TextBlock Margin="2,0,0,10"
                                Foreground="{DynamicResource SettingsFgSub}"
-                               Text="English text."
+                               Text="Review and adjust app-specific layout assignments."
                                TextWrapping="Wrap"
-                               AutomationProperties.Name="English text" />
+                               AutomationProperties.Name="Profile mapping editor description" />
 
                     <Button x:Name="AiPromptEditorButton"
                             Margin="0,0,0,8"
                             HorizontalAlignment="Stretch"
                             TabIndex="3"
-                            Content="AI English text"
+                            Content="Open AI prompt editor"
                             Click="OnOpenAiPromptEditor"
-                            AutomationProperties.Name="AI English text"
-                            AutomationProperties.HelpText="English text." />
+                            AutomationProperties.Name="Open AI prompt editor button"
+                            AutomationProperties.HelpText="Opens a comfortable editor for longer default prompts." />
                     <TextBlock Margin="2,0,0,0"
                                Foreground="{DynamicResource SettingsFgSub}"
-                               Text="English text."
+                               Text="Edit long prompts in a more readable form."
                                TextWrapping="Wrap"
-                               AutomationProperties.Name="AI English text" />
+                               AutomationProperties.Name="AI prompt editor description" />
 
                     <Button x:Name="HeaderShortcutEditorButton"
                             Margin="0,10,0,8"
                             HorizontalAlignment="Stretch"
                             TabIndex="4"
-                            Content="English text"
+                            Content="Open header shortcut editor"
                             Click="OnOpenHeaderShortcutEditor"
-                            AutomationProperties.Name="English text"
-                            AutomationProperties.HelpText="English text." />
+                            AutomationProperties.Name="Open header shortcut editor button"
+                            AutomationProperties.HelpText="Opens the editor for custom header shortcut icons, tooltips, and actions." />
                     <TextBlock Margin="2,0,0,0"
                                Foreground="{DynamicResource SettingsFgSub}"
-                               Text="English text."
+                               Text="Edit icon text, tooltip, accessible name, and action for custom header buttons."
                                TextWrapping="Wrap"
-                               AutomationProperties.Name="English text" />
+                               AutomationProperties.Name="Header shortcut editor description" />
                 </StackPanel>
             </Border>
 
@@ -130,10 +130,10 @@
                     Margin="0,16,0,0"
                     HorizontalAlignment="Right"
                     TabIndex="5"
-                    Content="English text (Esc)"
+                    Content="Close (Esc)"
                     Click="OnClose"
-                    AutomationProperties.Name="English text"
-                    AutomationProperties.HelpText="LArtKey English text." />
+                    AutomationProperties.Name="Close tools window button"
+                    AutomationProperties.HelpText="Closes the LArtKey Tools window." />
         </Grid>
     </Border>
 </Window>

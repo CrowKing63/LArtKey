@@ -23,13 +23,13 @@ public partial class MainWindow : Window
     private DispatcherTimer _fadeTimer = null!;
     private bool _isIdleOpacityApplied;
 
-    /// T-5.6: English text
+    /// T-5.6: text
     public bool IsShuttingDown { get; set; }
 
-    /// English text.
+    /// text.
     public bool ResetPending { get; set; }
 
-    /// T-5.6: English text
+    /// T-5.6: text
     private bool _trayNotified;
 
     public MainWindow(
@@ -43,7 +43,7 @@ public partial class MainWindow : Window
         InitializeComponent();
         DataContext = viewModel;
 
-        // English text.
+        // text.
         AddHandler(Keyboard.PreviewGotKeyboardFocusEvent,
             (KeyboardFocusChangedEventHandler)OnPreviewGotKeyboardFocus,
             handledEventsToo: true);
@@ -56,7 +56,7 @@ public partial class MainWindow : Window
         _inputService  = inputService;
         _configService.ConfigChanged += OnConfigChanged;
 
-        // T-5.5: English text
+        // T-5.5: text
         _trayService.Initialize(this);
 
         Loaded += async (_, _) =>
@@ -82,29 +82,29 @@ public partial class MainWindow : Window
 
         var hwnd = new WindowInteropHelper(this).Handle;
 
-        // T-1.3: WS_EX_NOACTIVATE English text
+        // T-1.3: WS_EX_NOACTIVATE text
         _windowService.ApplyNoActivate(hwnd);
 
-        // T-1.4: English text
+        // T-1.4: text
         _windowService.ApplyBackground(this);
 
-        // T-1.6: English text
+        // T-1.6: text
         RestoreWindowPosition();
 
-        // T-1.7: English text
+        // T-1.7: text
         SetupFadeTimer();
         ApplyOpacityForCurrentState(animated: false);
 
         MouseEnter += MainWindow_MouseEnter;
         MouseLeave += MainWindow_MouseLeave;
 
-        // T-5.7: English text
+        // T-5.7: text
         var (mods, vk) = HotkeyService.ParseHotkey(_configService.Current.GlobalHotkey);
         _hotkeyService.Register(hwnd, mods, vk);
         _hotkeyService.HotkeyPressed += () => _trayService.ToggleVisibility();
     }
 
-    // Esc English text.
+    // Esc text.
     protected override void OnKeyDown(System.Windows.Input.KeyEventArgs e)
     {
         if (e.Key == System.Windows.Input.Key.Escape)
@@ -112,7 +112,7 @@ public partial class MainWindow : Window
         base.OnKeyDown(e);
     }
 
-    // T-1.6 / T-5.6: English text
+    // T-1.6 / T-5.6: text
     protected override void OnClosing(CancelEventArgs e)
     {
         if (!IsShuttingDown)
@@ -131,7 +131,7 @@ public partial class MainWindow : Window
                     return;
                 }
 
-                // "English text"English text.
+                // "text"text.
                 if (confirmWindow.DontAskAgain)
                 {
                     _configService.Update(c => c.AskBeforeHideToTray = false, nameof(Models.AppConfig.AskBeforeHideToTray));
@@ -160,30 +160,30 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void HideToTray()
     {
         ModifierSafety.PrepareForWindowHide(_inputService, "MainWindow.HideToTray");
         Hide();
 
-        // English text.
+        // text.
         if (_trayNotified)
         {
             return;
         }
 
-        _trayService.ShowBalloon("LArtKeyEnglish text.");
+        _trayService.ShowBalloon("LArtKey is still running in the tray.");
         _trayNotified = true;
     }
 
-    // T-1.6: English text.
+    // T-1.6: text.
     private void RestoreWindowPosition()
     {
         var cfg = _configService.Current.Window;
         var scale = Math.Clamp(cfg.Scale, 60, 200) / 100.0;
 
-        // English text)
+        // text)
         var expectedWidth  = 900 * scale;
         var expectedHeight = 320 * scale;
 
@@ -192,7 +192,7 @@ public partial class MainWindow : Window
         double left = cfg.Left;
         double top  = cfg.Top;
 
-        // -1English text
+        // -1text
         bool offScreen = left < 0 || top < 0
             || left + expectedWidth  > screen.Right  + 200
             || top  + expectedHeight > screen.Bottom + 200
@@ -211,7 +211,7 @@ public partial class MainWindow : Window
         }
     }
 
-    // T-1.7: English text
+    // T-1.7: text
     private void SetupFadeTimer()
     {
         _fadeTimer = new DispatcherTimer
@@ -253,7 +253,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// [English text] English text 'English text', English text 'English text'English text.
+    /// [text] text 'text', text 'text'text.
     /// </summary>
     private void ApplyOpacityForCurrentState(bool animated = true, int durationMs = 150)
     {
@@ -304,11 +304,11 @@ public partial class MainWindow : Window
             _isIdleOpacityApplied = false;
         }
 
-        // English text.
+        // text.
         ApplyOpacityForCurrentState();
     }
 
-    // T-4.9: English text → English text)
+    // T-4.9: text → text)
     private void PlayOpenAnimation()
     {
         BeginAnimation(OpacityProperty, null);
@@ -337,7 +337,7 @@ public partial class MainWindow : Window
         Keyboard.Focus(restoreTarget);
     }
 
-    /// <summary>English text.</summary>
+    /// <summary>text.</summary>
     private bool IsWithinKeyboardViewSurface(DependencyObject? d)
     {
         if (KeyboardViewControl is null || d is null) return false;

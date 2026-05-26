@@ -50,10 +50,10 @@ public class KeyboardViewModelTests
             "Fn", null, new ToggleFunctionLayerAction()));
 
         slotVm.SetFunctionLayerState(FunctionLayerState.OneShot);
-        Assert.Equal("Fn English text", slotVm.AccessibleHelp);
+        Assert.Equal("Fn applies to the next key only.", slotVm.AccessibleHelp);
 
         slotVm.SetFunctionLayerState(FunctionLayerState.Locked);
-        Assert.Equal("Fn English text", slotVm.AccessibleHelp);
+        Assert.Equal("Fn layer is locked.", slotVm.AccessibleHelp);
     }
 
     [Fact]
@@ -85,7 +85,7 @@ public class KeyboardViewModelTests
     {
         public string LanguageCode => "ko";
         public InputSubmode ActiveSubmode => InputSubmode.QuietEnglish;
-        public string ComposeStateLabel => "English text";
+        public string ComposeStateLabel => "sample text";
         public string CurrentWord => "";
         public event Action<IReadOnlyList<string>>? SuggestionsChanged { add { } remove { } }
         public event Action<InputSubmode>? SubmodeChanged { add { } remove { } }

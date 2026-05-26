@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
 
-        <!-- English text. -->
+        <!-- text. -->
         <Style x:Key="SuggestionTextButtonStyle" TargetType="Button">
             <Setter Property="FontSize" Value="{DynamicResource ScaledKeyFontSize}"/>
             <Setter Property="Padding" Value="12,6"/>
@@ -71,7 +71,7 @@
         </Style>
     </UserControl.Resources>
 
-    <!-- English text. -->
+    <!-- text. -->
     <Border Background="Transparent"
             BorderBrush="Transparent"
             BorderThickness="0"
@@ -79,7 +79,7 @@
             ClipToBounds="True">
         <StackPanel Orientation="Horizontal">
 
-                <!-- English text -->
+                <!-- text -->
                 <Button Content="{Binding CurrentWord}"
                         Visibility="{Binding HasCurrentWord, Converter={StaticResource BoolToVis}}"
                         Command="{Binding CommitCurrentWordCommand}"
@@ -87,7 +87,7 @@
                         Foreground="{DynamicResource SuggestionCurrentFg}"
                         BorderBrush="{DynamicResource SuggestionCurrentBorder}"
                         FontWeight="SemiBold"
-                        ToolTip="English text"
+                        ToolTip="Left-click to type · right-click to cancel"
                         ContextMenu="{x:Null}"
                         PreviewMouseRightButtonUp="CurrentWordSlot_RightClick">
                     <Button.Style>
@@ -105,12 +105,12 @@
                     </Button.InputBindings>
                 </Button>
 
-                <!-- English text. -->
+                <!-- text. -->
                 <Separator Visibility="{Binding HasCurrentWord, Converter={StaticResource BoolToVis}}"
                            Margin="4,4"
                            Opacity="0.45"/>
 
-                <!-- English text -->
+                <!-- text -->
                 <ItemsControl ItemsSource="{Binding SuggestionScanTargets}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -125,7 +125,7 @@
                                     CommandParameter="{Binding DisplayText}"
                                     Background="{DynamicResource SuggestionChipBg}"
                                     Foreground="{DynamicResource PanelFg}"
-                                    ToolTip="English text">
+                                    ToolTip="Left-click to type · right-click to manage">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource SuggestionTextButtonStyle}">
                                         <Style.Triggers>
@@ -138,7 +138,7 @@
                                 </Button.Style>
                                 <Button.ContextMenu>
                                     <ContextMenu>
-                                        <MenuItem Header="English text"
+                                        <MenuItem Header="Remove from user dictionary"
                                                   Command="{Binding DataContext.RemoveSuggestionCommand,
                                                       Source={x:Reference SuggestionRoot}}"
                                                   CommandParameter="{Binding DisplayText}"/>

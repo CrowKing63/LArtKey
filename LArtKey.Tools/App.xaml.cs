@@ -8,8 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 namespace LArtKey.Tools;
 
 /// <summary>
-/// [English text] LArtKey English text.
-/// [English text] English text.
+/// [text] LArtKey text.
+/// [text] text.
 /// </summary>
 public partial class App : Application
 {
@@ -17,7 +17,7 @@ public partial class App : Application
 
     public App()
     {
-        // English text.
+        // text.
         DispatcherUnhandledException += OnDispatcherUnhandledException;
         AppDomain.CurrentDomain.UnhandledException += OnCurrentDomainUnhandledException;
     }
@@ -28,19 +28,19 @@ public partial class App : Application
         {
             base.OnStartup(e);
 
-            // English text.
+            // text.
             PathResolver.OverrideDataDir(GetDataDirArgument(e.Args));
 
             var services = new ServiceCollection();
 
-            // [English text] English text.
+            // [text] text.
             services.AddSingleton<ConfigService>();
             services.AddSingleton<ThemeService>();
             services.AddSingleton<LayoutService>();
             services.AddSingleton<ILayoutRepository, LayoutRepository>();
             services.AddSingleton<LayoutEditorViewModel>();
 
-            // [English text] English text.
+            // [text] text.
             services.AddSingleton<Func<string, WordFrequencyStore>>(_ => lang => new WordFrequencyStore(lang));
             services.AddSingleton<Func<string, BigramFrequencyStore>>(_ => lang => new BigramFrequencyStore(lang));
             services.AddSingleton<EnglishDictionary>();
@@ -51,7 +51,7 @@ public partial class App : Application
             Services = services.BuildServiceProvider();
             ApplyInitialTheme();
 
-            // English text.
+            // text.
             var directToolWindow = CreateDirectToolWindow(e.Args);
             if (directToolWindow is not null)
             {
@@ -72,7 +72,7 @@ public partial class App : Application
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private static void ApplyInitialTheme()
     {
@@ -82,7 +82,7 @@ public partial class App : Application
     }
 
     /// <summary>
-    /// English text: layout, dictionary, profile, ai-prompt, header-shortcut
+    /// text: layout, dictionary, profile, ai-prompt, header-shortcut
     /// </summary>
     private static Window? CreateDirectToolWindow(string[] args)
     {
@@ -125,7 +125,7 @@ public partial class App : Application
     }
 
     /// <summary>
-    /// "--tool {name}" English text.
+    /// "--tool {name}" text.
     /// </summary>
     private static string? GetToolArgument(string[] args)
     {
@@ -151,7 +151,7 @@ public partial class App : Application
     }
 
     /// <summary>
-    /// "--data-dir {absolute-path}" English text.
+    /// "--data-dir {absolute-path}" text.
     /// </summary>
     private static string? GetDataDirArgument(string[] args)
     {
@@ -201,7 +201,7 @@ public partial class App : Application
 
     protected override void OnExit(ExitEventArgs e)
     {
-        // English text.
+        // text.
         Services.GetService<IUserDictionaryRepository>()?.Flush();
 
         if (Services is IDisposable disposable)
@@ -230,8 +230,8 @@ public partial class App : Application
     private static void ShowFatalStartupError(Exception ex)
     {
         MessageBox.Show(
-            "LArtKey.ToolsEnglish text.\n\n" + ex,
-            "LArtKey.Tools English text",
+            "LArtKey.Tools failed to start.\n\n" + ex,
+            "LArtKey.Tools error",
             MessageBoxButton.OK,
             MessageBoxImage.Error);
     }

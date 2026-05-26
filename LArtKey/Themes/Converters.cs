@@ -4,8 +4,8 @@ using System.Windows.Data;
 
 namespace LArtKey.Themes;
 
-/// T-5.2: English text(0.0~1.0) → StrokeDashOffset English text
-/// StrokeDashArray="100" English text → progress=0 English text offset=100(English text), progress=1 English text offset=0(English text)
+/// T-5.2: text(0.0~1.0) → StrokeDashOffset text
+/// StrokeDashArray="100" text → progress=0 text offset=100(text), progress=1 text offset=0(text)
 [ValueConversion(typeof(double), typeof(double))]
 public class ProgressToOffsetConverter : IValueConverter
 {
@@ -19,7 +19,7 @@ public class ProgressToOffsetConverter : IValueConverter
         => throw new NotSupportedException();
 }
 
-/// bool → Visibility English text)
+/// bool → Visibility text)
 [ValueConversion(typeof(bool), typeof(Visibility))]
 public class BoolToVisibilityConverter : IValueConverter
 {
@@ -30,7 +30,7 @@ public class BoolToVisibilityConverter : IValueConverter
         => value is Visibility.Visible;
 }
 
-/// T-9.4: bool English text (false → Visible)
+/// T-9.4: bool text (false → Visible)
 [ValueConversion(typeof(bool), typeof(Visibility))]
 public class InverseBoolToVisibilityConverter : IValueConverter
 {
@@ -41,7 +41,7 @@ public class InverseBoolToVisibilityConverter : IValueConverter
         => value is Visibility.Collapsed;
 }
 
-/// T-9.4: EditWidth(double) → English text = 50px
+/// T-9.4: EditWidth(double) → text = 50px
 [ValueConversion(typeof(double), typeof(double))]
 public class WidthToPixelConverter : IValueConverter
 {
@@ -54,7 +54,7 @@ public class WidthToPixelConverter : IValueConverter
         => throw new NotSupportedException();
 }
 
-/// Gap English text(double) → English text Thickness(0,0,gap*Unit,0) English text
+/// Gap text(double) → text Thickness(0,0,gap*Unit,0) text
 [ValueConversion(typeof(double), typeof(Thickness))]
 public class GapToRightMarginConverter : IValueConverter
 {
@@ -67,7 +67,7 @@ public class GapToRightMarginConverter : IValueConverter
         => throw new NotSupportedException();
 }
 
-/// null English text → Collapsed, English text Visible
+/// null text → Collapsed, text Visible
 [ValueConversion(typeof(object), typeof(Visibility))]
 public class NullToCollapsedConverter : IValueConverter
 {
@@ -78,7 +78,7 @@ public class NullToCollapsedConverter : IValueConverter
         => throw new NotSupportedException();
 }
 
-/// bool → English text(★/☆) English text)
+/// bool → text(★/☆) text)
 [ValueConversion(typeof(bool), typeof(string))]
 public class BoolToStarConverter : IValueConverter
 {

@@ -3,7 +3,7 @@ using System.Windows.Controls;
 namespace LArtKey.Views;
 
 /// <summary>
-/// [English text] English text(😀, 👍 English text.
+/// [text] text(😀, 👍 text.
 /// </summary>
 public partial class EmojiPanel : System.Windows.Controls.UserControl
 {

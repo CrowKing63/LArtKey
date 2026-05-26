@@ -5,8 +5,8 @@ using System.Windows.Input;
 namespace LArtKey.Controls;
 
 /// <summary>
-/// [English text] English text.
-/// [English text] English text.
+/// [text] text.
+/// [text] text.
 /// </summary>
 public partial class NumericAdjuster : System.Windows.Controls.UserControl
 {
@@ -26,9 +26,9 @@ public partial class NumericAdjuster : System.Windows.Controls.UserControl
         Loaded += (s, e) => UpdateTextBox();
     }
 
-    // ── DependencyProperty (English text) ──────────────────────────────────
+    // ── DependencyProperty (text) ──────────────────────────────────
 
-    // English text.
+    // text.
     public double Value
     {
         get => (double)GetValue(ValueProperty);
@@ -42,7 +42,7 @@ public partial class NumericAdjuster : System.Windows.Controls.UserControl
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 OnValueChanged));
 
-    // English text.
+    // text.
     public double Minimum
     {
         get => (double)GetValue(MinimumProperty);
@@ -54,7 +54,7 @@ public partial class NumericAdjuster : System.Windows.Controls.UserControl
             nameof(Minimum), typeof(double), typeof(NumericAdjuster),
             new PropertyMetadata(0.0));
 
-    // English text.
+    // text.
     public double Maximum
     {
         get => (double)GetValue(MaximumProperty);
@@ -67,7 +67,7 @@ public partial class NumericAdjuster : System.Windows.Controls.UserControl
             new PropertyMetadata(100.0));
 
     /// <summary>
-    /// [English text] English text.
+    /// [text] text.
     /// </summary>
     public double Step
     {
@@ -80,7 +80,7 @@ public partial class NumericAdjuster : System.Windows.Controls.UserControl
             nameof(Step), typeof(double), typeof(NumericAdjuster),
             new PropertyMetadata(1.0));
 
-    // English text)
+    // text)
     public int DecimalPlaces
     {
         get => (int)GetValue(DecimalPlacesProperty);
@@ -92,7 +92,7 @@ public partial class NumericAdjuster : System.Windows.Controls.UserControl
             nameof(DecimalPlaces), typeof(int), typeof(NumericAdjuster),
             new PropertyMetadata(0));
 
-    // ── English text DependencyProperty ────────────────────────────────────────────
+    // ── text DependencyProperty ────────────────────────────────────────────
 
     public System.Windows.Media.Brush ButtonBackground
     {
@@ -149,7 +149,7 @@ public partial class NumericAdjuster : System.Windows.Controls.UserControl
             nameof(TextBoxBorderBrush), typeof(System.Windows.Media.Brush), typeof(NumericAdjuster),
             new PropertyMetadata(null));
 
-    // ── English text ────────────────────────────────────────────────────────────────
+    // ── text ────────────────────────────────────────────────────────────────
 
     private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -161,7 +161,7 @@ public partial class NumericAdjuster : System.Windows.Controls.UserControl
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void ChangeValue(double delta)
     {

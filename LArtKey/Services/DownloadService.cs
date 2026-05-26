@@ -3,18 +3,18 @@ using System.Net.Http;
 
 namespace LArtKey.Services;
 
-/// <summary>T-9.5: English text)</summary>
+/// <summary>T-9.5: text)</summary>
 public class DownloadService
 {
     private readonly HttpClient _httpClient = new();
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
-    /// <param name="url">English text URL</param>
-    /// <param name="destinationPath">English text</param>
-    /// <param name="progress">English text (0.0 ~ 1.0)</param>
-    /// <param name="cancellationToken">English text</param>
+    /// <param name="url">text URL</param>
+    /// <param name="destinationPath">text</param>
+    /// <param name="progress">text (0.0 ~ 1.0)</param>
+    /// <param name="cancellationToken">text</param>
     public async Task DownloadAsync(
         string url,
         string destinationPath,

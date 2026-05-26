@@ -9,11 +9,11 @@
              d:DataContext="{d:DesignInstance vm:ActionBuilderViewModel}">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
-        <!-- English text. -->
+        <!-- text. -->
         <Style x:Key="InputBox" TargetType="TextBox" BasedOn="{StaticResource FluentEditorInputBoxStyle}">
             <Setter Property="Margin" Value="0,0,0,6"/>
         </Style>
-        <!-- English text. -->
+        <!-- text. -->
         <Style x:Key="InputCombo" TargetType="ComboBox" BasedOn="{StaticResource FluentComboBoxStyle}">
             <Setter Property="Margin" Value="0,0,0,6"/>
             <Setter Property="Height" Value="26"/>
@@ -44,13 +44,13 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <TextBlock Text="English text" Style="{StaticResource HintText}"/>
+        <TextBlock Text="Action type" Style="{StaticResource HintText}"/>
         <ComboBox ItemsSource="{Binding ActionTypes}"
                   SelectedItem="{Binding SelectedActionType}"
                   Style="{StaticResource InputCombo}"/>
 
         <StackPanel Visibility="{Binding IsSendKey, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="English text: VK_A, Ctrl+A, A)" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Virtual key code (for example: VK_A, Ctrl+A, A)" Style="{StaticResource HintText}"/>
             <Grid Margin="0,0,0,6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -71,7 +71,7 @@
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsSendCombo, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="English text: Ctrl+A, Shift+B)" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Key combination (for example: Ctrl+A, Shift+B)" Style="{StaticResource HintText}"/>
             <ItemsControl ItemsSource="{Binding SendComboKeysCollection}" Margin="0,0,0,6">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -97,7 +97,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Button Content="+ English text"
+            <Button Content="+ Add key"
                     Style="{StaticResource ActionMiniButtonStyle}"
                     Padding="6,4"
                     Command="{Binding AddComboKeyCommand}"
@@ -105,7 +105,7 @@
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsToggleSticky, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="English text: VK_SHIFT, Shift, Ctrl)" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Modifier key (for example: VK_SHIFT, Shift, Ctrl)" Style="{StaticResource HintText}"/>
             <ComboBox ItemsSource="{Binding CommonVkCodesDisplay}"
                       DisplayMemberPath="DisplayName"
                       SelectedValuePath="VkCode"
@@ -115,13 +115,13 @@
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsSwitchLayout, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="English text)" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Layout file name (without extension)" Style="{StaticResource HintText}"/>
             <TextBox Text="{Binding SwitchLayoutName, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource InputBox}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsRunApp, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="English text" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Executable path" Style="{StaticResource HintText}"/>
             <Grid Margin="0,0,0,6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -130,62 +130,62 @@
                 <TextBox Text="{Binding AppPath, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Column="0" Margin="0"
                          Style="{StaticResource InputBox}"/>
-                <Button Content="English text"
+                <Button Content="Browse"
                         Grid.Column="1" Margin="4,0,0,0"
                         Style="{StaticResource ActionMiniButtonStyle}"
                         Padding="6,4"
                         Command="{Binding BrowseAppCommand}"/>
             </Grid>
-            <TextBlock Text="English text)" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Arguments (optional)" Style="{StaticResource HintText}"/>
             <TextBox Text="{Binding AppArgs, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource InputBox}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsBoilerplate, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="English text" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Text to type" Style="{StaticResource HintText}"/>
             <TextBox Text="{Binding BoilerplateText, UpdateSourceTrigger=PropertyChanged}"
                      AcceptsReturn="True" Height="60" TextWrapping="Wrap"
                      Style="{StaticResource InputBox}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsShellCommand, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="English text: shutdown /s /t 300)" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Command (for example: shutdown /s /t 300)" Style="{StaticResource HintText}"/>
             <TextBox Text="{Binding ShellCmd, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource InputBox}"/>
-            <TextBlock Text="English text" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Shell type" Style="{StaticResource HintText}"/>
             <ComboBox ItemsSource="{Binding ShellTypes}"
                       SelectedItem="{Binding SelectedShell}"
                       Style="{StaticResource InputCombo}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsVolumeControl, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="English text (up / down / mute)" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Direction (up / down / mute)" Style="{StaticResource HintText}"/>
             <ComboBox ItemsSource="{Binding VolumeDirections}"
                       SelectedItem="{Binding VolumeDirection}"
                       Style="{StaticResource InputCombo}"/>
-            <TextBlock Text="English text" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Step" Style="{StaticResource HintText}"/>
             <ctrl:NumericAdjuster Value="{Binding VolumeStep}"
                                   Minimum="2" Maximum="20" Step="1" DecimalPlaces="0"
                                   Margin="0,0,0,6"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsClipboardPaste, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="English text" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Text to paste" Style="{StaticResource HintText}"/>
             <TextBox Text="{Binding ClipboardText, UpdateSourceTrigger=PropertyChanged}"
                      AcceptsReturn="True" Height="60" TextWrapping="Wrap"
                      Style="{StaticResource InputBox}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsToggleInputMode, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="English text)" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Input mode toggle key (no parameter)" Style="{StaticResource HintText}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsToggleFunctionLayer, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="Fn English text)" Style="{StaticResource HintText}"/>
+            <TextBlock Text="Fn layer toggle key (once: one-shot, twice: lock, three times: off)" Style="{StaticResource HintText}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding IsAi, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="AI English text)" Style="{StaticResource HintText}"/>
+            <TextBlock Text="AI prompt (leave empty to use the default prompt from settings)" Style="{StaticResource HintText}"/>
             <TextBox Text="{Binding AiPrompt, UpdateSourceTrigger=PropertyChanged}"
                      AcceptsReturn="True" Height="72" TextWrapping="Wrap"
                      Style="{StaticResource InputBox}"/>

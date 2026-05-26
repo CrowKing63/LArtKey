@@ -25,7 +25,7 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
     [ObservableProperty]
     private string newWord = "";
 
-    // English text.
+    // text.
     [ObservableProperty]
     private int newWordFrequency = 1;
 
@@ -38,7 +38,7 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
     [ObservableProperty]
     private BigramPairRow? selectedBigramRow;
 
-    // English text.
+    // text.
     [ObservableProperty]
     private string newBigramPrev = "";
 
@@ -208,8 +208,8 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
         if (toRemove.Count == 0) return;
 
         var result = WpfMsgBox.Show(
-            $"English text {toRemove.Count}English text?",
-            "English text",
+            $"Delete {toRemove.Count} selected words?",
+            "Custom shortcut",
             WpfMsgBoxButton.YesNo,
             WpfMsgBoxImage.Question);
         if (result != WpfMsgBoxResult.Yes) return;
@@ -227,10 +227,10 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
     [RelayCommand]
     private void ClearAll()
     {
-        var label = _isPrimaryTabActive ? "English text" : "English text";
+        var label = _isPrimaryTabActive ? "Custom shortcut" : "Custom shortcut";
         var result = WpfMsgBox.Show(
-            $"{label} English text({Words.Count}English text?\nEnglish text.",
-            "English text",
+            $"Delete all {label} entries ({Words.Count} items)?\nThis cannot be undone.",
+            "Custom shortcut",
             WpfMsgBoxButton.YesNo,
             WpfMsgBoxImage.Warning);
         if (result != WpfMsgBoxResult.Yes) return;
@@ -247,8 +247,8 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
         int total = Words.Count;
         int shown = FilteredWords.Cast<object>().Count();
         StatusText = string.IsNullOrWhiteSpace(SearchQuery)
-            ? $"English text {total}English text"
-            : $"English text {total}English text {shown}English text";
+            ? $"Total {total} entries"
+            : $"Total {total} entries, showing {shown}";
     }
 
     public void LoadBigrams()
@@ -286,10 +286,10 @@ public partial class UserDictionaryEditorViewModel : ObservableObject
     [RelayCommand]
     private void ClearAllBigrams()
     {
-        var label = _isPrimaryTabActive ? "English text" : "English text";
+        var label = _isPrimaryTabActive ? "Custom shortcut" : "Custom shortcut";
         var result = WpfMsgBox.Show(
-            $"{label} English text?\nEnglish text.",
-            "English text",
+            $"Delete all {label} data?\nThis cannot be undone.",
+            "Custom shortcut",
             WpfMsgBoxButton.YesNo,
             WpfMsgBoxImage.Warning);
         if (result != WpfMsgBoxResult.Yes) return;

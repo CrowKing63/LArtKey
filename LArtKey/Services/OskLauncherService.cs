@@ -4,15 +4,15 @@ using System.IO;
 namespace LArtKey.Services;
 
 /// <summary>
-/// [English text] Windows English text.
-/// [English text] English text.
+/// [text] Windows text.
+/// [text] text.
 /// </summary>
 public class OskLauncherService
 {
     /// <summary>
-    /// OSK English text.
+    /// OSK text.
     /// </summary>
-    /// <returns>English text false</returns>
+    /// <returns>text false</returns>
     public virtual bool TryLaunch()
     {
         foreach (var candidate in EnumerateCandidates())
@@ -25,7 +25,7 @@ public class OskLauncherService
     }
 
     /// <summary>
-    /// OSK English text.
+    /// OSK text.
     /// </summary>
     protected virtual IEnumerable<string> EnumerateCandidates()
     {
@@ -37,12 +37,12 @@ public class OskLauncherService
         if (!string.IsNullOrWhiteSpace(windowsDirectory))
             yield return Path.Combine(windowsDirectory, "System32", "osk.exe");
 
-        // English text.
+        // text.
         yield return "osk.exe";
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     protected virtual bool TryLaunchCandidate(string candidate)
     {
@@ -56,7 +56,7 @@ public class OskLauncherService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[OskLauncher] English text: {candidate} / {ex.Message}");
+            Debug.WriteLine($"[OskLauncher] Launch failed: {candidate} / {ex.Message}");
             return false;
         }
     }

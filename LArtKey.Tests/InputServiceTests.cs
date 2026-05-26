@@ -212,8 +212,8 @@ public class InputServiceTests
     {
         var svc = new CapturingInputService();
 
-        svc.SendUnicode("English text");
-        svc.SendAtomicReplace(1, "English text");
+        svc.SendUnicode("sample text");
+        svc.SendAtomicReplace(1, "sample text");
 
         var unicodeInputs = svc.Dispatches[0];
         Assert.Equal(0, unicodeInputs[0].U.Ki.WVk);

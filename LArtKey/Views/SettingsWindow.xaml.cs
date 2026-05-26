@@ -9,7 +9,7 @@ using WpfKeyEventArgs = System.Windows.Input.KeyEventArgs;
 namespace LArtKey.Views;
 
 /// <summary>
-/// English text.
+/// text.
 /// </summary>
 public partial class SettingsWindow : Window
 {
@@ -21,10 +21,10 @@ public partial class SettingsWindow : Window
         _vm = vm;
         DataContext = vm;
 
-        // English text.
+        // text.
         Loaded += (_, _) => FocusFirstControlInSelectedTab();
 
-        // English text.
+        // text.
         FocusTracker.Register(this);
     }
 
@@ -49,7 +49,7 @@ public partial class SettingsWindow : Window
     }
 
     /// <summary>
-    /// English text.
+    /// text.
     /// </summary>
     private void SettingsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -73,7 +73,7 @@ public partial class SettingsWindow : Window
             return;
         }
 
-        // English text.
+        // text.
         FrameworkElement? primary = SettingsTabControl.SelectedIndex switch
         {
             0 => AppearanceFirstFocusable,

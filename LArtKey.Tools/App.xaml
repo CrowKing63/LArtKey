@@ -4,16 +4,16 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- English text. -->
+                <!-- text. -->
                 <ResourceDictionary Source="/LArtKey;component/Themes/Generic.xaml"/>
-                <!-- English text. -->
+                <!-- text. -->
                 <ResourceDictionary Source="/LArtKey;component/Themes/DarkTheme.xaml"/>
                 <ResourceDictionary Source="/LArtKey;component/Themes/SettingsControls.xaml"/>
-                <!-- Phase 1: English text -->
+                <!-- Phase 1: text -->
                 <ResourceDictionary Source="/LArtKey;component/Themes/FluentControls.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- English text. -->
+            <!-- text. -->
             <FontFamily x:Key="AppFontFamily">NanumGothic, Malgun Gothic, Segoe UI</FontFamily>
             <Style TargetType="Control">
                 <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}"/>

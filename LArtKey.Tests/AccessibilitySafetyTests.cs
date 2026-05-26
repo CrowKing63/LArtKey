@@ -148,8 +148,8 @@ public class AccessibilitySafetyTests
                     Position = "Right",
                     DisplayMode = HeaderButtonDisplayMode.IconOnly,
                     IconText = $"C{i}",
-                    Tooltip = $"English text {i}",
-                    AccessibleName = $"English text {i}",
+                    Tooltip = $"sample text {i}",
+                    AccessibleName = $"sample text {i}",
                     CustomAction = new SendKeyAction("VK_A")
                 });
             }
